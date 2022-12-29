@@ -9,4 +9,4 @@ Haseena KC
 #
 Sujina Shrestha
 #
-Nikesh Bandari
+Nikesh Bhandari
