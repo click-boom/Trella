@@ -20,4 +20,6 @@ username_entry=tk.Entry(usr_pwd,width=35, font=("Times 10 bold"),bd=0,fg="#0A49D
 password=tk.Label(usr_pwd,text="Password").place(x=480,y=377)
 password_entry=tk.Entry(usr_pwd,width=35, font=("Times 10 bold"),bd=0,fg="#808080").place(x=480,y=400) 
 
+print("hekkk")
+
 root.mainloop()
