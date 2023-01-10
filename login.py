@@ -9,14 +9,28 @@ def loginpage():
     login.maxsize(1920,1080)
     login.resizable()
 
-    img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/1.png'))
+    img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/bg.png'))
     bg=tk.Label(login, image=img)
     bg.image=img
     bg.pack(fill='both', expand='yes')
 
-    login_frame=tk.Frame(login, bg='#d6d6d6', width='950', height='600')
-    login_frame.place(x=200, y=76)
+
+    login_frame=tk.Frame(login, bg='#d6d6d6', width='700', height='500')
+    login_frame.place(x=620, y=400)
+
+    llogo=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/bg.png')
+    login.txt='Welcome To Trella'
+    login.heading=tk.Label(login, 
+     text=login.txt,
+     font=('yu gothic ui', '25', 'bold'),
+     fg='#6c6c6c').place(x=810, y=400, width=300, height=50)
+
+
+    logo=tk.Label(login, image=llogo).place(x=0, y=0)
+
     
+    
+
 
 loginpage()
 login.mainloop()
