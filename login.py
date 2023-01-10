@@ -14,7 +14,8 @@ def loginpage():
     bg.image=img
     bg.pack(fill='both', expand='yes')
 
-    # login_frame=tk.Frame(login, bg='#d6d6d6', width)
+    login_frame=tk.Frame(login, bg='#d6d6d6', width='950', height='600')
+    login_frame.place(x=200, y=76)
     
 
 loginpage()
