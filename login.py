@@ -4,20 +4,27 @@ from tkinter import ttk
 
 login=tk.Tk()
 def loginpage():
+    
+    #--------------------Login WIndow-------------------------------------------------------------
+    
     login.title('Welcome to Trella')
     login.geometry('800x600')
     login.maxsize(1920,1080)
     login.resizable()
 
+    #--------------------Page Background-------------------------------------------------------------
     img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/bg.png'))
     bg=tk.Label(login, image=img)
     bg.image=img
     bg.pack(fill='both', expand='yes')
 
 
+    #--------------------Login Frame-------------------------------------------------------------
     login_frame=tk.Frame(login, bg='#d6d6d6', width='700', height='500')
     login_frame.place(x=620, y=400)
 
+
+    #--------------------"Welcome To TRELLA"-------------------------------------------------------------
     llogo=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/bg.png')
     login.txt='Welcome To Trella'
     login.heading=tk.Label(login, 
