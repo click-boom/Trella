@@ -5,7 +5,7 @@ from tkinter import ttk
 login=tk.Tk()
 def loginpage():
     
-    #--------------------Login WIndow-------------------------------------------------------------
+    #--------------------Login Window-------------------------------------------------------------
     
     login.title('Welcome to Trella')
     login.geometry('800x600')
@@ -20,23 +20,23 @@ def loginpage():
 
 
     #--------------------Login Frame-------------------------------------------------------------
-    login_frame=tk.Frame(login, bg='#d6d6d6', width='700', height='500')
-    login_frame.place(x=620, y=400)
+    login_frame=tk.Frame(login, width='700', height='700')
+    login_frame.place(x=620, y=220)
 
 
     #--------------------"Welcome To TRELLA"-------------------------------------------------------------
     login.txt='Welcome To Trella'
     login.heading=tk.Label(login, 
      text=login.txt,
-     font=('yu gothic ui', '25', 'bold'),
-     fg='#6c6c6c').place(x=810, y=400, width=300, height=50)
-
+     font=('yu gothic ui', '28', 'bold'),
+     fg='#6c6c6c').place(x=780, y=450, width=400, height=50)
 
 
     #--------------------"Logo"-------------------------------------------------------------
-    llogo=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/dlogo.png')
-    logo=tk.Label(login, image=llogo).place(x=10, y=10)
-
-
-loginpage()
-login.mainloop()
+    logo_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/llogo.png'))    
+    login.logo_lbl=tk.Label(login_frame,image=logo_img)
+    login.logo_lbl.image=logo_img
+    login.logo_lbl.place(x=285, y=30)
+    
+loginpage() 
+login.mainloop() 
