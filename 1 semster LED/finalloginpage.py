@@ -5,7 +5,7 @@ from PIL import ImageTk,Image
 window=Tk()
 window.title("Trella".center(400))
 window.geometry("800x900")
-window.state("zoomed")
+# window.state("zoomed")
 window.resizable(0,0)
 
 

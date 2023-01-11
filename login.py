@@ -25,7 +25,6 @@ def loginpage():
 
 
     #--------------------"Welcome To TRELLA"-------------------------------------------------------------
-    llogo=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/bg.png')
     login.txt='Welcome To Trella'
     login.heading=tk.Label(login, 
      text=login.txt,
@@ -33,10 +32,10 @@ def loginpage():
      fg='#6c6c6c').place(x=810, y=400, width=300, height=50)
 
 
-    logo=tk.Label(login, image=llogo).place(x=0, y=0)
 
-    
-    
+    #--------------------"Logo"-------------------------------------------------------------
+    llogo=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/llogo.png')
+    logo=tk.Label(login, image=llogo).place(x=10, y=10)
 
 
 loginpage()
