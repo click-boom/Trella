@@ -2,14 +2,21 @@ import tkinter as tk
 from PIL import ImageTk, Image
 from tkinter import ttk
 
+
+
+
+
 login=tk.Tk()
 def loginpage():
     
     #--------------------Login Window-------------------------------------------------------------
     
+    # screen_width = win.winfo_screenwidth()
+    # screen_height = win.winfo_screenheight()
+    
     login.title('Welcome to Trella')
     login.geometry('1920x1080')
-    login.resizable(0, 0)
+    login.minsize(1920,1080)
 
     th_clr='#d6d6d6'
     fnt='#6c6c6c'
@@ -45,26 +52,30 @@ def loginpage():
 
     login.username_lbl=tk.Label(login_frame, text='Username', fg=fnt, font=('yu gothic ui', 16, 'bold'))
     login.username_lbl.place(x=90, y=300)
-    login.username_entry=tk.Entry(login_frame, highlightthickness=5, relief='flat', fg=fnt, bg=th_clr, font=('yu gothic ui', 12, 'bold'))
+    login.username_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr, font=('yu gothic ui', 12, 'bold'))
     login.username_entry.place(x=88, y=335, width=270)
-    
+
+    login.username_line=tk.Canvas(login_frame, width=300, height=2.0, bg=fnt, highlightthickness=0)
+    login.username_line.place(x=88, y=360)
 
     login.passwd_lbl=tk.Label(login_frame, text='Password', fg='#6c6c6c', font=('yu gothic ui', 16, 'bold'))
     login.passwd_lbl.place(x=90, y=400)
-    login.passwd_entry=tk.Entry(login_frame, highlightthickness=5, relief='flat', fg=fnt, bg=th_clr, font=('yu gothic ui', 12, 'bold'))
+    login.passwd_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr, font=('yu gothic ui', 12, 'bold'))
     login.passwd_entry.place(x=88, y=432, width=270)
 
+    login.password_line=tk.Canvas(login_frame, width=300, height=2.0, bg=fnt, highlightthickness=0)
+    login.password_line.place(x=88, y=458)
 
     #--------------------"Sign in and Password icons"-------------------------------------------------------
    
    
-    username_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/user.png'))    
+    username_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/userr-icon.png'))    
     login.user_logo_lbl=tk.Label(login_frame,image=username_img)
     login.user_logo_lbl.image=username_img
     login.user_logo_lbl.place(x=53, y=339)
 
 
-    passwd_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/key.png'))    
+    passwd_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/pwd_icon.png'))    
     login.passwd_logo_lbl=tk.Label(login_frame,image=passwd_img)
     login.passwd_logo_lbl.image=passwd_img
     login.passwd_logo_lbl.place(x=53, y=435)
@@ -75,6 +86,6 @@ def loginpage():
     
     
     #--------------------"Login Button"-------------------------------------------------------
-    login.login_btn=ImageTk.PhotoImage(Image.open(''))
+    # login.login_btn=ImageTk.PhotoImage(Image.open(''))
 loginpage()
 login.mainloop() 
