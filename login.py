@@ -34,7 +34,7 @@ def loginpage():
 
 
     #--------------------"Logo"-------------------------------------------------------------
-    llogo=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/llogo.png')
+    llogo=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/dlogo.png')
     logo=tk.Label(login, image=llogo).place(x=10, y=10)
 
 
