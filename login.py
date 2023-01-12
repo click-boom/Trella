@@ -15,8 +15,20 @@ def loginpage():
     login.geometry('1920x1080')
     login.minsize(1920,1080)
 
+
+    #--------------------Functions---------------------------------------------------------------
+    
     th_clr='#d6d6d6'
     fnt='#6c6c6c'
+    def eye_hidden():
+        if  login.passwd_entry.cget("show")=="*":
+            login.passwd_entry.config(show="")
+
+        else:
+            login.passwd_entry.config(show="*") 
+
+
+
     #--------------------Page Background-------------------------------------------------------------
     img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/bg.png'))
     bg=tk.Label(login, image=img)
@@ -57,7 +69,7 @@ def loginpage():
 
     login.passwd_lbl=tk.Label(login_frame, text='Password', fg='#6c6c6c', font=('yu gothic ui', 18, 'bold'))
     login.passwd_lbl.place(x=120, y=410)
-    login.passwd_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr, font=('yu gothic ui', 15, 'bold'))
+    login.passwd_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr,show="*",font=('yu gothic ui', 15, 'bold'))
     login.passwd_entry.place(x=120, y=450, width=450)
 
     login.password_line=tk.Canvas(login_frame, width=450, height=2.0, bg=fnt, highlightthickness=0)
@@ -79,7 +91,21 @@ def loginpage():
 
 
     #--------------------"Password Eye Button"-------------------------------------------------------
-    # hidden_img
+    img=tk.PhotoImage(file="/home/wae/Documents/giri raj sir/Trella/hide_pwd.png")
+    img_lable=tk.Label(login_frame,image=img)
+    
+    img_lable.place(x=800,y=500)
+
+    show_button=tk.Button(login_frame,text="show",activebackground="black",bd=0,background="grey",command=eye_hidden)
+    show_button.place(x=500,y=445)
+
+
+
+
+
+
+
+
     
     
     
