@@ -86,9 +86,9 @@ def loginpage():
     #--------------------"Login Button"-------------------------------------------------------
 
 
-    login_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/login_btn.png'))    
-    login.login_btn_img=tk.Label(login_frame,image=login_img)
-    login.login_btn_img.image=login_img
+    btn_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/btn.png'))    
+    login.login_btn_img=tk.Label(login_frame,image=btn_img)
+    login.login_btn_img.image=btn_img
     login.login_btn_img.place(x=190, y=510)
 
     login_btn=tk.Button(login.login_btn_img, text='Sign in', font=('yu gothic ui', 18, 'bold'),width=10, bd=0, highlightthickness=0,  bg=btn_bg, cursor='hand2', activebackground=btn_bg, fg=fnt )
@@ -102,7 +102,7 @@ def loginpage():
 
     #--------------------"Password Eye Button"-------------------------------------------------------
 
-    
+
 
 loginpage()
 login.mainloop() 
