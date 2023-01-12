@@ -22,15 +22,6 @@ def loginpage():
     fnt='#6c6c6c'
     btn_bg='#3047ff'
 
-    def eye_hidden():
-        if  login.passwd_entry.cget("show")=="*":
-            login.passwd_entry.config(show="")
-
-        else:
-            login.passwd_entry.config(show="*") 
-
-
-
     #--------------------Page Background-------------------------------------------------------------
     img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/bg.png'))
     bg=tk.Label(login, image=img)
@@ -105,19 +96,13 @@ def loginpage():
 
 
     #--------------------"Signup Button"-------------------------------------------------------
+    
     login.sign_up_label=tk.Button(login_frame, text='Not registered yet? Sign Up', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground=fnt, activebackground=th_clr,cursor='hand2', bd=0, width=20)
     login.sign_up_label.place(x=185, y=570)
 
     #--------------------"Password Eye Button"-------------------------------------------------------
-    
-    
-    # img=tk.PhotoImage(file="/home/wae/Documents/giri raj sir/Trella/hide_pwd.png")
-    # img_lable=tk.Label(login_frame,image=img)
-    
-    # img_lable.place(x=800,y=500)
 
-    # show_button=tk.Button(login_frame,text="show",activebackground="black",bd=0,background="grey",command=eye_hidden)
-    # show_button.place(x=500,y=445)
+    
 
 loginpage()
 login.mainloop() 
