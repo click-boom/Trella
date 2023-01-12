@@ -20,6 +20,8 @@ def loginpage():
     
     th_clr='#d6d6d6'
     fnt='#6c6c6c'
+    btn_bg='#3047ff'
+
     def eye_hidden():
         if  login.passwd_entry.cget("show")=="*":
             login.passwd_entry.config(show="")
@@ -64,7 +66,7 @@ def loginpage():
     login.username_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr, font=('yu gothic ui', 15, 'bold'))
     login.username_entry.place(x=120, y=340, width=450)
 
-    login.username_line=tk.Canvas(login_frame, width=400, height=3.0, bg=fnt, highlightthickness=0)
+    login.username_line=tk.Canvas(login_frame, width=400, height=2.0, bg=fnt, highlightthickness=0)
     login.username_line.place(x=120, y=370, width=450)
 
     login.passwd_lbl=tk.Label(login_frame, text='Password', fg='#6c6c6c', font=('yu gothic ui', 18, 'bold'))
@@ -90,27 +92,32 @@ def loginpage():
     login.passwd_logo_lbl.place(x=88, y=450)
 
 
-    #--------------------"Password Eye Button"-------------------------------------------------------
-    img=tk.PhotoImage(file="/home/wae/Documents/giri raj sir/Trella/hide_pwd.png")
-    img_lable=tk.Label(login_frame,image=img)
-    
-    img_lable.place(x=800,y=500)
-
-    show_button=tk.Button(login_frame,text="show",activebackground="black",bd=0,background="grey",command=eye_hidden)
-    show_button.place(x=500,y=445)
-
-
-
-
-
-
-
-
-    
-    
-    
-    
     #--------------------"Login Button"-------------------------------------------------------
-    # login.login_btn=ImageTk.PhotoImage(Image.open(''))
+
+
+    login_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/login_btn.png'))    
+    login.login_btn_img=tk.Label(login_frame,image=login_img)
+    login.login_btn_img.image=login_img
+    login.login_btn_img.place(x=190, y=510)
+
+    login_btn=tk.Button(login.login_btn_img, text='Sign in', font=('yu gothic ui', 18, 'bold'),width=10, bd=0, highlightthickness=0,  bg=btn_bg, cursor='hand2', activebackground=btn_bg, fg=fnt )
+    login_btn.place(x=60, y=8)
+
+
+    #--------------------"Signup Button"-------------------------------------------------------
+    login.sign_up_label=tk.Button(login_frame, text='Not registered yet? Sign Up', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground=fnt, activebackground=th_clr,cursor='hand2', bd=0, width=20)
+    login.sign_up_label.place(x=185, y=570)
+
+    #--------------------"Password Eye Button"-------------------------------------------------------
+    
+    
+    # img=tk.PhotoImage(file="/home/wae/Documents/giri raj sir/Trella/hide_pwd.png")
+    # img_lable=tk.Label(login_frame,image=img)
+    
+    # img_lable.place(x=800,y=500)
+
+    # show_button=tk.Button(login_frame,text="show",activebackground="black",bd=0,background="grey",command=eye_hidden)
+    # show_button.place(x=500,y=445)
+
 loginpage()
 login.mainloop() 
