@@ -36,7 +36,7 @@ def loginpage():
     login.txt='Welcome To Trella'
     login.heading=tk.Label(login, 
      text=login.txt,
-     font=('yu gothic ui', '28', 'bold'),
+     font=('yu gothic ui', '30', 'bold'),
      fg='#6c6c6c').place(x=780, y=435, width=400, height=50)
 
 
@@ -50,21 +50,21 @@ def loginpage():
     #------------------------------"Sign in and Password"---------------------------------------------------
 
 
-    login.username_lbl=tk.Label(login_frame, text='Username', fg=fnt, font=('yu gothic ui', 16, 'bold'))
-    login.username_lbl.place(x=90, y=300)
-    login.username_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr, font=('yu gothic ui', 12, 'bold'))
-    login.username_entry.place(x=88, y=335, width=270)
+    login.username_lbl=tk.Label(login_frame, text='Username', fg=fnt, font=('yu gothic ui', 18, 'bold'))
+    login.username_lbl.place(x=120, y=300)
+    login.username_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr, font=('yu gothic ui', 15, 'bold'))
+    login.username_entry.place(x=120, y=340, width=450)
 
-    login.username_line=tk.Canvas(login_frame, width=300, height=2.0, bg=fnt, highlightthickness=0)
-    login.username_line.place(x=88, y=360)
+    login.username_line=tk.Canvas(login_frame, width=400, height=3.0, bg=fnt, highlightthickness=0)
+    login.username_line.place(x=120, y=370, width=450)
 
-    login.passwd_lbl=tk.Label(login_frame, text='Password', fg='#6c6c6c', font=('yu gothic ui', 16, 'bold'))
-    login.passwd_lbl.place(x=90, y=400)
-    login.passwd_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr, font=('yu gothic ui', 12, 'bold'))
-    login.passwd_entry.place(x=88, y=432, width=270)
+    login.passwd_lbl=tk.Label(login_frame, text='Password', fg='#6c6c6c', font=('yu gothic ui', 18, 'bold'))
+    login.passwd_lbl.place(x=120, y=410)
+    login.passwd_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr, font=('yu gothic ui', 15, 'bold'))
+    login.passwd_entry.place(x=120, y=450, width=450)
 
-    login.password_line=tk.Canvas(login_frame, width=300, height=2.0, bg=fnt, highlightthickness=0)
-    login.password_line.place(x=88, y=458)
+    login.password_line=tk.Canvas(login_frame, width=450, height=2.0, bg=fnt, highlightthickness=0)
+    login.password_line.place(x=120, y=478)
 
     #--------------------"Sign in and Password icons"-------------------------------------------------------
    
@@ -72,13 +72,13 @@ def loginpage():
     username_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/userr-icon.png'))    
     login.user_logo_lbl=tk.Label(login_frame,image=username_img)
     login.user_logo_lbl.image=username_img
-    login.user_logo_lbl.place(x=53, y=339)
+    login.user_logo_lbl.place(x=88, y=342)
 
 
     passwd_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/pwd_icon.png'))    
     login.passwd_logo_lbl=tk.Label(login_frame,image=passwd_img)
     login.passwd_logo_lbl.image=passwd_img
-    login.passwd_logo_lbl.place(x=53, y=435)
+    login.passwd_logo_lbl.place(x=88, y=450)
 
 
     #--------------------"Password Eye Button"-------------------------------------------------------
