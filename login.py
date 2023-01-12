@@ -30,7 +30,7 @@ def loginpage():
 
 
     #--------------------Page Background-------------------------------------------------------------
-    img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/bg.png'))
+    img=ImageTk.PhotoImage(Image.open('D:/trela/bg.png'))
     bg=tk.Label(login, image=img)
     bg.image=img
     bg.pack(fill='both', expand='yes')
@@ -50,7 +50,7 @@ def loginpage():
 
 
     #-----------------------------------"Logo"-------------------------------------------------------------
-    logo_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/dlogo.png'))    
+    logo_img=tk.PhotoImage(file=('D:/trela/dlogo.png'))    
     login.logo_lbl=tk.Label(login_frame,image=logo_img)
     login.logo_lbl.image=logo_img
     login.logo_lbl.place(x=288, y=25)
@@ -78,20 +78,20 @@ def loginpage():
     #--------------------"Sign in and Password icons"-------------------------------------------------------
    
    
-    username_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/userr-icon.png'))    
+    username_img=tk.PhotoImage(file='D:/trela/userr-icon.png')    
     login.user_logo_lbl=tk.Label(login_frame,image=username_img)
     login.user_logo_lbl.image=username_img
     login.user_logo_lbl.place(x=88, y=342)
 
 
-    passwd_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/pwd_icon.png'))    
+    passwd_img=tk.PhotoImage(file=('D:/trela/view_pwd.png'))    
     login.passwd_logo_lbl=tk.Label(login_frame,image=passwd_img)
     login.passwd_logo_lbl.image=passwd_img
     login.passwd_logo_lbl.place(x=88, y=450)
 
 
     #--------------------"Password Eye Button"-------------------------------------------------------
-    img=tk.PhotoImage(file="/home/wae/Documents/giri raj sir/Trella/hide_pwd.png")
+    img=tk.PhotoImage(file="D:/trela/view_pwd.png")
     img_lable=tk.Label(login_frame,image=img)
     
     img_lable.place(x=800,y=500)
