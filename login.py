@@ -52,10 +52,10 @@ def loginpage():
     #------------------------------"Sign in and Password"---------------------------------------------------
 
 
-    login.username_lbl=tk.Label(login_frame, text='Username', fg=fnt, font=('yu gothic ui', 18, 'bold'))
-    login.username_lbl.place(x=120, y=300)
-    login.username_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr, font=('yu gothic ui', 15, 'bold'))
-    login.username_entry.place(x=120, y=340, width=450)
+    login.usrname_lbl=tk.Label(login_frame, text='Username', fg=fnt, font=('yu gothic ui', 18, 'bold'))
+    login.usrname_lbl.place(x=120, y=300)
+    login.usrname_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr, font=('yu gothic ui', 15, 'bold'))
+    login.usrname_entry.place(x=120, y=340, width=450)
 
     login.username_line=tk.Canvas(login_frame, width=400, height=2.0, bg=fnt, highlightthickness=0)
     login.username_line.place(x=120, y=370, width=450)
@@ -65,8 +65,8 @@ def loginpage():
     login.passwd_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr,show="*",font=('yu gothic ui', 15, 'bold'))
     login.passwd_entry.place(x=120, y=450, width=450)
 
-    login.password_line=tk.Canvas(login_frame, width=450, height=2.0, bg=fnt, highlightthickness=0)
-    login.password_line.place(x=120, y=478)
+    login.passwd_line=tk.Canvas(login_frame, width=450, height=2.0, bg=fnt, highlightthickness=0)
+    login.passwd_line.place(x=120, y=478)
 
     #--------------------"Sign in and Password icons"-------------------------------------------------------
    
@@ -100,11 +100,31 @@ def loginpage():
     login.sign_up_label=tk.Button(login_frame, text='Not registered yet? Sign Up', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground=fnt, activebackground=th_clr,cursor='hand2', bd=0, width=20)
     login.sign_up_label.place(x=185, y=570)
 
-    #--------------------"Password Eye Button"-------------------------------------------------------
 
-    login.view_pwd=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/view_pwd.png'))
-    login.view_pwd_btn=tk.Button(login_frame,image= login.view_pwd, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
-    login.view_pwd_btn.place(x=538, y=448)
+    #--------------------"Hide/Unhide Option"----------------------------------------------------------
+    
+    def show():
+        login.hide_pwd_btn=tk.Button(login_frame, image=login.hide_pwd_img, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0, command=hide)
+        login.hide_pwd_btn.image=login.hide_pwd_img
+        login.hide_pwd_btn.place(x=537, y=448)
+        login.passwd_entry.config(show='')
+
+    def hide():
+        login.view_pwd_btn=tk.Button(login_frame, image=login.view_pwd_img, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0, command=show)
+        login.hide_pwd_btn.image=login.hide_pwd_img
+        login.hide_pwd_btn.place(x=537, y=448)
+        login.passwd_entry.config(show='*')
+    
+
+    login.view_pwd_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/view_pwd.png'))    
+    login.view_pwd_btn=tk.Button(login_frame, image=login.view_pwd_img, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0, command=show)
+    login.view_pwd_btn.image=login.view_pwd_img
+    login.view_pwd_btn.place(x=537, y=448)
+
+    login.hide_pwd_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/hide_pwd.png'))    
+
+   
+
 
 
 loginpage()
