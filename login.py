@@ -102,6 +102,9 @@ def loginpage():
 
     #--------------------"Password Eye Button"-------------------------------------------------------
 
+    login.view_pwd=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/view_pwd.png'))
+    login.view_pwd_btn=tk.Button(login_frame,image= login.view_pwd, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
+    login.view_pwd_btn.place(x=538, y=448)
 
 
 loginpage()
