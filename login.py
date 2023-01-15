@@ -20,7 +20,7 @@ def loginpage():
     
     th_clr='#d6d6d6'
     fnt='#6c6c6c'
-    btn_bg='#3047ff'
+    btn_bg='#a4a4a4'
 
     #--------------------Page Background-------------------------------------------------------------
     img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/bg.png'))
@@ -89,10 +89,10 @@ def loginpage():
     btn_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/btn.png'))    
     login.login_btn_img=tk.Label(login_frame,image=btn_img)
     login.login_btn_img.image=btn_img
-    login.login_btn_img.place(x=190, y=510)
+    login.login_btn_img.place(x=225, y=510)
 
-    login_btn=tk.Button(login.login_btn_img, text='Sign in', font=('yu gothic ui', 18, 'bold'),width=10, bd=0, highlightthickness=0,  bg=btn_bg, cursor='hand2', activebackground=btn_bg, fg=fnt )
-    login_btn.place(x=60, y=8)
+    login_btn=tk.Button(login.login_btn_img, text='Sign in', font=('yu gothic ui', 18, 'bold'),width=10, bd=0, highlightthickness=0,  bg=btn_bg, cursor='hand2', activebackground=btn_bg, fg='white' )
+    login_btn.place(x=30, y=8)
 
 
     #--------------------"Signup Button"-------------------------------------------------------

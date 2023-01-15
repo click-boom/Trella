@@ -22,7 +22,7 @@ def loginpage():
     fnt='#6c6c6c'
 
     #--------------------Page Background-------------------------------------------------------------
-    img=ImageTk.PhotoImage(Image.open('D:/trela/bg.png'))
+    img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/bg.png'))
     bg=tk.Label(login, image=img)
     bg.image=img
     bg.pack(fill='both', expand='yes')
@@ -48,7 +48,7 @@ def loginpage():
 
 
     #-----------------------------------"Logo"-------------------------------------------------------------
-    logo_img=tk.PhotoImage(file=('D:/trela/dlogo.png'))    
+    logo_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/dlogo.png'))    
     login.logo_lbl=tk.Label(login_frame,image=logo_img,background=th_clr)
     login.logo_lbl.image=logo_img
     login.logo_lbl.place(x=288, y=15)
@@ -98,37 +98,28 @@ def loginpage():
     #--------------------"Sign in and Password icons"-------------------------------------------------------
    
    
-    username_img=tk.PhotoImage(file='D:/trela/userr-icon.png')    
+    username_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/userr-icon.png')    
     login.user_logo_lbl=tk.Label(login_frame,bg=th_clr ,image=username_img)
     login.user_logo_lbl.image=username_img
     login.user_logo_lbl.place(x=85, y=327)
 
-    email_img=tk.PhotoImage(file=('D:/trela/email_icon.png'))    
-    login.email_logo_lbl=tk.Label(login_frame,bg=th_clr ,image=email_img)
-    login.email_logo_lbl.image=email_img
-    login.email_logo_lbl.place(x=85, y=410)
+    # email_img=tk.PhotoImage(file=('D:/trela/email_icon.png'))    
+    # login.email_logo_lbl=tk.Label(login_frame,bg=th_clr ,image=email_img)
+    # login.email_logo_lbl.image=email_img
+    # login.email_logo_lbl.place(x=85, y=410)
 
-    passwd_img=tk.PhotoImage(file=('D:/trela/pwd_icon.png'))    
+    passwd_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/pwd_icon.png'))    
     login.passwd_logo_lbl=tk.Label(login_frame,bg=th_clr ,image=passwd_img)
     login.passwd_logo_lbl.image=passwd_img
     login.passwd_logo_lbl.place(x=85, y=490)
 
-    passwd_img=tk.PhotoImage(file=('D:/trela/pwd_icon.png'))    
+    passwd_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/pwd_icon.png'))    
     login.passwd_logo_lbl=tk.Label(login_frame,bg=th_clr ,image=passwd_img)
     login.passwd_logo_lbl.image=passwd_img
     login.passwd_logo_lbl.place(x=85, y=568)
 
 
     #--------------------"Password Eye Button"-------------------------------------------------------
-    # img=tk.PhotoImage(file="D:/trela/view_pwd.png")
-    # img_lable=tk.Label(login_frame,image=img)
-    
-    # img_lable.place(x=800,y=500)
-
-    # show_button=tk.Button(login_frame,text="show",activebackground="black",bd=0,background="grey",command=eye_hidden)
-    # show_button.place(x=520,y=453)
-
-
 
 
 
