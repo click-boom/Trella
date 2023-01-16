@@ -5,13 +5,16 @@ login=tk.Tk()
 
 
 def loginpage():
+
+    def eye_hidden():
+        return
     
     #--------------------Login Window-------------------------------------------------------------
     
     # screen_width = win.winfo_screenwidth()
     # screen_height = win.winfo_screenheight()
     
-    login.title('Welcome to Trella')
+    login.title('Sign in')
     login.geometry('1920x1080')
     login.resizable(1, 1)
 
@@ -76,7 +79,7 @@ def loginpage():
     login.passwd_line=tk.Canvas(login_frame, width=450, height=2.0, bg=fnt, highlightthickness=0)
     login.passwd_line.place(x=120, y=590)
 
-    login.epasswd_lbl=tk.Label(login_frame, text='Enter Password', fg='#6c6c6c', bg=th_clr, font=('yu gothic ui', 16, 'bold'))
+    login.epasswd_lbl=tk.Label(login_frame, text='New Password', fg='#6c6c6c', bg=th_clr, font=('yu gothic ui', 16, 'bold'))
     login.epasswd_lbl.place(x=120, y=452)
     login.epasswd_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr,show="*",font=('yu gothic ui', 13, 'bold'))
     login.epasswd_entry.place(x=120, y=488, width=450)
@@ -84,7 +87,7 @@ def loginpage():
     login.epasswd_line=tk.Canvas(login_frame, width=450, height=2.0, bg=fnt, highlightthickness=0)
     login.epasswd_line.place(x=120, y=517)
     
-    login.cpasswd_lbl=tk.Label(login_frame, text='Confirm Password', fg='#6c6c6c', bg=th_clr, font=('yu gothic ui', 16, 'bold'))
+    login.cpasswd_lbl=tk.Label(login_frame, text='Re-type Password', fg='#6c6c6c', bg=th_clr, font=('yu gothic ui', 16, 'bold'))
     login.cpasswd_lbl.place(x=120, y=530)
     login.cpasswd_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr,show="*",font=('yu gothic ui', 13, 'bold'))
     login.cpasswd_entry.place(x=120, y=565, width=450)
@@ -119,16 +122,15 @@ def loginpage():
     login.passwd_logo_lbl.place(x=85, y=568)
 
 
-    #--------------------"Password Eye Button"-------------------------------------------------------
-    # img=tk.PhotoImage(file="D:/trela/view_pwd.png")
-    # img_lable=tk.Label(login_frame,image=img)
+    #--------------------"Password Eye Button"----------------------------------------------------------
+    login.view_pwd=ImageTk.PhotoImage(Image.open('D:/trela/view_pwd.png'))
+    login.view_pwd_btn=tk.Button(login_frame,image= login.view_pwd, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
+    login.view_pwd_btn.place(x=538, y=485)
+
     
-    # img_lable.place(x=800,y=500)
-
-    # show_button=tk.Button(login_frame,text="show",activebackground="black",bd=0,background="grey",command=eye_hidden)
-    # show_button.place(x=520,y=453)
-
-
+    login.view_pwd_btn=tk.Button(login_frame,image= login.view_pwd, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
+    login.view_pwd_btn.place(x=538, y=565)
+ 
 
 
 
@@ -145,5 +147,5 @@ def loginpage():
 
     # login_btn=tk.Button(login.login_btn_img, text='Sign in', font=('yu gothic ui', 18, 'bold'),width=10, bd=0, highlightthickness=0,  bg=btn_bg, cursor='hand2', activebackground=btn_bg, fg=fnt )
     # login_btn.place(x=60, y=8)
-
+loginpage()
 login.mainloop() 
