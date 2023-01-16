@@ -7,7 +7,8 @@ login=tk.Tk()
 def signup():
     
     #--------------------Login Window-------------------------------------------------------------
-    
+
+
     # screen_width = win.winfo_screenwidth()
     # screen_height = win.winfo_screenheight()
     
@@ -17,12 +18,16 @@ def signup():
 
 
     #--------------------Functions---------------------------------------------------------------
-    
+
+
     th_clr='#d6d6d6'
     fnt='#6c6c6c'
     btn_bg='#a4a4a4'
 
+
     #--------------------Page Background-------------------------------------------------------------
+ 
+ 
     img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/bg.png'))
     bg=tk.Label(login, image=img)
     bg.image=img
@@ -30,11 +35,15 @@ def signup():
 
 
     #--------------------Login Frame-------------------------------------------------------------
+ 
+ 
     login_frame=tk.Frame(login, width='700', height='740',background=th_clr)   
     login_frame.place(x=620, y=220)
 
 
     #--------------------"Welcome To TRELLA and Sign Up label"-------------------------------------------------------------
+ 
+ 
     login.txt='Welcome To Trella'
     login.heading=tk.Label(login, 
      text=login.txt,
@@ -43,6 +52,8 @@ def signup():
 
 
     #-----------------------------------"Logo"-------------------------------------------------------------
+ 
+ 
     logo_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/dlogo.png'))    
     login.logo_lbl=tk.Label(login_frame,image=logo_img,background=th_clr)
     login.logo_lbl.image=logo_img
@@ -131,5 +142,21 @@ def signup():
 
 
     #--------------------"Password Eye Button"-------------------------------------------------------
+
+
+    passwd_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/view_pwd.png'))    
+    login.passwd_logo_lbl=tk.Label(login_frame,image=passwd_img)
+    login.passwd_logo_lbl.image=passwd_img
+    login.passwd_logo_lbl.place(x=538, y=488)
+
+    passwd_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/view_pwd.png'))    
+    login.passwd_logo_lbl=tk.Label(login_frame,image=passwd_img)
+    login.passwd_logo_lbl.image=passwd_img
+    login.passwd_logo_lbl.place(x=538, y=565)
+
+
+    #--------------------"Hide/Unhide Button"-------------------------------------------------------
+
+    
 signup()
 login.mainloop() 
