@@ -23,7 +23,7 @@ def loginpage():
     btn_bg='#a4a4a4'
 
     #--------------------Page Background-------------------------------------------------------------
-    img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/login/bg.png'))
+    img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/bg.png'))
     bg=tk.Label(login, image=img)
     bg.image=img
     bg.pack(fill='both', expand='yes')
@@ -43,7 +43,7 @@ def loginpage():
 
 
     #-----------------------------------"Logo"-------------------------------------------------------------
-    logo_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/login/dlogo.png'))    
+    logo_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/dlogo.png'))    
     login.logo_lbl=tk.Label(login_frame,image=logo_img)
     login.logo_lbl.image=logo_img
     login.logo_lbl.place(x=288, y=25)
@@ -71,13 +71,13 @@ def loginpage():
     #--------------------"Sign in and Password icons"-------------------------------------------------------
    
    
-    username_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/login/userr-icon.png'))    
+    username_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/userr-icon.png'))    
     login.user_logo_lbl=tk.Label(login_frame,image=username_img)
     login.user_logo_lbl.image=username_img
     login.user_logo_lbl.place(x=88, y=342)
 
 
-    passwd_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/login/pwd_icon.png'))    
+    passwd_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/pwd_icon.png'))    
     login.passwd_logo_lbl=tk.Label(login_frame,image=passwd_img)
     login.passwd_logo_lbl.image=passwd_img
     login.passwd_logo_lbl.place(x=88, y=450)
@@ -86,7 +86,7 @@ def loginpage():
     #--------------------"Login Button"-------------------------------------------------------
 
 
-    btn_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/login/btn.png'))    
+    btn_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/btn.png'))    
     login.login_btn_img=tk.Label(login_frame,image=btn_img)
     login.login_btn_img.image=btn_img
     login.login_btn_img.place(x=225, y=510)
@@ -116,12 +116,12 @@ def loginpage():
         login.passwd_entry.config(show='*')
     
 
-    login.view_pwd_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/view_pwd.png'))    
+    login.view_pwd_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/view_pwd.png'))    
     login.view_pwd_btn=tk.Button(login_frame, image=login.view_pwd_img, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0, command=show)
     login.view_pwd_btn.image=login.view_pwd_img
     login.view_pwd_btn.place(x=537, y=448)
 
-    login.hide_pwd_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/hide_pwd.png'))    
+    login.hide_pwd_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/hide_pwd.png'))    
 
 
 loginpage()

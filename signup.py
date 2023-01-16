@@ -23,7 +23,7 @@ def signup():
     btn_bg='#a4a4a4'
 
     #--------------------Page Background-------------------------------------------------------------
-    img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/SignUp/bg.png'))
+    img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/bg.png'))
     bg=tk.Label(login, image=img)
     bg.image=img
     bg.pack(fill='both', expand='yes')
@@ -43,7 +43,7 @@ def signup():
 
 
     #-----------------------------------"Logo"-------------------------------------------------------------
-    logo_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/SignUp/dlogo.png'))    
+    logo_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/dlogo.png'))    
     login.logo_lbl=tk.Label(login_frame,image=logo_img,background=th_clr)
     login.logo_lbl.image=logo_img
     login.logo_lbl.place(x=288, y=15)
@@ -89,23 +89,23 @@ def signup():
     #--------------------"Sign in/ Email and Password icons"-------------------------------------------------------
    
    
-    username_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/SignUp/userr-icon.png')    
+    username_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/userr-icon.png')    
     login.user_logo_lbl=tk.Label(login_frame,bg=th_clr ,image=username_img)
     login.user_logo_lbl.image=username_img
     login.user_logo_lbl.place(x=85, y=327)
 
-    email_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/SignUp/mail.png')    
+    email_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/mail.png')    
     login.user_logo_lbl=tk.Label(login_frame,bg=th_clr ,image=email_img)
     login.user_logo_lbl.image=email_img
     login.user_logo_lbl.place(x=85, y=407)
 
-    passwd_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/SignUp/pwd_icon.png'))    
+    passwd_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/pwd_icon.png'))    
     login.passwd_logo_lbl=tk.Label(login_frame,bg=th_clr ,image=passwd_img)
     login.passwd_logo_lbl.image=passwd_img
     login.passwd_logo_lbl.place(x=85, y=490)
 
 
-    passwd_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/SignUp/pwd_icon.png'))    
+    passwd_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/pwd_icon.png'))    
     login.passwd_logo_lbl=tk.Label(login_frame,bg=th_clr ,image=passwd_img)
     login.passwd_logo_lbl.image=passwd_img
     login.passwd_logo_lbl.place(x=85, y=568)
@@ -114,7 +114,7 @@ def signup():
     # --------------------"Sign Up Button"-------------------------------------------------------
    
    
-    btn_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/SignUp/btn.png'))    
+    btn_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/btn.png'))    
     login.sgnup_btn_img=tk.Label(login_frame,image=btn_img)
     login.sgnup_btn_img.image=btn_img
     login.sgnup_btn_img.place(x=225, y=610)
