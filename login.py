@@ -8,6 +8,7 @@ def loginpage():
     
     #--------------------Login Window-------------------------------------------------------------
     
+
     # screen_width = win.winfo_screenwidth()
     # screen_height = win.winfo_screenheight()
     
@@ -18,11 +19,15 @@ def loginpage():
 
     #--------------------Functions---------------------------------------------------------------
     
+
     th_clr='#d6d6d6'
     fnt='#6c6c6c'
     btn_bg='#a4a4a4'
 
+
     #--------------------Page Background-------------------------------------------------------------
+
+
     img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/bg.png'))
     bg=tk.Label(login, image=img)
     bg.image=img
@@ -30,11 +35,15 @@ def loginpage():
 
 
     #--------------------Login Frame-------------------------------------------------------------
+
+
     login_frame=tk.Frame(login, width='700', height='700')
     login_frame.place(x=620, y=220)
 
 
     #--------------------"Welcome To TRELLA"-------------------------------------------------------------
+
+
     login.txt='Welcome To Trella'
     login.heading=tk.Label(login, 
      text=login.txt,
@@ -43,6 +52,8 @@ def loginpage():
 
 
     #-----------------------------------"Logo"-------------------------------------------------------------
+
+
     logo_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/dlogo.png'))    
     login.logo_lbl=tk.Label(login_frame,image=logo_img)
     login.logo_lbl.image=logo_img
@@ -67,6 +78,7 @@ def loginpage():
 
     login.passwd_line=tk.Canvas(login_frame, width=450, height=2.0, bg=fnt, highlightthickness=0)
     login.passwd_line.place(x=120, y=478)
+
 
     #--------------------"Sign in and Password icons"-------------------------------------------------------
    
@@ -96,12 +108,14 @@ def loginpage():
 
 
     #--------------------"Signup Button"-------------------------------------------------------
-    
+
+
     login.sign_up_label=tk.Button(login_frame, text='Not registered yet? Sign Up', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground=fnt, activebackground=th_clr,cursor='hand2', bd=0, width=20)
     login.sign_up_label.place(x=185, y=570)
 
 
     #--------------------"Hide/Unhide Option"----------------------------------------------------------
+
     
     def show():
         login.hide_pwd_btn=tk.Button(login_frame, image=login.hide_pwd_img, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0, command=hide)
