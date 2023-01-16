@@ -40,12 +40,6 @@ def loginpage():
      font=('yu gothic ui', '30', 'bold'),
      fg='#6c6c6c',background=th_clr).place(x=780, y=420, width=400, height=50)
 
-    login.txt='Sign Up'
-    login.heading=tk.Label(login, 
-     text=login.txt,
-     font=('yu gothic ui', '18', 'bold'),
-     fg='#6c6c6c',background=th_clr).place(x=780, y=475, width=400, height=50)
-
 
     #-----------------------------------"Logo"-------------------------------------------------------------
     logo_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/dlogo.png'))    
@@ -68,34 +62,30 @@ def loginpage():
     login.email_lbl=tk.Label(login_frame, text='Email', fg='#6c6c6c',background=th_clr, font=('yu gothic ui', 16, 'bold'))
     login.email_lbl.place(x=120, y=375)
     login.email_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr,font=('yu gothic ui', 13, 'bold'))
-    login.email_entry.place(x=120, y=412, width=450)
+    login.email_entry.place(x=120, y=407, width=450)
 
     login.email_line=tk.Canvas(login_frame, width=450, height=2.0, bg=fnt, highlightthickness=0)
-    login.email_line.place(x=120, y=440)
+    login.email_line.place(x=120, y=435)
 
-    login.passwd_line=tk.Canvas(login_frame, width=450, height=2.0, bg=fnt, highlightthickness=0)
-    login.passwd_line.place(x=120, y=590)
 
     login.epasswd_lbl=tk.Label(login_frame, text='Enter Password', fg='#6c6c6c', bg=th_clr, font=('yu gothic ui', 16, 'bold'))
     login.epasswd_lbl.place(x=120, y=452)
     login.epasswd_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr,show="*",font=('yu gothic ui', 13, 'bold'))
-    login.epasswd_entry.place(x=120, y=488, width=450)
+    login.epasswd_entry.place(x=120, y=485, width=450)
 
     login.epasswd_line=tk.Canvas(login_frame, width=450, height=2.0, bg=fnt, highlightthickness=0)
-    login.epasswd_line.place(x=120, y=517)
+    login.epasswd_line.place(x=120, y=514)
     
     login.cpasswd_lbl=tk.Label(login_frame, text='Confirm Password', fg='#6c6c6c', bg=th_clr, font=('yu gothic ui', 16, 'bold'))
     login.cpasswd_lbl.place(x=120, y=530)
     login.cpasswd_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr,show="*",font=('yu gothic ui', 13, 'bold'))
     login.cpasswd_entry.place(x=120, y=565, width=450)
 
+    login.cpasswd_line=tk.Canvas(login_frame, width=450, height=2.0, bg=fnt, highlightthickness=0)
+    login.cpasswd_line.place(x=120, y=593)
 
-    login.password_line=tk.Canvas(login_frame, width=450, height=2.0, bg=fnt, highlightthickness=0)
-    login.password_line.place(x=120, y=595)
 
-    
-
-    #--------------------"Sign in and Password icons"-------------------------------------------------------
+    #--------------------"Sign in/ Email and Password icons"-------------------------------------------------------
    
    
     username_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/userr-icon.png')    
@@ -103,15 +93,16 @@ def loginpage():
     login.user_logo_lbl.image=username_img
     login.user_logo_lbl.place(x=85, y=327)
 
-    # email_img=tk.PhotoImage(file=('D:/trela/email_icon.png'))    
-    # login.email_logo_lbl=tk.Label(login_frame,bg=th_clr ,image=email_img)
-    # login.email_logo_lbl.image=email_img
-    # login.email_logo_lbl.place(x=85, y=410)
+    email_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/userr-icon.png')    
+    login.user_logo_lbl=tk.Label(login_frame,bg=th_clr ,image=email_img)
+    login.user_logo_lbl.image=email_img
+    login.user_logo_lbl.place(x=85, y=327)
 
     passwd_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/pwd_icon.png'))    
     login.passwd_logo_lbl=tk.Label(login_frame,bg=th_clr ,image=passwd_img)
     login.passwd_logo_lbl.image=passwd_img
     login.passwd_logo_lbl.place(x=85, y=490)
+
 
     passwd_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/pwd_icon.png'))    
     login.passwd_logo_lbl=tk.Label(login_frame,bg=th_clr ,image=passwd_img)
