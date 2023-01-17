@@ -114,62 +114,24 @@ def loginpage():
     sign_up_label=tk.Button(login_frame, text='Not registered yet? Sign Up', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground=fnt, activebackground=th_clr,cursor='hand2', bd=0, width=20)
     sign_up_label.place(x=185, y=570)
 
-
     #--------------------"Hide/Unhide Option"----------------------------------------------------------
 
-    view_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/view_pwd.png'))
-    hide_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/hide_pwd.png'))
     
     def show():
         hide_btn=tk.Button(login_frame, image=hide_img,command=hide, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
         hide_btn.place(x=537, y=450)    
-        login.passwd_entry.config(show='')
+        passwd_entry.config(show='')
     
     def hide():
-        view_btn=tk.Button(login_frame, image=view_img, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0, command=hide)
+        view_btn=tk.Button(login_frame, image=view_img, command=show, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
         view_btn.place(x=537, y=450)    
-        login.passwd_entry.config(show='*')
+        passwd_entry.config(show='*')
 
-    view_btn=tk.Button(login_frame, image=view_img, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0, command=show)
-    view_btn.place(x=537, y=450)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    # def show():
-    #     login.hide_pwd_btn=tk.Button(login_frame, image=login.hide_pwd_img, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0, command=hide)
-    #     login.hide_pwd_btn.image=login.hide_pwd_img
-    #     login.hide_pwd_btn.place(x=537, y=448)
-    #     login.passwd_entry.config(show='')
-
-    # def hide():
-    #     login.view_pwd_btn=tk.Button(login_frame, image=login.view_pwd_img, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0, command=show)
-    #     login.hide_pwd_btn.image=login.hide_pwd_img
-    #     login.hide_pwd_btn.place(x=537, y=448)
-    #     login.passwd_entry.config(show='*')
+    view_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/view_pwd.png'))
+    hide_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/hide_pwd.png'))
     
-
-    # login.view_pwd_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/view_pwd.png'))    
-    # login.view_pwd_btn=tk.Button(login_frame, image=login.view_pwd_img, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0, command=show)
-    # login.view_pwd_btn.image=login.view_pwd_img
-    # login.view_pwd_btn.place(x=537, y=448)
-
-    # login.hide_pwd_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/hide_pwd.png'))    
-
+    view_btn=tk.Button(login_frame, image=view_img, command=show, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
+    view_btn.place(x=537, y=450)    
 
 loginpage()
 login.mainloop() 
