@@ -177,5 +177,6 @@ def signup():
     
     cview_btn=tk.Button(login_frame, image=chide_img, command=chide, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
     cview_btn.place(x=537, y=565)    
+
 signup()
 login.mainloop() 
