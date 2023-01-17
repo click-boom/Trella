@@ -10,26 +10,26 @@ dash.config(bg='#d6d6d6')
 def dashboard():
         
         icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/llogo.png')
-        dash.root.iconphoto(True, icon)
+        dash .iconphoto(True, icon)
         
         #----------------  HEADER   ----------------------------
         
-        dash.header= tk.Frame(dash.root, bg='#748AC1')
+        dash.header= tk.Frame(dash , bg='#748AC1')
         dash.header.place(x=400, y=0, width=1650, height=120)
         
         #----------------  SIDE BAR   --------------------------
         
-        dash.sidebar =tk.Frame(dash.root,bg='#DFEAF6')    
+        dash.sidebar =tk.Frame(dash ,bg='#DFEAF6')    
         dash.sidebar.place(x=0, y=0, width=400, height=1080)
         
         #----------------  LOGOUT_button   ---------------------
 
-        dash.mode =tk.Button(dash.root,text='Logout',bg='#DFEAF6', font=('yu gothic ui', 13, ), bd=0, fg='BLACK',cursor='hand2',activebackground='#DFEAF6')
+        dash.mode =tk.Button(dash ,text='Logout',bg='#DFEAF6', font=('yu gothic ui', 13, ), bd=0, fg='BLACK',cursor='hand2',activebackground='#DFEAF6')
         dash.mode.place(x=150, y=960)
           
         #----------------  BODY  -------------------------------
         
-        dash.heading =tk.Label(dash.root, text='Dashboard',font=('yu gothic ui', 40, 'bold'),bg='#748AC1')
+        dash.heading =tk.Label(dash , text='Dashboard',font=('yu gothic ui', 40, 'bold'),bg='#748AC1')
         dash.heading.place(x=1050, y=20)
         
         #----------------  logo  -------------------------------  
@@ -51,7 +51,7 @@ def dashboard():
         
         #----------------  checklist_image ----------------------
          
-        dash.checklistImage= Image.open('D:/TRELLA/checklist.png')
+        dash.checklistImage= Image.open('/home/wae/Documents/giri raj sir/Trella/Images/check-list.png')
         photo = ImageTk.PhotoImage(dash.checklistImage)
         dash.checklist= tk.Label(dash.checklist_text, image=photo, bg='#DFEAF6')
         dash.checklist.image= photo
@@ -64,7 +64,7 @@ def dashboard():
         
         #----------------  Reminder_image ----------------------
          
-        dash.reminderImage= Image.open('D:/TRELLA/reminder.png')
+        dash.reminderImage= Image.open('/home/wae/Documents/giri raj sir/Trella/Images/reminder.png')
         photo = ImageTk.PhotoImage(dash.reminderImage)
         dash.reminder=tk.Label(dash.reminder_text, image=photo, bg='#DFEAF6')
         dash.reminder.image= photo
@@ -77,7 +77,7 @@ def dashboard():
         
         #----------------  Stickynotes_image ----------------------
         
-        dash.stickynotesImage= Image.open('D:/TRELLA/sticky_notes.png')
+        dash.stickynotesImage= Image.open('/home/wae/Documents/giri raj sir/Trella/Images/sticky-note.png')
         photo = ImageTk.PhotoImage(dash.stickynotesImage)
         dash.stickynotes=tk.Label(dash.stickynotes_text, image=photo, bg='#DFEAF6')
         dash.stickynotes.image= photo
@@ -90,7 +90,7 @@ def dashboard():
         
         #----------------  Calendar_image ----------------------
          
-        dash.calendarImage= Image.open('D:/TRELLA/calendar.png')
+        dash.calendarImage= Image.open('/home/wae/Documents/giri raj sir/Trella/Images/calendar.png')
         photo = ImageTk.PhotoImage(dash.calendarImage)
         dash.calendar=tk.Label(dash.calendar_text, image=photo, bg='#DFEAF6')
         dash.calendar.image= photo
@@ -116,13 +116,13 @@ def dashboard():
         
         #----------------  mode_ones ---------------------------
          
-        dash.modeImage= Image.open('D:/TRELLA/white-half-circle.png')
+        dash.modeImage= Image.open('/home/wae/Documents/giri raj sir/Trella/Images/half-wcircle.png')
         photo = ImageTk.PhotoImage(dash.modeImage)
         dash.mode=tk.Button(dash.sidebar, image=photo,bg='#DFEAF6',bd=0,cursor='hand2',activebackground='#DFEAF6')
         dash.mode.image= photo
         dash.mode.place(x=120, y=830)  
 
-        dash.modeImage= Image.open('D:/TRELLA/black-half-circle.png')
+        dash.modeImage= Image.open('/home/wae/Documents/giri raj sir/Trella/Images/half-bcircle.png')
         photo = ImageTk.PhotoImage(dash.modeImage)
         dash.mode= tk.Button(dash.sidebar, image=photo,bg='#DFEAF6',bd=0,cursor='hand2',activebackground='#DFEAF6')
         dash.mode.image= photo
@@ -130,19 +130,19 @@ def dashboard():
         
         #----------------  date and time -----------------------
          
-        dash.date_time = tk.Label(dash.root)
-        dash.date_time.place(x=150, y=315)
-        dash.show_time()
-        def show_time(dash):
-          dash.time = time.strftime('%H:%M:%S')
-          dash.date = time.strftime('%Y/%m/%d')
-        set_text= f"{dash.time} \n {dash.date}"
-        dash.date_time.configure(text=set_text,
-                                 font=('yu gothic ui', 15, 'bold'),
-                                 bd=0,
-                                 bg='#DFEAF6'
-                                 )
-        dash.date_time.after(100, dash.show_time)
+        # dash.date_time = tk.Label(dash )
+        # dash.date_time.place(x=150, y=315)
+        # def show_time():
+        #   dash.time = time.strftime('%H:%M:%S')
+        #   dash.date = time.strftime('%Y/%m/%d')
+        # set_text= f"{dash.time} \n {dash.date}"
+        # dash.date_time.configure(text=set_text,
+        #                          font=('yu gothic ui', 15, 'bold'),
+        #                          bd=0,
+        #                          bg='#DFEAF6'
+        #                          )
+        # dash.date_time.after(100, dash.show_time)
+        # show_time()
 
 dashboard()
 dash.mainloop()
