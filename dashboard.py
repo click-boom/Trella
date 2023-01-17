@@ -9,9 +9,7 @@ dash.geometry('1280x1080')
 dash.config(bg='#d6d6d6')
 def dashboard():
         
-        
-        #adding icon
-        icon=tk.PhotoImage(file='D:\TRELLA\llogo.png')
+        icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/llogo.png')
         dash.root.iconphoto(True, icon)
         
         #----------------  HEADER   ----------------------------
@@ -19,14 +17,10 @@ def dashboard():
         dash.header= tk.Frame(dash.root, bg='#748AC1')
         dash.header.place(x=400, y=0, width=1650, height=120)
         
-        
         #----------------  SIDE BAR   --------------------------
         
-        dash.sidebar =tk.Frame(dash.root,
-                             bg='#DFEAF6',
-                             )    
+        dash.sidebar =tk.Frame(dash.root,bg='#DFEAF6')    
         dash.sidebar.place(x=0, y=0, width=400, height=1080)
-        
         
         #----------------  LOGOUT_button   ---------------------
 
@@ -39,13 +33,13 @@ def dashboard():
         dash.heading.place(x=1050, y=20)
         
         #----------------  logo  -------------------------------  
-        dash.logoImage =Image.open('D:/TRELLA/llogo.png')
+        dash.logoImage =Image.open('/home/wae/Documents/giri raj sir/Trella/Images/llogo.png')
         photo= ImageTk.PhotoImage(dash.logoImage)
         dash.logo =tk.Label(dash.sidebar, image=photo,bg='#DFEAF6')
         dash.logo.image=photo
         dash.logo.place(x=110, y=40)
         
-        #----------------  name of user ------------------------  
+        #----------------  Name Of User ------------------------  
         
         dash.user = tk.Label(dash.sidebar, text='Hello Someone!',font=('yu gothic ui', 30, 'bold', 'underline'),bg='#DFEAF6')
         dash.user.place(x=48, y=240)
@@ -63,12 +57,12 @@ def dashboard():
         dash.checklist.image= photo
         dash.checklist.place(x=0, y=20)
         
-        #----------------  reminder_text ----------------------
+        #----------------  Reminder_text ----------------------
           
         dash.reminder_text=tk.Button(dash.sidebar, text='Reminder',font=('yu gothic ui', 25, 'bold'),bg='#DFEAF6',cursor='hand2',activebackground='#DFEAF6',bd=0,width=21)
         dash.reminder_text.place(x=0, y=480)
         
-        #----------------  reminder_image ----------------------
+        #----------------  Reminder_image ----------------------
          
         dash.reminderImage= Image.open('D:/TRELLA/reminder.png')
         photo = ImageTk.PhotoImage(dash.reminderImage)
@@ -81,7 +75,7 @@ def dashboard():
         dash.stickynotes_text=tk.Button(dash.sidebar, text='Sticky Notes',font=('yu gothic ui', 25, 'bold'),bg='#DFEAF6',cursor='hand2',activebackground='#DFEAF6',bd=0, width=21)
         dash.stickynotes_text.place(x=0, y=560)
         
-        #----------------  stickynotes_image ----------------------
+        #----------------  Stickynotes_image ----------------------
         
         dash.stickynotesImage= Image.open('D:/TRELLA/sticky_notes.png')
         photo = ImageTk.PhotoImage(dash.stickynotesImage)
@@ -89,12 +83,12 @@ def dashboard():
         dash.stickynotes.image= photo
         dash.stickynotes.place(x=0, y=20)    
         
-        #----------------  calendar_text ----------------------
+        #----------------  Calendar_text ----------------------
   
         dash.calendar_text= tk.Button(dash.sidebar, text='Calendar',font=('yu gothic ui', 25, 'bold'),bg='#DFEAF6',cursor='hand2',activebackground='#DFEAF6',bd=0,width=21)
         dash.calendar_text.place(x=0, y=640)
         
-        #----------------  calendar_image ----------------------
+        #----------------  Calendar_image ----------------------
          
         dash.calendarImage= Image.open('D:/TRELLA/calendar.png')
         photo = ImageTk.PhotoImage(dash.calendarImage)
@@ -102,7 +96,7 @@ def dashboard():
         dash.calendar.image= photo
         dash.calendar.place(x=0, y=20)     
         
-        #----------------  line ----------------------
+        #----------------  Line ----------------------
          
         dash.passwd_line=tk.Canvas(dash.sidebar, width=450, height=2.0,bg='black', highlightthickness=0)
         dash.passwd_line.place(x=0, y=397)
