@@ -148,22 +148,20 @@ def signup():
         eview_btn.place(x=537, y=485)    
         epasswd_entry.config(show='*')
         
+    def chide(): 
+        cview_btn=tk.Button(login_frame, image=cview_img, command=cshow, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
+        cview_btn.place(x=537, y=565)    
+        cpasswd_entry.config(show='*')
       
     def eshow():
         ehide_btn=tk.Button(login_frame, image=ehide_img,command=ehide, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
         ehide_btn.place(x=537, y=485)    
         epasswd_entry.config(show='')
         
-        
-    def chide(): 
-        cview_btn=tk.Button(login_frame, image=cview_img, command=cshow, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
-        cview_btn.place(x=537, y=565)    
-        cpasswd_entry.config(show='*')
-
     def cshow():
-        ehide_btn=tk.Button(login_frame, image=chide_img,command=chide, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
-        ehide_btn.place(x=537, y=565)    
-        epasswd_entry.config(show='')
+        chide_btn=tk.Button(login_frame, image=chide_img,command=chide, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
+        chide_btn.place(x=537, y=565)    
+        cpasswd_entry.config(show='')
 
     eview_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/view_pwd.png'))
     cview_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/view_pwd.png'))
