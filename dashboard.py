@@ -9,8 +9,8 @@ dash.geometry('1280x1080')
 dash.config(bg='#d6d6d6')
 def dashboard():
         
-        #----------------  Titlebar Icon   ----------------------------
-
+        #----------------  Titlebar Icon   -----------------------
+        
         icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/llogo.png')
         dash .iconphoto(True, icon)
         
@@ -22,7 +22,7 @@ def dashboard():
         btn_bg='#a4a4a4'
 
 
-        #-------------------  Heading Bar  -----------------------------
+        #-------------------  Heading Bar  ------------------------
         
         header= tk.Frame(dash , bg=lth_clr)
         header.place(x=400, y=0, width=1650, height=120)
@@ -32,8 +32,7 @@ def dashboard():
         sidebar =tk.Frame(dash ,bg=dth_clr)    
         sidebar.place(x=0, y=0, width=400, height=1080)
         
-        #----------------  Dashboard Heading  -------------------------------
-        
+        #----------------  Dashboard Heading  -------------------
         heading =tk.Label(dash , text='Dashboard',font=('yu gothic ui', 40, 'bold'),bg=lth_clr)
         heading.place(x=1050, y=20)
         
@@ -58,31 +57,15 @@ def dashboard():
       
         btn_img=tk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_btn.png'))    
         dash_user_btn=tk.Label(sidebar,image=btn_img)
-        login_btn_img.image=btn_img
-        login_btn_img.place(x=225, y=510)
+        dash_user_btn.image=btn_img
+        dash_user_btn.place(x=225, y=510)
 
-        login_btn=tk.Button(login_btn_img, text='Sign in', font=('yu gothic ui', 18, 'bold'),width=10, bd=0, highlightthickness=0,  bg=btn_bg, cursor='hand2', activebackground=btn_bg, fg='white' )
+        login_btn=tk.Button(btn_img, text='Sign in', font=('yu gothic ui', 18, 'bold'),width=10, bd=0, highlightthickness=0,  bg=btn_bg, cursor='hand2', activebackground=btn_bg, fg='white' )
         login_btn.place(x=30, y=8)
 
 
 
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+
       
       
       
