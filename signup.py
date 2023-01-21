@@ -13,7 +13,6 @@ def backend():
 
     c.execute(" SELECT email from users")
     umails=c.fetchall()
-    print (umails[1])
     
     if (email ,) in umails:
         print('exists')
