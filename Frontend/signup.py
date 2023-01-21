@@ -1,9 +1,10 @@
 import tkinter as tk
+import sqlite3
 from PIL import ImageTk, Image
 login=tk.Tk()
 
 
-def signup():
+def sign_up():
     
     #--------------------Login Window-------------------------------------------------------------
 
