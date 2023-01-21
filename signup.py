@@ -2,8 +2,23 @@ import tkinter as tk
 from PIL import ImageTk, Image
 login=tk.Tk()
 
+import sqlite3
+conn=sqlite3.connect("reg_usrs.db")
+c=conn.cursor()
 
-def sign_up():
+def backend():
+    
+    
+    mail=email_entry.get()
+    epassword=epasswd_entry.get()
+    cpassword=cpasswd_entry.get()    
+    c.execute("SELECT * FROM users")
+    usrs=list(c.fetchall())
+    
+    
+
+
+def frontend():
     
     #--------------------Login Window-------------------------------------------------------------
 
@@ -14,6 +29,7 @@ def sign_up():
     login.title('Welcome to Trella')
     login.geometry('1920x1080')
     login.minsize(1920,1080)
+
 
 
     #--------------------Functions---------------------------------------------------------------
@@ -64,6 +80,7 @@ def sign_up():
 
     username_lbl=tk.Label(login_frame, text='Username', fg=fnt,background=th_clr, font=('yu gothic ui', 16, 'bold'))
     username_lbl.place(x=120, y=300)
+    global username_entry
     username_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr, font=('yu gothic ui', 13, 'bold'))
     username_entry.place(x=120, y=330, width=450)
 
@@ -72,6 +89,7 @@ def sign_up():
 
     email_lbl=tk.Label(login_frame, text='Email', fg='#6c6c6c',background=th_clr, font=('yu gothic ui', 16, 'bold'))
     email_lbl.place(x=120, y=375)
+    global email_entry
     email_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr,font=('yu gothic ui', 13, 'bold'))
     email_entry.place(x=120, y=407, width=450)
 
@@ -81,6 +99,7 @@ def sign_up():
 
     epasswd_lbl=tk.Label(login_frame, text='Enter Password', fg='#6c6c6c', bg=th_clr, font=('yu gothic ui', 16, 'bold'))
     epasswd_lbl.place(x=120, y=452)
+    global epasswd_entry
     epasswd_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr,font=('yu gothic ui', 13, 'bold'))
     epasswd_entry.place(x=120, y=485, width=450)
 
@@ -89,6 +108,7 @@ def sign_up():
     
     cpasswd_lbl=tk.Label(login_frame, text='Confirm Password', fg='#6c6c6c', bg=th_clr, font=('yu gothic ui', 16, 'bold'))
     cpasswd_lbl.place(x=120, y=530)
+    global cpasswd_entry
     cpasswd_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr,font=('yu gothic ui', 13, 'bold'))
     cpasswd_entry.place(x=120, y=565, width=450)
 
@@ -129,7 +149,7 @@ def sign_up():
     sgnup_btn_img.image=btn_img
     sgnup_btn_img.place(x=225, y=610)
 
-    login_btn=tk.Button(sgnup_btn_img, text='Sign Up', font=('yu gothic ui', 18, 'bold'),width=10, bd=0, highlightthickness=0,  bg=btn_bg, cursor='hand2', activebackground=btn_bg, fg='white' )
+    login_btn=tk.Button(sgnup_btn_img, text='Sign Up', font=('yu gothic ui', 18, 'bold'),width=10, bd=0, highlightthickness=0,  bg=btn_bg, cursor='hand2', activebackground=btn_bg, fg='white', command=backend )
     login_btn.place(x=30, y=8)
 
 
@@ -175,5 +195,7 @@ def sign_up():
     cview_btn=tk.Button(login_frame, image=chide_img, command=chide, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
     cview_btn.place(x=537, y=565)    
 
-sign_up()
+frontend()
+
+
 login.mainloop() 
