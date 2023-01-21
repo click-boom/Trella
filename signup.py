@@ -7,16 +7,18 @@ conn=sqlite3.connect("reg_usrs.db")
 c=conn.cursor()
 
 def backend():
-    
-    
-    mail=email_entry.get()
+    email=email_entry.get()
     epassword=epasswd_entry.get()
-    cpassword=cpasswd_entry.get()    
-    c.execute("SELECT * FROM users")
-    usrs=list(c.fetchall())
-    
-    
+    cpassword=cpasswd_entry.get()   
 
+    c.execute(" SELECT email from users")
+    umails=c.fetchall()
+    print (umails[1])
+    
+    if (email ,) in umails:
+        print('exists')
+    else :
+        print('nexists')
 
 def frontend():
     
@@ -196,6 +198,7 @@ def frontend():
     cview_btn.place(x=537, y=565)    
 
 frontend()
+
 
 
 login.mainloop() 
