@@ -1,4 +1,5 @@
 import tkinter as tk
+# from login import loginpage
 from PIL import ImageTk, Image
 login=tk.Tk()
 
@@ -13,9 +14,12 @@ def backend():
 
     c.execute(" SELECT email from users")
     umails=c.fetchall()
+    c.execute(" SELECT password from users")
+    umails=c.fetchall()
     
     if (email ,) in umails:
-        print('exists')
+            if epassword ==cpassword:
+                print('ok')
     else :
         print('nexists')
 
