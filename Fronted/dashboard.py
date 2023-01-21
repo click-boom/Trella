@@ -1,4 +1,3 @@
-
 import tkinter as tk
 from PIL import Image, ImageTk
 import time
@@ -64,11 +63,17 @@ def dashboard():
         login_btn.place(x=30, y=8)
 
 
+        #----------------  Username and its Label -------------------------------  
 
 
       
       
       
+
+
+
+
+
       
       
       
@@ -197,7 +202,6 @@ def dashboard():
         # # dash.date_time.after(100, dash.show_time)
         # # show_time()
 
+
 dashboard()
 dash.mainloop()
-
-
