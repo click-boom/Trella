@@ -158,7 +158,7 @@ def sign_up():
         ehide_btn.place(x=537, y=485)    
         epasswd_entry.config(show='')
         
-    def cshow()
+    def cshow():
         chide_btn=tk.Button(login_frame, image=chide_img,command=chide, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
         chide_btn.place(x=537, y=565)    
         cpasswd_entry.config(show='')
