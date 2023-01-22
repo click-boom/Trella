@@ -14,7 +14,7 @@ fnt='#6c6c6c'
 btn_bg='#a4a4a4'
 
 #--------------------Backend---------------------------------------------------------------
-def backend():
+def signup_backend():
     username=username_entry.get()
     email=email_entry.get()
     epassword=epasswd_entry.get()
@@ -45,7 +45,7 @@ def backend():
 
 #--------------------Frontend---------------------------------------------------------------
 
-def frontend():
+def signup_frontend():
     
     #--------------------Login Window-------------------------------------------------------------
 
@@ -169,7 +169,7 @@ def frontend():
     sgnup_btn_img.image=btn_img
     sgnup_btn_img.place(x=225, y=610)
 
-    login_btn=tk.Button(sgnup_btn_img, text='Sign Up', font=('yu gothic ui', 18, 'bold'),width=10, bd=0, highlightthickness=0,  bg=btn_bg, cursor='hand2', activebackground=btn_bg, fg='white', command=backend )
+    login_btn=tk.Button(sgnup_btn_img, text='Sign Up', font=('yu gothic ui', 18, 'bold'),width=10, bd=0, highlightthickness=0,  bg=btn_bg, cursor='hand2', activebackground=btn_bg, fg='white', command=signup_backend )
     login_btn.place(x=30, y=8)
 
 
@@ -215,7 +215,7 @@ def frontend():
     cview_btn=tk.Button(login_frame, image=chide_img, command=chide, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
     cview_btn.place(x=537, y=565)    
 
-frontend()
+signup_frontend()
 
 
 conn.close()

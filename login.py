@@ -1,9 +1,10 @@
 import tkinter as tk
+import sqlite3
 from PIL import ImageTk, Image
 login=tk.Tk()
 
 
-def loginpage():
+def login_frontend():
     
     #--------------------Login Window-------------------------------------------------------------
     
@@ -132,5 +133,5 @@ def loginpage():
     view_btn=tk.Button(login_frame, image=view_img, command=show, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
     view_btn.place(x=537, y=450)    
 
-loginpage()
+login_frontend()
 login.mainloop() 
