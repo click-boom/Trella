@@ -1,6 +1,9 @@
 import tkinter as tk
 from PIL import ImageTk, Image
 from tkinter import ttk
+import sqlite3
+
+from tkinter import messagebox
 login=tk.Tk()
 
 
@@ -28,7 +31,7 @@ def loginpage():
     #--------------------Page Background-------------------------------------------------------------
 
 
-    img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/bg.png'))
+    img=ImageTk.PhotoImage(Image.open('D:/trela\Images/bg.png'))
     bg=tk.Label(login, image=img)
     bg.image=img
     bg.pack(fill='both', expand='yes')
@@ -55,7 +58,7 @@ def loginpage():
     #-----------------------------------"Logo"-------------------------------------------------------------
 
 
-    logo_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/dlogo.png'))    
+    logo_img=tk.PhotoImage(file=('D:/trela/Images/dlogo.png'))    
     logo_lbl=tk.Label(login_frame,image=logo_img)
     logo_lbl.image=logo_img
     logo_lbl.place(x=288, y=25)
@@ -66,7 +69,7 @@ def loginpage():
 
     usrname_lbl=tk.Label(login_frame, text='Username', fg=fnt, font=('yu gothic ui', 18, 'bold'))
     usrname_lbl.place(x=120, y=300)
-    usrname_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr, font=('yu gothic ui', 15, 'bold'))
+    usrname_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr, font=('yu gothic ui', 15, 'bold'),textvariable="Username")
     usrname_entry.place(x=120, y=340, width=450)
 
     username_line=tk.Canvas(login_frame, width=400, height=2.0, bg=fnt, highlightthickness=0)
@@ -74,7 +77,7 @@ def loginpage():
 
     passwd_lbl=tk.Label(login_frame, text='Password', fg='#6c6c6c', font=('yu gothic ui', 18, 'bold'))
     passwd_lbl.place(x=120, y=410)
-    passwd_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr,show="*",font=('yu gothic ui', 15, 'bold'))
+    passwd_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr,show="*",font=('yu gothic ui', 15, 'bold'),textvariable="Password")
     passwd_entry.place(x=120, y=450, width=450)
 
     passwd_line=tk.Canvas(login_frame, width=450, height=2.0, bg=fnt, highlightthickness=0)
@@ -84,13 +87,13 @@ def loginpage():
     #--------------------"Sign in and Password icons"-------------------------------------------------------
    
    
-    username_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/userr-icon.png'))    
+    username_img=tk.PhotoImage(file=('D:/trela/Images/userr-icon.png'))    
     user_logo_lbl=tk.Label(login_frame,image=username_img)
     user_logo_lbl.image=username_img
     user_logo_lbl.place(x=88, y=342)
 
 
-    passwd_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/pwd_icon.png'))    
+    passwd_img=tk.PhotoImage(file=('D:/trela/Images/pwd_icon.png'))    
     passwd_logo_lbl=tk.Label(login_frame,image=passwd_img)
     passwd_logo_lbl.image=passwd_img
     passwd_logo_lbl.place(x=88, y=450)
@@ -99,7 +102,7 @@ def loginpage():
     #--------------------"Login Button"-------------------------------------------------------
 
 
-    btn_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/btn.png'))    
+    btn_img=tk.PhotoImage(file=('D:/trela/Images/btn.png'))    
     login_btn_img=tk.Label(login_frame,image=btn_img)
     login_btn_img.image=btn_img
     login_btn_img.place(x=225, y=510)
@@ -111,7 +114,7 @@ def loginpage():
     #--------------------"Signup Button"-------------------------------------------------------
 
 
-    sign_up_label=tk.Button(login_frame, text='Not registered yet? Sign Up', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground=fnt, activebackground=th_clr,cursor='hand2', bd=0, width=20)
+    sign_up_label=tk.Button(login_frame, text='Not registered yet? Sign Up', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground=fnt, activebackground=th_clr,cursor='hand2', bd=0, width=20,command=submit)
     sign_up_label.place(x=185, y=570)
 
     #--------------------"Hide/Unhide Option"----------------------------------------------------------
@@ -127,11 +130,42 @@ def loginpage():
         view_btn.place(x=537, y=450)    
         passwd_entry.config(show='*')
 
-    view_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/view_pwd.png'))
-    hide_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/hide_pwd.png'))
+    view_img=ImageTk.PhotoImage(Image.open('D:/trela/Images/view_pwd.png'))
+    hide_img=ImageTk.PhotoImage(Image.open('D:/trela/Images/hide_pwd.png'))
     
     view_btn=tk.Button(login_frame, image=view_img, command=show, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
-    view_btn.place(x=537, y=450)    
+    view_btn.place(x=537, y=450) 
+
+
+#..................... database................
+    connection=sqlite3.connect("login_database.db")
+    cur=connection.cursor()
+    cur.execute("CREATE TABLE IF NOT EXISTS login_page(Username TEXT ,Password TEXT)")
+    connection.commit()
+    connection.close()
+    def submit():
+        check_counter=0
+        warn=""
+        if usrname_entry.get()== "":
+            warn="Please enter your username"
+        else:
+            check_counter+=1
+        if passwd_entry.get()=="":
+            warn="please enter your password"
+        else:
+            check_counter +=1
+            if check_counter==3:
+                try:
+                    connection=sqlite3.connect("login_database.db")
+                    cur=connection.cursor()
+                    cur.execute("INSERT INTO login_database values(?,?)"),(usrname_entry.get(),passwd_entry.get())
+                    connection.commit()
+                    connection.close()
+                    messagebox.showinfo("sucess","new account created sucessfully")
+                except Exception as ep:
+                    messagebox.showerror(" ",ep)
+            else:
+                messagebox.showerror("error",warn)
 
 loginpage()
 login.mainloop() 
