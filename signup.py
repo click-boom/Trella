@@ -24,7 +24,7 @@ def backend():
     umails=c.fetchall()
     
     if (email ,) in umails:
-            already=tk.Button(login_frame, text='Account already exists, click here to login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', activebackground=th_clr,cursor='hand2', bd=0, width=30, command=login.loginpage)
+            already=tk.Button(login_frame, text='Account already exists, click here to login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', activebackground=th_clr,cursor='hand2', bd=0, width=30  )
             already.place(x=110, y=720)
         
     else :
@@ -32,7 +32,7 @@ def backend():
             c.execute(""" INSERT INTO users VALUES(:username, :email, :epassword, :cpassword)""",{'username':username, 'email':email,'epassword':epassword,'cpassword':cpassword })
             conn.commit()
 
-            success=tk.Button(login_frame, text='Signed Up successfully, Click here to Login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', activebackground=th_clr,cursor='hand2', bd=0, width=30,command=login.loginpage)
+            success=tk.Button(login_frame, text='Signed Up successfully, Click here to Login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', activebackground=th_clr,cursor='hand2', bd=0, width=30 )
             success.place(x=110, y=720)
 
 
@@ -169,7 +169,7 @@ def frontend():
     # --------------------"Login Label"-------------------------------------------------------
 
 
-    sign_up_label=tk.Button(login_frame, text='Already Registered? Login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground=fnt, activebackground=th_clr,cursor='hand2', bd=0, width=20, command=login.loginpage)
+    sign_up_label=tk.Button(login_frame, text='Already Registered? Login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground=fnt, activebackground=th_clr,cursor='hand2', bd=0, width=20 )
     sign_up_label.place(x=185, y=670)
 
 
@@ -211,5 +211,5 @@ def frontend():
 frontend()
 
 
-
+conn.close()
 login.mainloop() 
