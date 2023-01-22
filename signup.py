@@ -18,7 +18,7 @@ def backend():
     username=username_entry.get()
     email=email_entry.get()
     epassword=epasswd_entry.get()
-    cpassword=cpasswd_entry.get()   
+    cpassword=cpasswd_entry.get() 
 
     c.execute(" SELECT email from users")
     umails=c.fetchall()
@@ -28,13 +28,20 @@ def backend():
             already.place(x=110, y=720)
         
     else :
-        if epassword ==cpassword:
-            c.execute(""" INSERT INTO users VALUES(:username, :email, :epassword, :cpassword)""",{'username':username, 'email':email,'epassword':epassword,'cpassword':cpassword })
-            conn.commit()
+        if username=='' or email=='' or epassword=='' or cpassword=='':
+            empty=tk.Label(login_frame, text='Please enter all the credentials and try again', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', bd=0, width=30 )
+            empty.place(x=110, y=720)
 
             success=tk.Button(login_frame, text='Signed Up successfully, Click here to Login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', activebackground=th_clr,cursor='hand2', bd=0, width=30 )
             success.place(x=110, y=720)
-
+        
+        elif epassword == cpassword:
+            c.execute(""" INSERT INTO users VALUES(:username, :email, :epassword, :cpassword)""",{'username':username, 'email':email,'epassword':epassword,'cpassword':cpassword })
+            conn.commit()
+        
+        else:    
+            incorrect=tk.Label(login_frame, text='Passwords dont match, please try again', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', bd=0, width=30 )
+            incorrect.place(x=110, y=720)
 
 #--------------------Frontend---------------------------------------------------------------
 
