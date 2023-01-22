@@ -1,5 +1,5 @@
 import tkinter as tk
-# from login import loginpage
+import login
 from PIL import ImageTk, Image
 login=tk.Tk()
 
@@ -7,21 +7,36 @@ import sqlite3
 conn=sqlite3.connect("reg_usrs.db")
 c=conn.cursor()
 
+#--------------------Theme codes---------------------------------------------------------------
+
+th_clr='#d6d6d6'
+fnt='#6c6c6c'
+btn_bg='#a4a4a4'
+
+#--------------------Backend---------------------------------------------------------------
 def backend():
+    username=username_entry.get()
     email=email_entry.get()
     epassword=epasswd_entry.get()
     cpassword=cpasswd_entry.get()   
 
     c.execute(" SELECT email from users")
     umails=c.fetchall()
-    c.execute(" SELECT password from users")
-    umails=c.fetchall()
     
     if (email ,) in umails:
-            if epassword ==cpassword:
-                print('ok')
+            already=tk.Button(login_frame, text='Account already exists, click here to login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', activebackground=th_clr,cursor='hand2', bd=0, width=30, command=login.loginpage)
+            already.place(x=110, y=720)
+        
     else :
-        print('nexists')
+        if epassword ==cpassword:
+            c.execute(""" INSERT INTO users VALUES(:username, :email, :epassword, :cpassword)""",{'username':username, 'email':email,'epassword':epassword,'cpassword':cpassword })
+            conn.commit()
+
+            success=tk.Button(login_frame, text='Signed Up successfully, Click here to Login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', activebackground=th_clr,cursor='hand2', bd=0, width=30,command=login.loginpage)
+            success.place(x=110, y=720)
+
+
+#--------------------Frontend---------------------------------------------------------------
 
 def frontend():
     
@@ -37,12 +52,6 @@ def frontend():
 
 
 
-    #--------------------Functions---------------------------------------------------------------
-
-
-    th_clr='#d6d6d6'
-    fnt='#6c6c6c'
-    btn_bg='#a4a4a4'
 
 
     #--------------------Page Background-------------------------------------------------------------
@@ -56,10 +65,9 @@ def frontend():
 
     #--------------------Login Frame-------------------------------------------------------------
  
- 
-    login_frame=tk.Frame(login, width='700', height='740',background=th_clr)   
-    login_frame.place(x=620, y=220)
-
+    global login_frame
+    login_frame=tk.Frame(login, width='700', height='800',background=th_clr)   
+    login_frame.place(x=620, y=180)
 
     #--------------------"Welcome To TRELLA and Sign Up label"-------------------------------------------------------------
  
@@ -161,7 +169,7 @@ def frontend():
     # --------------------"Login Label"-------------------------------------------------------
 
 
-    sign_up_label=tk.Button(login_frame, text='Already Registered? Login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground=fnt, activebackground=th_clr,cursor='hand2', bd=0, width=20)
+    sign_up_label=tk.Button(login_frame, text='Already Registered? Login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground=fnt, activebackground=th_clr,cursor='hand2', bd=0, width=20, command=login.loginpage)
     sign_up_label.place(x=185, y=670)
 
 
