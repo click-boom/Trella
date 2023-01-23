@@ -20,7 +20,7 @@ dfnt=dth_clr
 
 #----------------------------------------------------------
 def chk_frontend():
-    dashfr=tk.Frame(dash, width=1230, height=746)
+    dashfr=tk.Frame(dash, width=1230, height=76)
     # dashfr.config(bg=lth_clr)
     dashfr.place(x=535, y=300)
     
@@ -79,7 +79,7 @@ def chk_frontend():
     
     chk_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/check-list.png'))
     chk_img.image=chk_img
-    chk_btn=tk.Button(chk_btn_lbl, text='          CHECKLIST',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg='white', cursor='hand2', activebackground=btn_bg,activeforeground='white', bd=0,highlightthickness=0 )
+    chk_btn=tk.Button(chk_btn_lbl, text='          CHECKLIST',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg,activeforeground='white', bd=0,highlightthickness=0 )
     chk_btn.place(x=30, y=7)
 
     chk_img_lbl=tk.Label(chk_btn, image=chk_img, bg=btn_bg)
@@ -89,7 +89,7 @@ def chk_frontend():
     
     rem_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/reminder.png'))
     rem_img.image=rem_img
-    rem_btn=tk.Button(rem_btn_lbl, text='          REMINDER',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg, activeforeground='white',bd=0,highlightthickness=0 )
+    rem_btn=tk.Button(rem_btn_lbl, text='          REMINDER',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg='white', cursor='hand2', activebackground=btn_bg, activeforeground='white',bd=0,highlightthickness=0 )
     rem_btn.place(x=30, y=10)
 
     rem_img_lbl=tk.Label(rem_btn, image=rem_img, bg=btn_bg)
@@ -105,12 +105,13 @@ def chk_frontend():
     st_img_lbl=tk.Label(st_btn, image=st_img, bg=btn_bg)
     st_img_lbl.place(x=10, y=10)
 
+
 #-----------------  Logout Button  --------------------------
 
     lcircle_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/L_BTN.png')
     lcircle_img.image=lcircle_img
     lcircle_lbl=tk.Label(sidebar, image=lcircle_img, bg=dth_clr)
-    lcircle_lbl.place(x=145, y=660)
+    lcircle_lbl.place(x=135, y=650)
 
     lbtn_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/logout.png')
     lbtn_img.image=lbtn_img

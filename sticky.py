@@ -79,7 +79,7 @@ def chk_frontend():
     
     chk_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/check-list.png'))
     chk_img.image=chk_img
-    chk_btn=tk.Button(chk_btn_lbl, text='          CHECKLIST',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg='white', cursor='hand2', activebackground=btn_bg,activeforeground='white', bd=0,highlightthickness=0 )
+    chk_btn=tk.Button(chk_btn_lbl, text='          CHECKLIST',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg,activeforeground='white', bd=0,highlightthickness=0 )
     chk_btn.place(x=30, y=7)
 
     chk_img_lbl=tk.Label(chk_btn, image=chk_img, bg=btn_bg)
@@ -99,7 +99,7 @@ def chk_frontend():
     
     st_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/reminder.png'))
     st_img.image=st_img
-    st_btn=tk.Button(st_btn_lbl, text='       STICKY NOTES',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg,activeforeground='white', bd=0,highlightthickness=0 )
+    st_btn=tk.Button(st_btn_lbl, text='       STICKY NOTES',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg='white', cursor='hand2', activebackground=btn_bg,activeforeground='white', bd=0,highlightthickness=0 )
     st_btn.place(x=30, y=10)
 
     st_img_lbl=tk.Label(st_btn, image=st_img, bg=btn_bg)
@@ -110,7 +110,7 @@ def chk_frontend():
     lcircle_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/L_BTN.png')
     lcircle_img.image=lcircle_img
     lcircle_lbl=tk.Label(sidebar, image=lcircle_img, bg=dth_clr)
-    lcircle_lbl.place(x=145, y=660)
+    lcircle_lbl.place(x=135, y=670)
 
     lbtn_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/logout.png')
     lbtn_img.image=lbtn_img
