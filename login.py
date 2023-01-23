@@ -1,10 +1,35 @@
 import tkinter as tk
 from PIL import ImageTk, Image
-from tkinter import ttk
 login=tk.Tk()
 
+import sqlite3
+conn=sqlite3.connect('reg_usrs.db')
+c=conn.cursor()
 
-def loginpage():
+def login_backend():
+
+    ue=usrname_entry.get()
+    print(ue)
+    passwd=passwd_entry.get()
+
+    c.execute("SELECT username FROM users")
+    usernames = c.fetchall()
+    
+
+    c.execute("SELECT email FROM users")
+    umails = c.fetchall()
+
+
+    if((ue ,) in usernames) or ((ue ,) in umails):
+        c.execute("SELECT * FROM users WHERE email")
+        uname=c.fetchall()
+        print(uname)
+        c.execute("SELECT * FROM users WHERE username=ue")
+        umail=c.fetchall()
+        print(umail)
+    else:
+        return
+def login_frontend():
     
     #--------------------Login Window-------------------------------------------------------------
     
@@ -66,6 +91,7 @@ def loginpage():
 
     usrname_lbl=tk.Label(login_frame, text='Username', fg=fnt, font=('yu gothic ui', 18, 'bold'))
     usrname_lbl.place(x=120, y=300)
+    global usrname_entry
     usrname_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr, font=('yu gothic ui', 15, 'bold'))
     usrname_entry.place(x=120, y=340, width=450)
 
@@ -74,6 +100,7 @@ def loginpage():
 
     passwd_lbl=tk.Label(login_frame, text='Password', fg='#6c6c6c', font=('yu gothic ui', 18, 'bold'))
     passwd_lbl.place(x=120, y=410)
+    global passwd_entry
     passwd_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr,show="*",font=('yu gothic ui', 15, 'bold'))
     passwd_entry.place(x=120, y=450, width=450)
 
@@ -104,7 +131,7 @@ def loginpage():
     login_btn_img.image=btn_img
     login_btn_img.place(x=225, y=510)
 
-    login_btn=tk.Button(login_btn_img, text='Sign in', font=('yu gothic ui', 18, 'bold'),width=10, bd=0, highlightthickness=0,  bg=btn_bg, cursor='hand2', activebackground=btn_bg, fg='white' )
+    login_btn=tk.Button(login_btn_img, text='Sign in', font=('yu gothic ui', 18, 'bold'),width=10, bd=0, highlightthickness=0,  bg=btn_bg, cursor='hand2', activebackground=btn_bg, fg='white', command=login_backend)
     login_btn.place(x=30, y=8)
 
 
@@ -133,5 +160,5 @@ def loginpage():
     view_btn=tk.Button(login_frame, image=view_img, command=show, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
     view_btn.place(x=537, y=490)    
 
-loginpage()
+login_frontend()
 login.mainloop() 

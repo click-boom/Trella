@@ -1,10 +1,51 @@
 import tkinter as tk
+import login
 from PIL import ImageTk, Image
-from tkinter import ttk
 login=tk.Tk()
 
+import sqlite3
+conn=sqlite3.connect("reg_usrs.db")
+c=conn.cursor()
 
-def signup():
+#--------------------Theme codes---------------------------------------------------------------
+
+th_clr='#d6d6d6'
+fnt='#6c6c6c'
+btn_bg='#a4a4a4'
+
+#--------------------Backend---------------------------------------------------------------
+def signup_backend():
+    username=username_entry.get()
+    email=email_entry.get()
+    epassword=epasswd_entry.get()
+    cpassword=cpasswd_entry.get() 
+
+    c.execute(" SELECT email from users")
+    umails=c.fetchall()
+    
+    if (email ,) in umails:
+            already=tk.Button(login_frame, text='Account already exists, click here to login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', activebackground=th_clr,cursor='hand2', bd=0, width=30  )
+            already.place(x=110, y=720)
+        
+    else :
+        if username=='' or email=='' or epassword=='' or cpassword=='':
+            empty=tk.Label(login_frame, text='Please enter all the credentials and try again', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', bd=0, width=30 )
+            empty.place(x=110, y=720)
+
+            success=tk.Button(login_frame, text='Signed Up successfully, Click here to Login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', activebackground=th_clr,cursor='hand2', bd=0, width=30 )
+            success.place(x=110, y=720)
+        
+        elif epassword == cpassword:
+            c.execute(""" INSERT INTO users VALUES(:username, :email, :epassword, :cpassword)""",{'username':username, 'email':email,'epassword':epassword,'cpassword':cpassword })
+            conn.commit()
+        
+        else:    
+            incorrect=tk.Label(login_frame, text='Passwords dont match, please try again', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', bd=0, width=30 )
+            incorrect.place(x=110, y=720)
+
+#--------------------Frontend---------------------------------------------------------------
+
+def signup_frontend():
     
     #--------------------Login Window-------------------------------------------------------------
 
@@ -17,12 +58,7 @@ def signup():
     login.minsize(1920,1080)
 
 
-    #--------------------Functions---------------------------------------------------------------
 
-
-    th_clr='#d6d6d6'
-    fnt='#6c6c6c'
-    btn_bg='#a4a4a4'
 
 
     #--------------------Page Background-------------------------------------------------------------
@@ -36,10 +72,9 @@ def signup():
 
     #--------------------Login Frame-------------------------------------------------------------
  
- 
-    login_frame=tk.Frame(login, width='700', height='740',background=th_clr)   
-    login_frame.place(x=620, y=220)
-
+    global login_frame
+    login_frame=tk.Frame(login, width='700', height='800',background=th_clr)   
+    login_frame.place(x=620, y=180)
 
     #--------------------"Welcome To TRELLA and Sign Up label"-------------------------------------------------------------
  
@@ -65,6 +100,7 @@ def signup():
 
     username_lbl=tk.Label(login_frame, text='Username', fg=fnt,background=th_clr, font=('yu gothic ui', 16, 'bold'))
     username_lbl.place(x=120, y=300)
+    global username_entry
     username_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr, font=('yu gothic ui', 13, 'bold'))
     username_entry.place(x=120, y=330, width=450)
 
@@ -73,6 +109,7 @@ def signup():
 
     email_lbl=tk.Label(login_frame, text='Email', fg='#6c6c6c',background=th_clr, font=('yu gothic ui', 16, 'bold'))
     email_lbl.place(x=120, y=375)
+    global email_entry
     email_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr,font=('yu gothic ui', 13, 'bold'))
     email_entry.place(x=120, y=407, width=450)
 
@@ -82,6 +119,7 @@ def signup():
 
     epasswd_lbl=tk.Label(login_frame, text='Enter Password', fg='#6c6c6c', bg=th_clr, font=('yu gothic ui', 16, 'bold'))
     epasswd_lbl.place(x=120, y=452)
+    global epasswd_entry
     epasswd_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr,font=('yu gothic ui', 13, 'bold'))
     epasswd_entry.place(x=120, y=485, width=450)
 
@@ -90,6 +128,7 @@ def signup():
     
     cpasswd_lbl=tk.Label(login_frame, text='Confirm Password', fg='#6c6c6c', bg=th_clr, font=('yu gothic ui', 16, 'bold'))
     cpasswd_lbl.place(x=120, y=530)
+    global cpasswd_entry
     cpasswd_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr,font=('yu gothic ui', 13, 'bold'))
     cpasswd_entry.place(x=120, y=565, width=450)
 
@@ -130,14 +169,14 @@ def signup():
     sgnup_btn_img.image=btn_img
     sgnup_btn_img.place(x=225, y=610)
 
-    login_btn=tk.Button(sgnup_btn_img, text='Sign Up', font=('yu gothic ui', 18, 'bold'),width=10, bd=0, highlightthickness=0,  bg=btn_bg, cursor='hand2', activebackground=btn_bg, fg='white' )
+    login_btn=tk.Button(sgnup_btn_img, text='Sign Up', font=('yu gothic ui', 18, 'bold'),width=10, bd=0, highlightthickness=0,  bg=btn_bg, cursor='hand2', activebackground=btn_bg, fg='white', command=signup_backend )
     login_btn.place(x=30, y=8)
 
 
     # --------------------"Login Label"-------------------------------------------------------
 
 
-    sign_up_label=tk.Button(login_frame, text='Already Registered? Login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground=fnt, activebackground=th_clr,cursor='hand2', bd=0, width=20)
+    sign_up_label=tk.Button(login_frame, text='Already Registered? Login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground=fnt, activebackground=th_clr,cursor='hand2', bd=0, width=20 )
     sign_up_label.place(x=185, y=670)
 
 
@@ -149,22 +188,20 @@ def signup():
         eview_btn.place(x=537, y=485)    
         epasswd_entry.config(show='*')
         
+    def chide(): 
+        cview_btn=tk.Button(login_frame, image=cview_img, command=cshow, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
+        cview_btn.place(x=537, y=565)    
+        cpasswd_entry.config(show='*')
       
     def eshow():
         ehide_btn=tk.Button(login_frame, image=ehide_img,command=ehide, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
         ehide_btn.place(x=537, y=485)    
         epasswd_entry.config(show='')
         
-        
-    def chide(): 
-        cview_btn=tk.Button(login_frame, image=cview_img, command=cshow, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
-        cview_btn.place(x=537, y=565)    
-        cpasswd_entry.config(show='*')
-
     def cshow():
-        ehide_btn=tk.Button(login_frame, image=chide_img,command=chide, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
-        ehide_btn.place(x=537, y=565)    
-        epasswd_entry.config(show='')
+        chide_btn=tk.Button(login_frame, image=chide_img,command=chide, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
+        chide_btn.place(x=537, y=565)    
+        cpasswd_entry.config(show='')
 
     eview_img=ImageTk.PhotoImage(Image.open('D:/trela/Images/view_pwd.png'))
     cview_img=ImageTk.PhotoImage(Image.open('D:/trela/Images/view_pwd.png'))
@@ -178,5 +215,8 @@ def signup():
     cview_btn=tk.Button(login_frame, image=chide_img, command=chide, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
     cview_btn.place(x=537, y=565)    
 
-signup()
+signup_frontend()
+
+
+conn.close()
 login.mainloop() 
