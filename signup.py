@@ -170,7 +170,7 @@ def signup_frontend():
     sgnup_btn_img.image=btn_img
     sgnup_btn_img.place(x=225, y=610)
 
-    login_btn=tk.Button(sgnup_btn_img, text='Sign Up', font=('yu gothic ui', 18, 'bold'),width=10, bd=0, highlightthickness=0,  bg=btn_bg, cursor='hand2', activebackground=btn_bg, fg='white')
+    login_btn=tk.Button(sgnup_btn_img, text='Sign Up', font=('yu gothic ui', 18, 'bold'),width=10, bd=0, highlightthickness=0,  bg=btn_bg, cursor='hand2', activebackground=btn_bg, fg='white', command=signup_backend)
     login_btn.place(x=30, y=8)
 
 
