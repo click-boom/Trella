@@ -9,7 +9,7 @@ c=conn.cursor()
 def login_backend():
 
     ue=usrname_entry.get()
-    print(ue)
+    
     passwd=passwd_entry.get()
 
     c.execute("SELECT username FROM users")
@@ -48,6 +48,11 @@ def login_frontend():
     th_clr='#d6d6d6'
     fnt='#6c6c6c'
     btn_bg='#a4a4a4'
+
+    def signup_link():
+        login.destroy()
+        import signup
+
 
 
     #--------------------Page Background-------------------------------------------------------------
@@ -135,10 +140,10 @@ def login_frontend():
     login_btn.place(x=30, y=8)
 
 
-    #--------------------"Signup Button"-------------------------------------------------------
+    #--------------------"Signup Label"-------------------------------------------------------
 
 
-    sign_up_label=tk.Button(login_frame, text='Not registered yet? Sign Up', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground=fnt, activebackground=th_clr,cursor='hand2', bd=0, width=20)
+    sign_up_label=tk.Button(login_frame, text='Not registered yet? Sign Up', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground=fnt, activebackground=th_clr,cursor='hand2', bd=0, width=20, command=signup_link)
     sign_up_label.place(x=185, y=570)
 
     #--------------------"Hide/Unhide Option"----------------------------------------------------------

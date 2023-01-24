@@ -57,7 +57,7 @@ def signup_frontend():
     signup.minsize(1920,1080)
 
 
-    def link():
+    def login_link():
         signup.destroy()
         import login
 
@@ -177,7 +177,7 @@ def signup_frontend():
     # --------------------"Login Label"-------------------------------------------------------
 
 
-    sign_up_label=tk.Button(login_frame, text='Already Registered? Login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground=fnt, activebackground=th_clr,cursor='hand2', bd=0, width=20, command=link )
+    sign_up_label=tk.Button(login_frame, text='Already Registered? Login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground=fnt, activebackground=th_clr,cursor='hand2', bd=0, width=20, command=login_link )
     sign_up_label.place(x=185, y=670)
 
 
