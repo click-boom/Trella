@@ -1,7 +1,6 @@
 import tkinter as tk
-import login
 from PIL import ImageTk, Image
-login=tk.Tk()
+signup=tk.Tk()
 
 import sqlite3
 conn=sqlite3.connect("reg_usrs.db")
@@ -53,19 +52,21 @@ def signup_frontend():
     # screen_width = win.winfo_screenwidth()
     # screen_height = win.winfo_screenheight()
     
-    login.title('Welcome to Trella')
-    login.geometry('1920x1080')
-    login.minsize(1920,1080)
+    signup.title('Welcome to Trella')
+    signup.geometry('1920x1080')
+    signup.minsize(1920,1080)
 
 
-
+    def link():
+        signup.destroy()
+        import login
 
 
     #--------------------Page Background-------------------------------------------------------------
  
  
     img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/bg.png'))
-    bg=tk.Label(login, image=img)
+    bg=tk.Label(signup, image=img)
     bg.image=img
     bg.pack(fill='both', expand='yes')
 
@@ -73,15 +74,15 @@ def signup_frontend():
     #--------------------Login Frame-------------------------------------------------------------
  
     global login_frame
-    login_frame=tk.Frame(login, width='700', height='800',background=th_clr)   
+    login_frame=tk.Frame(signup, width='700', height='800',background=th_clr)   
     login_frame.place(x=620, y=180)
 
     #--------------------"Welcome To TRELLA and Sign Up label"-------------------------------------------------------------
  
  
-    login.txt='Welcome To Trella'
-    login.heading=tk.Label(login, 
-     text=login.txt,
+    signup.txt='Welcome To Trella'
+    signup.heading=tk.Label(signup, 
+     text=signup.txt,
      font=('yu gothic ui', '30', 'bold'),
      fg='#6c6c6c',background=th_clr).place(x=780, y=420, width=400, height=50)
 
@@ -169,14 +170,14 @@ def signup_frontend():
     sgnup_btn_img.image=btn_img
     sgnup_btn_img.place(x=225, y=610)
 
-    login_btn=tk.Button(sgnup_btn_img, text='Sign Up', font=('yu gothic ui', 18, 'bold'),width=10, bd=0, highlightthickness=0,  bg=btn_bg, cursor='hand2', activebackground=btn_bg, fg='white', command=signup_backend )
+    login_btn=tk.Button(sgnup_btn_img, text='Sign Up', font=('yu gothic ui', 18, 'bold'),width=10, bd=0, highlightthickness=0,  bg=btn_bg, cursor='hand2', activebackground=btn_bg, fg='white')
     login_btn.place(x=30, y=8)
 
 
     # --------------------"Login Label"-------------------------------------------------------
 
 
-    sign_up_label=tk.Button(login_frame, text='Already Registered? Login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground=fnt, activebackground=th_clr,cursor='hand2', bd=0, width=20 )
+    sign_up_label=tk.Button(login_frame, text='Already Registered? Login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground=fnt, activebackground=th_clr,cursor='hand2', bd=0, width=20, command=link )
     sign_up_label.place(x=185, y=670)
 
 
@@ -219,4 +220,4 @@ signup_frontend()
 
 
 conn.close()
-login.mainloop() 
+signup.mainloop() 
