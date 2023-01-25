@@ -66,7 +66,7 @@ def chk_frontend():
     logo_lbl.image=dash_logo
     logo_lbl.pack(side='bottom') 
 
-# ====================  Button Labels  ========================
+# ====================  Button Labels  =======================================================================
     #-----------------Checklist--------------------------
     btn_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/DASH_BTN.png')
     
@@ -87,7 +87,7 @@ def chk_frontend():
     st_btn_lbl.image=btn_img
     st_btn_lbl.place(x=15, y=550)
 
-# ====================  Buttons  ==============================
+# ====================  Buttons  ================================================================================
     #-----------------  Checklist  --------------------------
     chk_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/check-list.png'))
     chk_img.image=chk_img
