@@ -8,7 +8,19 @@ dash.minsize(1920, 1080)
 
 icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/llogo.png')
 dash .iconphoto(True, icon)
-#========================FRONT END======================================
+
+#========================  INDICATOR FUNCTION  ======================================
+
+def hchk_indicate():
+    chk_btn.config(fg=lfnt)
+    rem_btn.config(fg=lfnt)
+    st_btn.config(fg=lfnt)
+    
+def schk_indicate(ind):
+    hchk_indicate()
+    ind.config(fg='white')
+
+#========================  FRONT END  ======================================
 #-------------------  Theme  -----------------------------
             
 lth_clr='#97C1EC'
@@ -58,6 +70,7 @@ def chk_frontend():
     #-----------------Checklist--------------------------
     btn_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/DASH_BTN.png')
     
+    
     chk_btn_lbl=tk.Label(sidebar, image=btn_img, bg=dth_clr)
     chk_btn_lbl.image=btn_img
     chk_btn_lbl.place(x=15, y=370)
@@ -69,17 +82,17 @@ def chk_frontend():
     rem_btn_lbl.place(x=15, y=460)
 
     #-----------------  sticky notes  --------------------------
-        
+    
     st_btn_lbl=tk.Label(sidebar, image=btn_img, bg=dth_clr)
     st_btn_lbl.image=btn_img
     st_btn_lbl.place(x=15, y=550)
 
 # ====================  Buttons  ==============================
     #-----------------  Checklist  --------------------------
-    
     chk_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/check-list.png'))
     chk_img.image=chk_img
-    chk_btn=tk.Button(chk_btn_lbl, text='          CHECKLIST',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg='white', cursor='hand2', activebackground=btn_bg,activeforeground='white', bd=0,highlightthickness=0 )
+    global chk_btn
+    chk_btn=tk.Button(chk_btn_lbl, text='          CHECKLIST',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg,activeforeground='white', bd=0,highlightthickness=0, command=lambda:schk_indicate(chk_btn))
     chk_btn.place(x=30, y=7)
 
     chk_img_lbl=tk.Label(chk_btn, image=chk_img, bg=btn_bg)
@@ -89,7 +102,8 @@ def chk_frontend():
     
     rem_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/reminder.png'))
     rem_img.image=rem_img
-    rem_btn=tk.Button(rem_btn_lbl, text='          REMINDER',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg, activeforeground='white',bd=0,highlightthickness=0 )
+    global rem_btn
+    rem_btn=tk.Button(rem_btn_lbl, text='          REMINDER',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg, activeforeground='white',bd=0,highlightthickness=0, command=lambda:schk_indicate(rem_btn) )
     rem_btn.place(x=30, y=10)
 
     rem_img_lbl=tk.Label(rem_btn, image=rem_img, bg=btn_bg)
@@ -99,7 +113,8 @@ def chk_frontend():
     
     st_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/reminder.png'))
     st_img.image=st_img
-    st_btn=tk.Button(st_btn_lbl, text='       STICKY NOTES',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg,activeforeground='white', bd=0,highlightthickness=0 )
+    global st_btn
+    st_btn=tk.Button(st_btn_lbl, text='       STICKY NOTES',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg,activeforeground='white' , bd=0,highlightthickness=0, command=lambda:schk_indicate(st_btn) )
     st_btn.place(x=30, y=10)
 
     st_img_lbl=tk.Label(st_btn, image=st_img, bg=btn_bg)
@@ -116,8 +131,6 @@ def chk_frontend():
     lbtn_img.image=lbtn_img
     lbtn=tk.Button(lcircle_lbl, image=lbtn_img, bg=btn_bg, activebackground=btn_bg, cursor='hand2', highlightthickness=0, bd=0)
     lbtn.place(x=19, y=15)
-
-#----------------  Dash Frame  -------------------------------
 
 chk_frontend()
 
