@@ -3,8 +3,6 @@ from PIL import ImageTk, Image
 signup=tk.Tk()
 
 import sqlite3
-conn=sqlite3.connect("reg_usrs.db")
-c=conn.cursor()
 
 #--------------------Theme codes---------------------------------------------------------------
 
@@ -14,16 +12,20 @@ btn_bg='#a4a4a4'
 
 #--------------------Backend---------------------------------------------------------------
 def signup_backend():
+    conn=sqlite3.connect("reg_usrs.db")
+    c=conn.cursor()
     username=username_entry.get()
     email=email_entry.get()
     epassword=epasswd_entry.get()
     cpassword=cpasswd_entry.get() 
 
+
+    print(username)
     c.execute(" SELECT email from users")
     umails=c.fetchall()
-    
+
     if (email ,) in umails:
-            already=tk.Button(login_frame, text='Account already exists, click here to login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', activebackground=th_clr,cursor='hand2', bd=0, width=30  )
+            already=tk.Button(login_frame, text='Account already exists, click here to login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', activebackground=th_clr,cursor='hand2', bd=0, width=30, command=login_link )
             already.place(x=110, y=720)
         
     else :
@@ -41,7 +43,8 @@ def signup_backend():
         else:    
             incorrect=tk.Label(login_frame, text='Passwords dont match, please try again', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', bd=0, width=30 )
             incorrect.place(x=110, y=720)
-
+    conn.commit()
+    conn.close()
 #--------------------Frontend---------------------------------------------------------------
 
 def signup_frontend():
@@ -56,6 +59,7 @@ def signup_frontend():
     signup.geometry('1920x1080')
     signup.minsize(1920,1080)
 
+    global login_link
 
     def login_link():
         signup.destroy()
@@ -219,5 +223,4 @@ def signup_frontend():
 signup_frontend()
 
 
-conn.close()
 signup.mainloop() 
