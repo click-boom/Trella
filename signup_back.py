@@ -15,6 +15,8 @@ def ins(w, x, y, z):
     with conn:
         c.execute("INSERT INTO users VALUES (:username,:email, :epassword, :cpassword)",{'username':w, 'email':x,  'epassword':y,  'cpassword':z})
 
-# ins('Ruby Rose', 'rubyrose7@gmail.com', 'rubyruby', 'rubyruby')
+# ins('', 'rubyrose7@gmail.com', 'rubyruby', 'rubyruby')
 
+c.execute("DELETE FROM users WHERE email='rubyrose7@gmail.com'")
+conn.commit()
 conn.close()

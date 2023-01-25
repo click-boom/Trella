@@ -27,6 +27,7 @@ def login_backend():
         c.execute("SELECT * FROM users WHERE username=ue")
         umail=c.fetchall()
         print(umail)
+        conn.close()
     else:
         return
 def login_frontend():
