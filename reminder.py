@@ -160,6 +160,19 @@ def chk_frontend():
     remind_button.pack()
 
 
+#     #----------------------------  Add text  ----------------------------------------------------------------------------------------
+    add_text_img=ImageTk.PhotoImage(Image.open('D:/Trella/Images/calendar.png'))
+    add_text_img.image=add_text_img
+    add_text_img_mutton=tk.Button(iframe,image=add_text_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
+    add_text_img_mutton.place(x=50,y=210)
+
+    add_text_bar_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/hbar.png'))
+    add_text_lbl=tk.Label(iframe, image=add_text_bar_img, bg=frm_clr)
+    add_text_lbl.image=add_text_bar_img
+    add_text_lbl.place(x=90, y=210)
+    
+    add_text_button=tk.Button(add_text_lbl,text="Add text",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
+    add_text_button.pack()
 chk_frontend()
 dash.mainloop()
 
@@ -170,19 +183,6 @@ dash.mainloop()
 
 
 
-#     #^^^^^^^^^^^^^^^^^^Add text^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-#     add_text_img=ImageTk.PhotoImage(file='D:/Trella/Images/calendar.png')
-#     add_text_img.image=add_text_img
-#     add_text_img_mutton=tk.Button(iframe,image=add_text_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
-#     add_text_img_mutton.place(x=50,y=210)
-
-#     add_text_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
-#     add_text_lbl=tk.Label(iframe, image=add_text_bar_img, bg=frm_clr)
-#     add_text_lbl.image=add_text_bar_img
-#     add_text_lbl.place(x=90, y=210)
-    
-#     add_text_button=tk.Button(add_text_lbl,text="Add text",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
-#     add_text_button.pack()
 
 #     #--------------------------Add to my day---------------------------
 #     add_day_img=ImageTk.PhotoImage(file='D:/Trella/Images/sun (1).png')
