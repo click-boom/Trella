@@ -133,8 +133,8 @@ def chk_frontend():
 
     search_imge=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/search.png'))
     search_imge.image=search_imge
-    search_Button=tk.Button(iframe,image=search_imge ,cursor="hand2",bd=0,background='#CCDFE7',activebackground=frm_clr)
-    search_Button.place(x=930,y=61)
+    search_button=tk.Label(iframe,image=search_imge ,bd=0,background='#CCDFE7',activebackground=frm_clr, highlightthickness=0)
+    search_button.place(x=930,y=61)
 
     search_bar_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/hbar.png'))
     search_lbl=tk.Label(iframe, image=search_bar_img, bg='#CCDFE7')
@@ -145,109 +145,63 @@ def chk_frontend():
     search_box.place(x=15,y=10)
 
 
-    #--------------------remind me-----------------------
+    #------------------------------------------  Remind Me  ----------------------------------------------------------------------
     remind_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/alarm.png'))
     remind_img.image=remind_img
-    remind_img_mutton=tk.Button(iframe,image=remind_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
-    remind_img_mutton.place(x=50,y=160)
-
-    remind_bar_img=ImageTk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/hbar.png')
-    remind_lbl=tk.Label(iframe, image=remind_bar_img, bg=frm_clr)
-    remind_lbl.image=remind_bar_img
-    remind_lbl.place(x=90, y=160)
+    remind_img_button=tk.Button(iframe,image=remind_img ,cursor="hand2",bd=0,background='#CCDFE7',activebackground='#CCDFE7', activeforeground=btn_bg)
+    remind_img_button.place(x=50,y=160)
     
-    remind_button=tk.Button(remind_lbl,text="Remind me",font=('yu gothic ui', 12, 'bold'),bg=btn_bg,fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
-    remind_button.pack()
+    remind_button=tk.Button(iframe,text="Remind me",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4', highlightthickness=2)
+    remind_button.place(x=95, y=165)
 
 
-#     #----------------------------  Add text  ----------------------------------------------------------------------------------------
-    add_text_img=ImageTk.PhotoImage(Image.open('D:/Trella/Images/calendar.png'))
+#------------------------------------------------  Add text  ----------------------------------------------------------------------
+
+    add_text_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/calendar.png'))
     add_text_img.image=add_text_img
-    add_text_img_mutton=tk.Button(iframe,image=add_text_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
-    add_text_img_mutton.place(x=50,y=210)
-
-    add_text_bar_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/hbar.png'))
-    add_text_lbl=tk.Label(iframe, image=add_text_bar_img, bg=frm_clr)
-    add_text_lbl.image=add_text_bar_img
-    add_text_lbl.place(x=90, y=210)
+    add_text_img_button=tk.Button(iframe,image=add_text_img ,cursor="hand2",bd=0, background='#CCDFE7',activebackground='#CCDFE7', activeforeground=btn_bg)
+    add_text_img_button.place(x=50,y=210)
     
-    add_text_button=tk.Button(add_text_lbl,text="Add text",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
-    add_text_button.pack()
+
+    add_text_button=tk.Button(iframe,text="Add note",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4', highlightthickness=2)
+    add_text_button.place(x=95, y=210)
+
+#----------------------------------------------  Add to my day  ----------------------------------------------------------------------
+    add_day_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/day.png'))
+    add_day_img.image=add_day_img
+    add_day_img_button=tk.Button(iframe,image=add_day_img ,cursor="hand2",bd=0,background='#BACCE0',activebackground='#BACCE0', highlightthickness=0)
+    add_day_img_button.place(x=50,y=260)
+
+    add_text_button=tk.Button(iframe,text="Add to my day",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4',highlightthickness=2)
+    add_text_button.place(x=95, y=260)
+
+#-----------------------------------  Add to due date  --------------------------------------------------------------------------------
+
+    add_date_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/calendar.png'))
+    add_date_img.image=add_date_img
+    add_date_img_button=tk.Button(iframe,image=add_date_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr, highlightthickness=0)
+    add_date_img_button.place(x=50, y=315)
+
+    
+    add_date_button=tk.Button(iframe,text="Add to due date",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4', highlightthickness=2)
+    add_date_button.place(x=95, y=310)
+#  #------------------------repeat---------------------------
+    repeat_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/repeat.png'))
+    repeat_img.image=repeat_img
+    repeat_img_button=tk.Button(iframe,image=repeat_img ,cursor="hand2",bd=0,background='#85B1D5',activebackground='#85B1D5', highlightthickness=0)
+    repeat_img_button.place(x=45,y=365)
+
+    repeat_button=tk.Button(iframe,text="Repeat",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4', highlightthickness=2)
+    repeat_button.place(x=95, y=360)
+
+#------------------------Attach---------------------------
+    Attach_img=ImageTk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/paperclip.png')
+    Attach_img.image=Attach_img
+    Attach_img_button=tk.Button(iframe,image=Attach_img ,cursor="hand2",bd=0,background='#85B1D5',activebackground='#85B1D5', highlightthickness=0)
+    Attach_img_button.place(x=45,y=410)
+    
+    Attach_button=tk.Button(iframe,text="Attach file",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4',highlightthickness=2)
+    Attach_button.place(x=95, y=410)
+
 chk_frontend()
 dash.mainloop()
-
-
-#     #--------------------------Add to my day---------------------------
-#     add_day_img=ImageTk.PhotoImage(file='D:/Trella/Images/sun (1).png')
-#     add_day_img.image=add_day_img
-#     add_day_img_mutton=tk.Button(iframe,image=add_day_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
-#     add_day_img_mutton.place(x=50,y=260)
-
-#     add_day_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
-#     add_day_lbl=tk.Label(iframe, image=add_day_bar_img, bg=frm_clr)
-#     add_day_lbl.image=add_day_bar_img
-#     add_day_lbl.place(x=90, y=260)
-    
-#     add_day_button=tk.Button(add_day_lbl,text="Add to my day",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
-#     add_day_button.pack()
-
-# #------------------------add to due date---------------------------
-#     add_date_img=ImageTk.PhotoImage(file='D:/Trella/Images/calendar (1).png')
-#     add_date_img.image=add_date_img
-#     add_date_img_mutton=tk.Button(iframe,image=add_date_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
-#     add_date_img_mutton.place(x=49, y=315)
-
-#     add_date_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
-#     add_date_lbl=tk.Label(iframe, image=add_date_bar_img, bg=frm_clr)
-#     add_date_lbl.image=add_date_bar_img
-#     add_date_lbl.place(x=90, y=310)
-    
-#     add_date_button=tk.Button(add_date_lbl,text="Add to due date",font=('yu gothic ui', 11, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
-#     add_date_button.pack()
-    
-#  #------------------------repeat---------------------------
-#     repeat_img=ImageTk.PhotoImage(file='D:/Trella/Images/repeat12.png')
-#     repeat_img.image=repeat_img
-#     repeat_img_button=tk.Button(iframe,image=repeat_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
-#     repeat_img_button.place(x=50,y=360)
-
-#     repeat_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
-#     repeat_lbl=tk.Label(iframe, image=repeat_bar_img, bg=frm_clr)
-#     repeat_lbl.image=repeat_bar_img
-#     repeat_lbl.place(x=90, y=360)
-    
-#     repeat_button=tk.Button(repeat_lbl,text="Repeat",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
-#     repeat_button.pack()
-
-
-# #------------------------Attach---------------------------
-#     Attach_img=ImageTk.PhotoImage(file='D:/Trella/Images/attached (1).png')
-#     Attach_img.image=Attach_img
-#     Attach_img_button=tk.Button(iframe,image=Attach_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
-#     Attach_img_button.place(x=50,y=410)
-
-#     Attach_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
-#     Attach_lbl=tk.Label(iframe, image=Attach_bar_img, bg=frm_clr)
-#     Attach_lbl.image=Attach_bar_img
-#     Attach_lbl.place(x=90, y=410)
-    
-#     Attach_button=tk.Button(Attach_lbl,text="Attach",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
-#     Attach_button.pack()
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-# chk_frontend()
-
-# dash.mainloop()
