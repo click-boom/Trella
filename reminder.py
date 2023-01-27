@@ -129,14 +129,14 @@ def chk_frontend():
     trans.image=trans_img
     trans.place(x=0, y=0)
 
-#-------------------------search button-------------------------------------
+#-------------------------  Search  ------------------------------------
 
-    search_imge=ImageTk.PhotoImage(file='D:\Trella\Images\search.png')
+    search_imge=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/search.png'))
     search_imge.image=search_imge
     search_Button=tk.Button(iframe,image=search_imge ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
     search_Button.place(x=930,y=61)
 
-    search_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
+    search_bar_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/hbar.png'))
     search_lbl=tk.Label(iframe, image=search_bar_img, bg=frm_clr)
     search_lbl.image=search_bar_img
     search_lbl.place(x=960, y=47)
@@ -144,7 +144,20 @@ def chk_frontend():
     search_box=tk.Entry(search_lbl,font=('yu gothic ui', 14, 'bold'),background="#5B90B4", width=21,bd=0)
     search_box.place(x=15,y=10)
 
-#----------------  Remind Me Button  -------------------------------
+
+    #--------------------remind me-----------------------
+    remind_img=ImageTk.PhotoImage(file='D:/Trella/Images/alarm.png')
+    remind_img.image=remind_img
+    remind_img_mutton=tk.Button(iframe,image=remind_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
+    remind_img_mutton.place(x=50,y=160)
+
+    remind_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
+    remind_lbl=tk.Label(iframe, image=remind_bar_img, bg=frm_clr)
+    remind_lbl.image=remind_bar_img
+    remind_lbl.place(x=90, y=160)
+    
+    remind_button=tk.Button(remind_lbl,text="Remind me",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
+    remind_button.pack()
 chk_frontend()
 
 dash.mainloop()
@@ -155,19 +168,6 @@ dash.mainloop()
 
 
 
-#     #--------------------remind me-----------------------
-#     remind_img=ImageTk.PhotoImage(file='D:/Trella/Images/alarm.png')
-#     remind_img.image=remind_img
-#     remind_img_mutton=tk.Button(iframe,image=remind_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
-#     remind_img_mutton.place(x=50,y=160)
-
-#     remind_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
-#     remind_lbl=tk.Label(iframe, image=remind_bar_img, bg=frm_clr)
-#     remind_lbl.image=remind_bar_img
-#     remind_lbl.place(x=90, y=160)
-    
-#     remind_button=tk.Button(remind_lbl,text="Remind me",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
-#     remind_button.pack()
 
 #     #^^^^^^^^^^^^^^^^^^Add text^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 #     add_text_img=ImageTk.PhotoImage(file='D:/Trella/Images/calendar.png')
