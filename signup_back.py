@@ -17,6 +17,6 @@ def ins(w, x, y, z):
 
 # ins('', 'rubyrose7@gmail.com', 'rubyruby', 'rubyruby')
 
-c.execute("DELETE FROM users WHERE email='rubyrose7@gmail.com'")
+c.execute("DELETE FROM users WHERE email='sandy123@gmail.com'")
 conn.commit()
 conn.close()

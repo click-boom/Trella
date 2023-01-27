@@ -2,34 +2,63 @@ import tkinter as tk
 from PIL import ImageTk, Image
 login=tk.Tk()
 
-import sqlite3
-conn=sqlite3.connect('reg_usrs.db')
-c=conn.cursor()
-
-def login_backend():
-
-    ue=usrname_entry.get()
+#--------------------Functions---------------------------------------------------------------
     
+
+th_clr='#d6d6d6'
+fnt='#6c6c6c'
+btn_bg='#a4a4a4'
+
+def signup_link():
+    login.destroy()
+    import signup
+
+def dash_link():
+    login.destroy()
+def login_backend():
+    import sqlite3
+    conn=sqlite3.connect('reg_usrs.db')
+    c=conn.cursor()
+
+    global uname
+    uname=usrname_entry.get()
     passwd=passwd_entry.get()
 
     c.execute("SELECT username FROM users")
     usernames = c.fetchall()
-    
 
     c.execute("SELECT email FROM users")
     umails = c.fetchall()
 
+    if (uname=='') or (passwd==''):
+        empty=tk.Label(login_frame, text='Please enter all the credentials and try again', font=('yu gothic ui', 18, 'bold '),background=th_clr, foreground=fnt, bd=0, width=35 )
+        empty.place(x=85, y=635)
 
-    if((ue ,) in usernames) or ((ue ,) in umails):
-        c.execute("SELECT * FROM users WHERE email")
-        uname=c.fetchall()
-        print(uname)
-        c.execute("SELECT * FROM users WHERE username=ue")
-        umail=c.fetchall()
-        print(umail)
-        conn.close()
+    
+    elif((uname ,) not in usernames) and ((uname ,) not in umails):
+        nexist=tk.Button(login_frame, text="Account does'nt exist, Click here to signUp ", font=('yu gothic ui', 18, 'bold '),background=th_clr, foreground=fnt, bd=0, width=35, cursor='hand2', activebackground=th_clr, command=signup_link )
+        nexist.place(x=85, y=635)
+        
+    
     else:
-        return
+        if ((uname ,) in usernames):
+            c.execute("SELECT epassword FROM users WHERE username=?",[uname])
+            epasswd=c.fetchall()
+            conn.close()
+            if (passwd ,) in epasswd:
+                dash_link(uname)
+        
+            else:
+                incorrect=tk.Label(login_frame, text='Incorrect Passowrd and try again', font=('yu gothic ui', 18, 'bold '),background=th_clr, foreground=fnt, bd=0, width=35 )
+                incorrect.place(x=85, y=635)
+
+
+        else:
+            c.execute("SELECT * FROM users WHERE email=?",[uname])
+            conn.close()
+    
+    
+        
 def login_frontend():
     
     #--------------------Login Window-------------------------------------------------------------
@@ -42,17 +71,6 @@ def login_frontend():
     login.geometry('1920x1080')
     login.minsize(1920,1080)
 
-
-    #--------------------Functions---------------------------------------------------------------
-    
-
-    th_clr='#d6d6d6'
-    fnt='#6c6c6c'
-    btn_bg='#a4a4a4'
-
-    def signup_link():
-        login.destroy()
-        import signup
 
 
 
@@ -67,7 +85,7 @@ def login_frontend():
 
     #--------------------Login Frame-------------------------------------------------------------
 
-
+    global login_frame
     login_frame=tk.Frame(login, width='700', height='700')
     login_frame.place(x=620, y=220)
 

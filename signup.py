@@ -38,7 +38,7 @@ def signup_backend():
             c.execute(""" INSERT INTO users VALUES(:username, :email, :epassword, :cpassword)""",{'username':username, 'email':email,'epassword':epassword,'cpassword':cpassword })
             conn.commit()
         
-            success=tk.Button(login_frame, text='Signed Up successfully, Click here to Login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', activebackground=th_clr,cursor='hand2', bd=0, width=30 )
+            success=tk.Button(login_frame, text='Signed Up successfully, Click here to Login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', activebackground=th_clr,cursor='hand2', bd=0, width=30, command=login_link )
             success.place(x=110, y=720)
         
         else:    
