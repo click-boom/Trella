@@ -1,295 +1,268 @@
 import tkinter as tk
 from PIL import ImageTk, Image
-from tkinter import Canvas
-from tkinter import ttk
-from datetime import *
-reminder=tk.Tk()
 
-#........................defining
-# reminder....................
-def dashboard():
+dash=tk.Tk()
+dash.title('TRELLA')
+dash.geometry('1920x1080')
+dash.minsize(1920, 1080)
 
-    reminder.title('Trella')
-    reminder.geometry('1920x1080')
-    reminder.state("zoomed")
-    reminder.config(background='#d6d6d6')
+icon=tk.PhotoImage(file='D:/Trella/Images/llogo.png')
+dash .iconphoto(True, icon)
+#========================FRONT END======================================
+#-------------------  Theme  -----------------------------
+            
+lth_clr='#97C1EC'
+dth_clr='#2A5F7F'
+btn_bg='#5B90B4'
+frm_clr='#A4c8Eb'
 
-#.....................header....................
+lfnt=lth_clr
+dfnt=dth_clr
+
+def checklist_link():
+    dash.destroy()
+    import checklist11
+
+def reem_link():
+    dash.destory()
+    import reminder
+
+def stickk_notees():
+    dash.destroy()
+    import Stickynotes
+
+# def button_hover(e):
+#     text_button.config(text="Search")
+
+#----------------------------------------------------------
+def chk_frontend():
+    dashfr=tk.Frame(dash, width=1230, height=76)
+    # dashfr.config(bg=lth_clr)
+    dashfr.place(x=535, y=300)
     
-    header=tk.Frame(reminder, bg='#748AC1')
-    header.place(x=400, y=0, width=1650, height=120)
+    dashfr_img=ImageTk.PhotoImage(Image.open('D:/Trella/Images/dash_bg.jpg'))
+    dash_bg=tk.Label(dash, image=dashfr_img)
+    dash_bg.image=dashfr_img
+    dash_bg.pack(fill='both', expand='yes')
 
-#.....................top image....................
-    trella_icon=tk.PhotoImage(file='D:/trela/Images/dlogo.png')
-
-    reminder.iconphoto(True,trella_icon)
-
-#.....................sidebar....................
-
-    sidebar = tk.Frame(reminder,bg='#DFEAF6')
-    sidebar.place(x=0, y=0, width=400, height=1080) 
-
-#.....................logo_in_sidebar....................
-    user_logo =Image.open('D:/trela/Images/dlogo.png')
-    photo= ImageTk.PhotoImage(user_logo)
-    logo =tk. Label(sidebar, image=photo,
-                          bg='#DFEAF6')
-    logo.image=photo
-    logo.place(x=110, y=40)
-
-#.....................logo_in_sidebar....................
-    user =tk. Label(sidebar, text='Hello Someone!',
-                           font=('Alegreya sans', 29, 'italic', 'underline'),
-                           bg='#DFEAF6'
-                          )
-    user.place(x=48, y=240)
-
-#.....................checklist_sidebar....................
-
-    checklist_text= tk.Button(sidebar, text='Checklist',
-                            font=('Segoe Script', 20, 'bold'),
-                            bg='#DFEAF6',
-                            cursor='hand2',
-                            activebackground='#DFEAF6',
-                            bd=0,
-                            width=19
-                            
-                              )
-    checklist_text.place(x=0, y=400)
-
-
-    checklistImage= Image.open('D:/trela/Images/checklist.png')
-    photo =ImageTk.PhotoImage(checklistImage)
-    checklist= tk.Label(checklist_text, image=photo, bg='#DFEAF6')
-    checklist.image= photo
-    checklist.place(x=5, y=20)
-
-    checklist_line=tk.Canvas(sidebar, width=450, height=2.0,
-                                bg='black', 
-                                highlightthickness=0)
-    checklist_line.place(x=0, y=397)
-
-    checklist_line=tk.Canvas(sidebar, width=450, height=2.0,
-                                bg='black', 
-                                highlightthickness=0)
-    checklist_line.place(x=0, y=477)
-
-#.....................remainder_sidebar....................
-    reminder_text= tk.Button(sidebar, text='Reminder',
-                            font=('Segoe Script', 20, 'bold'),
-                            bg='#DFEAF6',
-                            cursor='hand2',
-                            activebackground='#DFEAF6',
-                            bd=0,
-                            width=20,fg="Blue"
-                              )
-    reminder_text.place(x=0, y=480)
-
-    reminderImage= Image.open('D:/trela/Images/reminder.png')
-    photo = ImageTk.PhotoImage(reminderImage)
-    reminderimg=tk. Label(reminder_text, image=photo, bg='#DFEAF6')
-    reminderimg.image= photo
-    reminderimg.place(x=0, y=20)
-
-    remainder_line=tk.Canvas(sidebar, width=450, height=2.0,
-                                bg='black', 
-                                highlightthickness=0)
-    remainder_line.place(x=0, y=557)
-
-    remainder_line=tk.Canvas(sidebar, width=450, height=2.0,
-                                bg='black', 
-                                highlightthickness=0)
-    remainder_line.place(x=0, y=637)
+#------------------  SIDEBAR  ---------------------------
+    sidebar =tk.Frame(dash ,bg=dth_clr)    
+    sidebar.place(x=30, y=70, width=400, height=800)
+#----------------  Dashboard Heading  -------------------
         
-#.....................stickynotes_sidebar......................
+#----------------  Logo Frame  -------------------
+    
+    lframe =tk.Frame(sidebar ,bg=dth_clr)    
+    lframe.place(x=50, y=50, width=300, height=250)
 
-    stickynotes_text=tk. Button(sidebar, text='Sticky Notes',
-                            font=('Segoe Script', 20, 'bold'),
-                            bg='#DFEAF6',
-                            cursor='hand2',
-                            activebackground='#DFEAF6',
-                            bd=0,
-                            width=20
-                              )
-    stickynotes_text.place(x=0, y=560)
+    #----------------  Logo Image -------------------
+    
+    dash_logo=ImageTk.PhotoImage(Image.open('D:/Trella/Images/llogo.png'))
+    logo_lbl=tk.Label(lframe, image=dash_logo, bg= dth_clr)
+    logo_lbl.image=dash_logo
+    logo_lbl.pack(side='top') 
+    
+    #----------------  Logo Label -------------------
 
-    stickynotesImage= Image.open('D:/trela/Images/sticky_notes.png')
-    photo = ImageTk.PhotoImage(stickynotesImage)
-    stickynotes=tk. Label(stickynotes_text, image=photo, bg='#DFEAF6')
-    stickynotes.image= photo
-    stickynotes.place(x=0, y=20) 
+    logo_lbl=tk.Label(lframe, text='Hello Haseena', bg= dth_clr, font=('yu gothic ui', 25, 'bold'), fg=lfnt)
+    logo_lbl.image=dash_logo
+    logo_lbl.pack(side='bottom') 
 
-#.....................calender_sidebar......................
-    calendar_text=tk. Button(sidebar, text='Calendar',
-                            font=('Segoe Script', 20, 'bold'),
-                            bg='#DFEAF6',
-                            cursor='hand2',
-                            activebackground='#DFEAF6',
-                            bd=0,
-                            width=20
-                              )
-    calendar_text.place(x=0, y=640)
+# ====================  Button Labels  ========================
+    #-----------------Checklist--------------------------
+    btn_img=tk.PhotoImage(file='D:/Trella/Images/DASH_BTN.png')
+    
+    chk_btn_lbl=tk.Label(sidebar, image=btn_img, bg=dth_clr)
+    chk_btn_lbl.image=btn_img
+    chk_btn_lbl.place(x=15, y=370)
 
+    #-----------------  REMINDER  --------------------------
+    
+    rem_btn_lbl=tk.Label(sidebar, image=btn_img, bg=dth_clr)
+    rem_btn_lbl.image=btn_img
+    rem_btn_lbl.place(x=15, y=460)
 
-    calendarImage= Image.open('D:/trela/Images/mail.png')
-    photo = ImageTk.PhotoImage(calendarImage)
-    calendar=tk. Label(calendar_text, image=photo, bg='#DFEAF6')
-    calendar.image= photo
-    calendar.place(x=0, y=20)
-
-    passwd_line=Canvas(sidebar, width=450, height=2.0,
-                                bg='black', 
-                                highlightthickness=0)
-    passwd_line.place(x=0, y=717)
-
-#.....................darkmode _sidebar......................
-
-    modeImage= Image.open('D:/trela/Images/white-half-circle.png')
-    photo = ImageTk.PhotoImage(modeImage)
-    mode=tk. Button(sidebar, 
-                          image=photo,
-                          bg='#DFEAF6',
-                          bd=0,
-                          cursor='hand2',
-                          activebackground='#DFEAF6')
-    mode.image= photo
-    mode.place(x=120, y=840)  
-
-    modeImage= Image.open('D:/trela/Images/black-half-circle.png')
-    photo = ImageTk.PhotoImage(modeImage)
-    mode=tk. Button(sidebar, 
-                          image=photo,
-                          bg='#DFEAF6',
-                          bd=0,
-                          cursor='hand2',
-                          activebackground='#DFEAF6')
-    mode.image= photo
-    mode.place(x=178, y=840) 
-
-#.....................timing _sidebar......................
-
-    # date_time =tk. Label(reminder)
-    # date_time.place(x=150, y=315)
-    # show_time()
+    #-----------------  sticky notes  --------------------------
         
-    # def show_time(self):
-    #     self.time = tk.strftime('%H:%M:%S')
-    #     self.date = tk.strftime('%Y/%m/%d')
-    #     set_text= f"{self.time} \n {self.date}"
-    #     self.date_time.configure(text=set_text,
-    #                              font=('yu gothic ui', 15, 'bold'),
-    #                              bd=0,
-    #                              bg='#DFEAF6'
-    #                              )
-    #     self.date_time.after(100, self.show_time)
+    st_btn_lbl=tk.Label(sidebar, image=btn_img, bg=dth_clr)
+    st_btn_lbl.image=btn_img
+    st_btn_lbl.place(x=15, y=550)
 
-    mode =tk. Button(reminder, 
-                    text='Logout',
-                        bg='#DFEAF6', 
-                        font=('Segoe Script', 13, ), 
-                        bd=0, 
-                        fg='BLACK',
-                        cursor='hand2',
-                    activebackground='#DFEAF6')
-    mode.place(x=150, y=960)
-
-#...................topic.........................
-    heading =tk. Label(reminder, text='Reminder',
-                             font=(' yu gothic ui', 40, 'bold'),
-                             bg='#748AC1'
-                            )
-    heading.place(x=1050, y=20)
-
-#....................image_image_user.....................
-    remind_me_img=Image.open('D:/trela/Images/circle.png')
-    remind_photo=ImageTk.PhotoImage(remind_me_img)
-    remind_eidit=tk.Label(reminder,image=remind_photo,bg="#d6d6d6")
-    remind_eidit.image=remind_photo
-    remind_eidit.place(x=470,y=250)
-
-    remind_me_text=tk.Button(reminder,text="Remind me",
-                                font=(' yu gothic ui', 25,'bold'),
-                                cursor="hand2",bd=0,bg="#d6d6d6",activebackground="#d6d6d6",width=13)
-    remind_me_text.place(x=540,y=228)
-
-    # remind_me_frame=tk.Frame(reminder,width="1400",height="750",bg="#6299D9")
-    # remind_me_frame.place(x=500,y=290)
+# ====================  Buttons  ==============================
+    #-----------------  Checklist  --------------------------
 
 
+    
+    chk_img=ImageTk.PhotoImage(Image.open('D:/Trella/Images/check-list.png'))
+    chk_img.image=chk_img
+    chk_btn=tk.Button(chk_btn_lbl, text='          CHECKLIST',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg,activeforeground='white', bd=0,highlightthickness=0,command=checklist_link)
+    chk_btn.place(x=30, y=7)
 
-#....................add the text img button_user.....................
+    chk_img_lbl=tk.Label(chk_btn, image=chk_img, bg=btn_bg)
+    chk_img_lbl.place(x=10, y=10)
 
-    add_me_img=Image.open('D:/trela/Images/add.png')
-    add_photo=ImageTk.PhotoImage(add_me_img)
-    add_eidit=tk.Label(reminder,image=add_photo,bg="#d6d6d6")
-    add_eidit.image=add_photo
-    add_eidit.place(x=470,y=330)
+    
+    #-----------------  reminder  --------------------------
+    
+    rem_img=ImageTk.PhotoImage(Image.open('D:/Trella/Images/check-list.png'))
+    rem_img.image=rem_img
+    rem_btn=tk.Button(rem_btn_lbl, text='          REMINDER',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg='white', cursor='hand2', activebackground=btn_bg, activeforeground='white',bd=0,highlightthickness=0 ,command=reem_link)
+    rem_btn.place(x=30, y=10)
 
-    add_me_text=tk.Button(reminder,text="Add text",
-                                font=(' yu gothic ui', 23,'bold'),
-                                cursor="hand2",bd=0,bg="#d6d6d6",activebackground="#d6d6d6",width=13)
-    add_me_text.place(x=524,y=295)
+    rem_img_lbl=tk.Label(rem_btn, image=rem_img, bg=btn_bg)
+    rem_img_lbl.place(x=10, y=10)
 
+    #-----------------  sticky notes --------------------------
+    
+    st_img=ImageTk.PhotoImage(Image.open('D:/Trella/Images/check-list.png'))
+    st_img.image=st_img
+    st_btn=tk.Button(st_btn_lbl, text='       STICKY NOTES',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg,activeforeground='white', bd=0,highlightthickness=0 ,command=stickk_notees)
+    st_btn.place(x=30, y=10)
 
-#....................add to my day img button_user.....................
-    day_me_img=Image.open('D:/trela/Images/sunny-day.png')
-    day_photo=ImageTk.PhotoImage(day_me_img)
-    day_eidit=tk.Label(reminder,image=day_photo,bg="#d6d6d6")
-    day_eidit.image=day_photo
-    day_eidit.place(x=470,y=410)
-
-    day_me_text=tk.Button(reminder,text="Add to my Day",
-                                font=(' yu gothic ui', 23,'bold'),
-                                cursor="hand2",bd=0,bg="#d6d6d6",activebackground="#d6d6d6",width=13)
-    day_me_text.place(x=573,y=378)
-
-#....................add to my day img button_user.....................
-    due_me_img=Image.open('D:/trela/Images/date-of-birth.png')
-    due_photo=ImageTk.PhotoImage(due_me_img)
-    due_eidit=tk.Label(reminder,image=due_photo,bg="#d6d6d6")
-    due_eidit.image=due_photo
-    due_eidit.place(x=470,y=490)
-
-    due_me_text=tk.Button(reminder,text="My Day",
-                                font=(' yu gothic ui', 23,'bold'),
-                                cursor="hand2",bd=0,bg="#d6d6d6",activebackground="#d6d6d6",width=13)
-    due_me_text.place(x=510,y=460)
-
-#....................repeat img button_user.....................
-    repeat_me_img=Image.open('D:/trela/Images/repeat.png')
-    repeat_photo=ImageTk.PhotoImage(repeat_me_img)
-    repeat_eidit=tk.Label(reminder,image=repeat_photo,bg="#d6d6d6")
-    repeat_eidit.image=repeat_photo
-    repeat_eidit.place(x=470,y=570)
-
-    repeat_me_text=tk.Button(reminder,text="Repeat",
-                                font=(' yu gothic ui', 23,'bold'),
-                                cursor="hand2",bd=0,bg="#d6d6d6",activebackground="#d6d6d6",width=13)
-    repeat_me_text.place(x=500,y=542)
-
-#....................Attached file_img button_user.....................
-    Attached_me_img=Image.open('D:/trela/Images/file.png')
-    Attached_photo=ImageTk.PhotoImage(Attached_me_img)
-    Attached_eidit=tk.Label(reminder,image=Attached_photo,bg="#d6d6d6")
-    Attached_eidit.image=Attached_photo
-    Attached_eidit.place(x=470,y=650)
-
-    Attached_me_text=tk.Button(reminder,text="Attach a file",
-                                font=('yu gothic ui', 23,'bold'),
-                                cursor="hand2",bd=0,bg="#d6d6d6",activebackground="#d6d6d6",width=13)
-    Attached_me_text.place(x=537,y=624)
+    st_img_lbl=tk.Label(st_btn, image=st_img, bg=btn_bg)
+    st_img_lbl.place(x=10, y=10)
 
 
-#....................add notes file_img button_user.....................
-    notes_me_img=Image.open('D:/trela/Images/notes.png')
-    notes_photo=ImageTk.PhotoImage(notes_me_img)
-    notes_eidit=tk.Label(reminder,image=notes_photo,bg="#d6d6d6")
-    notes_eidit.image=notes_photo
-    notes_eidit.place(x=470,y=730)
+#-----------------  Logout Button  --------------------------
 
-    notes_me_text=tk.Button(reminder,text="Add Notes",
-                                font=('yu gothic ui', 23,'bold'),
-                                cursor="hand2",bd=0,bg="#d6d6d6",activebackground="#d6d6d6",width=13)
-    notes_me_text.place(x=523,y=706)
-dashboard()
-reminder.mainloop()
+    lcircle_img=tk.PhotoImage(file='D:/Trella/Images/L_BTN.png')
+    lcircle_img.image=lcircle_img
+    lcircle_lbl=tk.Label(sidebar, image=lcircle_img, bg=dth_clr)
+    lcircle_lbl.place(x=135, y=650)
+
+    lbtn_img=tk.PhotoImage(file='D:/Trella/Images/logout.png')
+    lbtn_img.image=lbtn_img
+    lbtn=tk.Button(lcircle_lbl, image=lbtn_img, bg=btn_bg, activebackground=btn_bg, cursor='hand2', highlightthickness=0, bd=0)
+    lbtn.place(x=19, y=15)
+
+#----------------  Reminder  Frame  -------------------------------
+    rem_frame =tk.Frame(dash ,bg=frm_clr)    
+    rem_frame.place(x=470, y=120, width=1390, height=860)
+
+    heading =tk.Label(dash, text='Reminder',font=('yu gothic ui', 45, 'bold'),bg="#95C3EA", fg=dfnt)
+    heading.place(x=970,y=30)  
+
+    # three_dash_img=ImageTk.PhotoImage(file='D:\Trella\Images\list.png')
+    # three_dash_img.image=three_dash_img
+    # three_dash=tk.Button(rem_frame,image=three_dash_img,cursor="hand2", bd=0,background=frm_clr,activebackground=frm_clr)
+    # three_dash.place(x=50,y=55)
+
+#-------------------------search button-------------------------------------
+    search_imge=ImageTk.PhotoImage(file='D:\Trella\Images\search.png')
+    search_imge.image=search_imge
+    search_Button=tk.Button(rem_frame,image=search_imge ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
+    search_Button.place(x=930,y=61)
+
+    search_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
+    search_lbl=tk.Label(rem_frame, image=search_bar_img, bg=frm_clr)
+    search_lbl.image=search_bar_img
+    search_lbl.place(x=960, y=47)
+
+    search_box=tk.Entry(search_lbl,font=('yu gothic ui', 14, 'bold'),background="#5B90B4", width=21,bd=0)
+    search_box.place(x=15,y=10)
+
+
+
+
+    #--------------------remind me-----------------------
+    remind_img=ImageTk.PhotoImage(file='D:/Trella/Images/alarm.png')
+    remind_img.image=remind_img
+    remind_img_mutton=tk.Button(rem_frame,image=remind_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
+    remind_img_mutton.place(x=50,y=160)
+
+    remind_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
+    remind_lbl=tk.Label(rem_frame, image=remind_bar_img, bg=frm_clr)
+    remind_lbl.image=remind_bar_img
+    remind_lbl.place(x=90, y=160)
+    
+    remind_button=tk.Button(remind_lbl,text="Remind me",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
+    remind_button.pack()
+
+    #^^^^^^^^^^^^^^^^^^Add text^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    add_text_img=ImageTk.PhotoImage(file='D:/Trella/Images/calendar.png')
+    add_text_img.image=add_text_img
+    add_text_img_mutton=tk.Button(rem_frame,image=add_text_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
+    add_text_img_mutton.place(x=50,y=210)
+
+    add_text_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
+    add_text_lbl=tk.Label(rem_frame, image=add_text_bar_img, bg=frm_clr)
+    add_text_lbl.image=add_text_bar_img
+    add_text_lbl.place(x=90, y=210)
+    
+    add_text_button=tk.Button(add_text_lbl,text="Add text",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
+    add_text_button.pack()
+
+    #--------------------------Add to my day---------------------------
+    add_day_img=ImageTk.PhotoImage(file='D:/Trella/Images/sun (1).png')
+    add_day_img.image=add_day_img
+    add_day_img_mutton=tk.Button(rem_frame,image=add_day_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
+    add_day_img_mutton.place(x=50,y=260)
+
+    add_day_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
+    add_day_lbl=tk.Label(rem_frame, image=add_day_bar_img, bg=frm_clr)
+    add_day_lbl.image=add_day_bar_img
+    add_day_lbl.place(x=90, y=260)
+    
+    add_day_button=tk.Button(add_day_lbl,text="Add to my day",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
+    add_day_button.pack()
+
+#------------------------add to due date---------------------------
+    add_date_img=ImageTk.PhotoImage(file='D:/Trella/Images/calendar (1).png')
+    add_date_img.image=add_date_img
+    add_date_img_mutton=tk.Button(rem_frame,image=add_date_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
+    add_date_img_mutton.place(x=49, y=315)
+
+    add_date_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
+    add_date_lbl=tk.Label(rem_frame, image=add_date_bar_img, bg=frm_clr)
+    add_date_lbl.image=add_date_bar_img
+    add_date_lbl.place(x=90, y=310)
+    
+    add_date_button=tk.Button(add_date_lbl,text="Add to due date",font=('yu gothic ui', 11, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
+    add_date_button.pack()
+    
+ #------------------------repeat---------------------------
+    repeat_img=ImageTk.PhotoImage(file='D:/Trella/Images/repeat12.png')
+    repeat_img.image=repeat_img
+    repeat_img_button=tk.Button(rem_frame,image=repeat_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
+    repeat_img_button.place(x=50,y=360)
+
+    repeat_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
+    repeat_lbl=tk.Label(rem_frame, image=repeat_bar_img, bg=frm_clr)
+    repeat_lbl.image=repeat_bar_img
+    repeat_lbl.place(x=90, y=360)
+    
+    repeat_button=tk.Button(repeat_lbl,text="Repeat",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
+    repeat_button.pack()
+
+
+#------------------------Attach---------------------------
+    Attach_img=ImageTk.PhotoImage(file='D:/Trella/Images/attached (1).png')
+    Attach_img.image=Attach_img
+    Attach_img_button=tk.Button(rem_frame,image=Attach_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
+    Attach_img_button.place(x=50,y=410)
+
+    Attach_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
+    Attach_lbl=tk.Label(rem_frame, image=Attach_bar_img, bg=frm_clr)
+    Attach_lbl.image=Attach_bar_img
+    Attach_lbl.place(x=90, y=410)
+    
+    Attach_button=tk.Button(Attach_lbl,text="Attach",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
+    Attach_button.pack()
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+chk_frontend()
+
+dash.mainloop()

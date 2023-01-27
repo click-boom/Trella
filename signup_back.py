@@ -15,6 +15,6 @@ def ins(w, x, y, z):
     with conn:
         c.execute("INSERT INTO users VALUES (:username,:email, :epassword, :cpassword)",{'username':w, 'email':x,  'epassword':y,  'cpassword':z})
 
-ins('Ruby Rose', 'rubyrose7@gmail.com', 'rubyruby', 'rubyruby')
+# ins('Ruby Rose', 'rubyrose7@gmail.com', 'rubyruby', 'rubyruby')
 
 conn.close()
