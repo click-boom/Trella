@@ -14,6 +14,7 @@ dash .iconphoto(True, icon)
 lth_clr='#97C1EC'
 dth_clr='#2A5F7F'
 btn_bg='#5B90B4'
+frm_clr='#A4C8EB'
 
 lfnt=lth_clr
 dfnt=dth_clr
@@ -119,7 +120,140 @@ def chk_frontend():
     lbtn.place(x=19, y=15)
 
 #----------------  Dash Frame  -------------------------------
+    
+    iframe =tk.Frame(dash ,bg=dth_clr)    
+    iframe.place(x=520, y=140, width=1300, height=811)
 
+    trans_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/h.png'))
+    trans=tk.Label(iframe, image=trans_img, bd=0, highlightthickness=0)
+    trans.image=trans_img
+    trans.place(x=0, y=0)
+
+#-------------------------search button-------------------------------------
+
+    search_imge=ImageTk.PhotoImage(file='D:\Trella\Images\search.png')
+    search_imge.image=search_imge
+    search_Button=tk.Button(iframe,image=search_imge ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
+    search_Button.place(x=930,y=61)
+
+    search_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
+    search_lbl=tk.Label(iframe, image=search_bar_img, bg=frm_clr)
+    search_lbl.image=search_bar_img
+    search_lbl.place(x=960, y=47)
+
+    search_box=tk.Entry(search_lbl,font=('yu gothic ui', 14, 'bold'),background="#5B90B4", width=21,bd=0)
+    search_box.place(x=15,y=10)
+
+#----------------  Remind Me Button  -------------------------------
 chk_frontend()
 
 dash.mainloop()
+
+
+
+
+
+
+
+#     #--------------------remind me-----------------------
+#     remind_img=ImageTk.PhotoImage(file='D:/Trella/Images/alarm.png')
+#     remind_img.image=remind_img
+#     remind_img_mutton=tk.Button(iframe,image=remind_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
+#     remind_img_mutton.place(x=50,y=160)
+
+#     remind_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
+#     remind_lbl=tk.Label(iframe, image=remind_bar_img, bg=frm_clr)
+#     remind_lbl.image=remind_bar_img
+#     remind_lbl.place(x=90, y=160)
+    
+#     remind_button=tk.Button(remind_lbl,text="Remind me",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
+#     remind_button.pack()
+
+#     #^^^^^^^^^^^^^^^^^^Add text^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#     add_text_img=ImageTk.PhotoImage(file='D:/Trella/Images/calendar.png')
+#     add_text_img.image=add_text_img
+#     add_text_img_mutton=tk.Button(iframe,image=add_text_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
+#     add_text_img_mutton.place(x=50,y=210)
+
+#     add_text_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
+#     add_text_lbl=tk.Label(iframe, image=add_text_bar_img, bg=frm_clr)
+#     add_text_lbl.image=add_text_bar_img
+#     add_text_lbl.place(x=90, y=210)
+    
+#     add_text_button=tk.Button(add_text_lbl,text="Add text",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
+#     add_text_button.pack()
+
+#     #--------------------------Add to my day---------------------------
+#     add_day_img=ImageTk.PhotoImage(file='D:/Trella/Images/sun (1).png')
+#     add_day_img.image=add_day_img
+#     add_day_img_mutton=tk.Button(iframe,image=add_day_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
+#     add_day_img_mutton.place(x=50,y=260)
+
+#     add_day_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
+#     add_day_lbl=tk.Label(iframe, image=add_day_bar_img, bg=frm_clr)
+#     add_day_lbl.image=add_day_bar_img
+#     add_day_lbl.place(x=90, y=260)
+    
+#     add_day_button=tk.Button(add_day_lbl,text="Add to my day",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
+#     add_day_button.pack()
+
+# #------------------------add to due date---------------------------
+#     add_date_img=ImageTk.PhotoImage(file='D:/Trella/Images/calendar (1).png')
+#     add_date_img.image=add_date_img
+#     add_date_img_mutton=tk.Button(iframe,image=add_date_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
+#     add_date_img_mutton.place(x=49, y=315)
+
+#     add_date_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
+#     add_date_lbl=tk.Label(iframe, image=add_date_bar_img, bg=frm_clr)
+#     add_date_lbl.image=add_date_bar_img
+#     add_date_lbl.place(x=90, y=310)
+    
+#     add_date_button=tk.Button(add_date_lbl,text="Add to due date",font=('yu gothic ui', 11, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
+#     add_date_button.pack()
+    
+#  #------------------------repeat---------------------------
+#     repeat_img=ImageTk.PhotoImage(file='D:/Trella/Images/repeat12.png')
+#     repeat_img.image=repeat_img
+#     repeat_img_button=tk.Button(iframe,image=repeat_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
+#     repeat_img_button.place(x=50,y=360)
+
+#     repeat_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
+#     repeat_lbl=tk.Label(iframe, image=repeat_bar_img, bg=frm_clr)
+#     repeat_lbl.image=repeat_bar_img
+#     repeat_lbl.place(x=90, y=360)
+    
+#     repeat_button=tk.Button(repeat_lbl,text="Repeat",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
+#     repeat_button.pack()
+
+
+# #------------------------Attach---------------------------
+#     Attach_img=ImageTk.PhotoImage(file='D:/Trella/Images/attached (1).png')
+#     Attach_img.image=Attach_img
+#     Attach_img_button=tk.Button(iframe,image=Attach_img ,cursor="hand2",bd=0,background=frm_clr,activebackground=frm_clr)
+#     Attach_img_button.place(x=50,y=410)
+
+#     Attach_bar_img=ImageTk.PhotoImage(file='D:/Trella/Images/hbar.png')
+#     Attach_lbl=tk.Label(iframe, image=Attach_bar_img, bg=frm_clr)
+#     Attach_lbl.image=Attach_bar_img
+#     Attach_lbl.place(x=90, y=410)
+    
+#     Attach_button=tk.Button(Attach_lbl,text="Attach",font=('yu gothic ui', 12, 'bold'),bg='#98BAD4',fg=dfnt,bd=0,width=25,activebackground='#98BAD4')
+#     Attach_button.pack()
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+# chk_frontend()
+
+# dash.mainloop()
