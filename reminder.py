@@ -177,13 +177,6 @@ chk_frontend()
 dash.mainloop()
 
 
-
-
-
-
-
-
-
 #     #--------------------------Add to my day---------------------------
 #     add_day_img=ImageTk.PhotoImage(file='D:/Trella/Images/sun (1).png')
 #     add_day_img.image=add_day_img
