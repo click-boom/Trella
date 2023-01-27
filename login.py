@@ -13,8 +13,25 @@ def signup_link():
     login.destroy()
     import signup
 
-def dash_link():
+def dash_link(user_data:dict):
     login.destroy()
+    from  dashboard import run_dashboard
+    run_dashboard(user_data)
+    # run gar ta pasu ekchoti
+    #
+    #garidsake
+    # cant invoke frame vanyo
+    # gai mero vai
+    
+def get_user_data(username:str)->dict:
+    import sqlite3
+    conn=sqlite3.connect('reg_usrs.db')
+    c=conn.cursor()
+    c.execute("SELECT * FROM users WHERE username=?",[uname])
+    usr = c.fetchall()
+    return {"username":usr[0][0],"email":usr[0][1], "password":usr[0][2]}
+
+
 def login_backend():
     import sqlite3
     conn=sqlite3.connect('reg_usrs.db')
@@ -46,32 +63,28 @@ def login_backend():
             epasswd=c.fetchall()
             conn.close()
             if (passwd ,) in epasswd:
-                dash_link(uname)
+                user_data=get_user_data(uname)
+                dash_link(user_data)
         
             else:
                 incorrect=tk.Label(login_frame, text='Incorrect Passowrd and try again', font=('yu gothic ui', 18, 'bold '),background=th_clr, foreground=fnt, bd=0, width=35 )
                 incorrect.place(x=85, y=635)
 
 
-        else:
-            c.execute("SELECT * FROM users WHERE email=?",[uname])
-            conn.close()
+    # else:
+    #         c.execute("SELECT * FROM users WHERE email=?",[uname])
+    #         conn.close()
     
     
         
 def login_frontend():
     
     #--------------------Login Window-------------------------------------------------------------
-    
 
-    # screen_width = win.winfo_screenwidth()
-    # screen_height = win.winfo_screenheight()
     
     login.title('Welcome to Trella')
     login.geometry('1920x1080')
     login.minsize(1920,1080)
-
-
 
 
     #--------------------Page Background-------------------------------------------------------------
@@ -124,6 +137,7 @@ def login_frontend():
 
     passwd_lbl=tk.Label(login_frame, text='Password', fg='#6c6c6c', font=('yu gothic ui', 18, 'bold'))
     passwd_lbl.place(x=120, y=410)
+    
     global passwd_entry
     passwd_entry=tk.Entry(login_frame, highlightthickness=0, relief='flat', fg=fnt, bg=th_clr,show="*",font=('yu gothic ui', 15, 'bold'))
     passwd_entry.place(x=120, y=450, width=450)

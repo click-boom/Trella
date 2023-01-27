@@ -31,9 +31,8 @@ lfnt=lth_clr
 dfnt=dth_clr
 
 #----------------------------------------------------------
-def chk_frontend(uname):
+def chk_frontend(user_data:dict):
     dashfr=tk.Frame(dash, width=1230, height=746)
-    # dashfr.config(bg=lth_clr)
     dashfr.place(x=535, y=300)
     
     dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.jpg'))
@@ -62,7 +61,7 @@ def chk_frontend(uname):
     
     #----------------  Logo Label -------------------
 
-    logo_lbl=tk.Label(lframe, text='Hello '+uname, bg= dth_clr, font=('yu gothic ui', 25, 'bold'), fg=lfnt)
+    logo_lbl=tk.Label(lframe, text='Hello '+user_data["username"], bg= dth_clr, font=('yu gothic ui', 25, 'bold'), fg=lfnt)
     logo_lbl.image=dash_logo
     logo_lbl.pack(side='bottom') 
 
@@ -140,6 +139,10 @@ def chk_frontend(uname):
     trans=tk.Label(iframe, image=trans_img, bd=0, highlightthickness=0)
     trans.image=trans_img
     trans.place(x=0, y=0)
-chk_frontend('Haseena')
 
-dash.mainloop()
+if __name__=="__main__":
+    chk_frontend()
+
+def run_dashboard(user_data:dict):
+    chk_frontend(user_data)
+    dash.mainloop()
