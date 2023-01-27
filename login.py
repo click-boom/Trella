@@ -17,12 +17,7 @@ def dash_link(user_data:dict):
     login.destroy()
     from  dashboard import run_dashboard
     run_dashboard(user_data)
-    # run gar ta pasu ekchoti
-    #
-    #garidsake
-    # cant invoke frame vanyo
-    # gai mero vai
-    
+
 def get_user_data(username:str)->dict:
     import sqlite3
     conn=sqlite3.connect('reg_usrs.db')
@@ -30,7 +25,6 @@ def get_user_data(username:str)->dict:
     c.execute("SELECT * FROM users WHERE username=?",[uname])
     usr = c.fetchall()
     return {"username":usr[0][0],"email":usr[0][1], "password":usr[0][2]}
-
 
 def login_backend():
     import sqlite3
@@ -70,13 +64,7 @@ def login_backend():
                 incorrect=tk.Label(login_frame, text='Incorrect Passowrd and try again', font=('yu gothic ui', 18, 'bold '),background=th_clr, foreground=fnt, bd=0, width=35 )
                 incorrect.place(x=85, y=635)
 
-
-    # else:
-    #         c.execute("SELECT * FROM users WHERE email=?",[uname])
-    #         conn.close()
-    
-    
-        
+            
 def login_frontend():
     
     #--------------------Login Window-------------------------------------------------------------
@@ -196,7 +184,7 @@ def login_frontend():
     hide_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/hide_pwd.png'))
     
     view_btn=tk.Button(login_frame, image=view_img, command=show, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
-    view_btn.place(x=537, y=450)    
+    view_btn.place(x=537, y=450)
 
 login_frontend()
 login.mainloop() 
