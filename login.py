@@ -43,12 +43,12 @@ def login_backend():
 
     if (uname=='') or (passwd==''):
         empty=tk.Label(login_frame, text='Please enter all the credentials and try again', font=('yu gothic ui', 18, 'bold '),background=th_clr, foreground=fnt, bd=0, width=35 )
-        empty.place(x=85, y=635)
+        empty.place(x=85, y=637)
 
     
     elif((uname ,) not in usernames) and ((uname ,) not in umails):
         nexist=tk.Button(login_frame, text="Account does'nt exist, Click here to signUp ", font=('yu gothic ui', 18, 'bold '),background=th_clr, foreground=fnt, bd=0, width=35, cursor='hand2', activebackground=th_clr, command=signup_link )
-        nexist.place(x=85, y=635)
+        nexist.place(x=85, y=630)
         
     
     else:

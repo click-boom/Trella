@@ -195,7 +195,7 @@ def chk_frontend():
     repeat_button.place(x=95, y=360)
 
 #------------------------Attach---------------------------
-    Attach_img=ImageTk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/paperclip.png')
+    Attach_img=ImageTk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/attach.png')
     Attach_img.image=Attach_img
     Attach_img_button=tk.Button(iframe,image=Attach_img ,cursor="hand2",bd=0,background='#85B1D5',activebackground='#85B1D5', highlightthickness=0)
     Attach_img_button.place(x=45,y=410)
