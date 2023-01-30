@@ -168,7 +168,6 @@ def login_frontend():
     sign_up_label.place(x=185, y=570)
 
     #--------------------"Hide/Unhide Option"----------------------------------------------------------
-
     
     def show():
         hide_btn=tk.Button(login_frame, image=hide_img,command=hide, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)

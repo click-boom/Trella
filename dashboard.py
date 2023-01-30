@@ -132,14 +132,47 @@ def chk_frontend(user_data:dict):
     lbtn=tk.Button(lcircle_lbl, image=lbtn_img, bg=btn_bg, activebackground=btn_bg, cursor='hand2', highlightthickness=0, bd=0)
     lbtn.place(x=19, y=15)
 
-#-----------------  Inner Frame  --------------------------
-    iframe =tk.Frame(dash ,bg=dth_clr)    
-    iframe.place(x=520, y=140, width=1300, height=811)
+#--------------  Reminder Adding Section  --------------------- 
+    down_frame=tk.Frame(dash,width=1400,height=70,bg=dth_clr)
+    down_frame.place(x=460,y=950)
 
-    trans_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/h.png'))
-    trans=tk.Label(iframe, image=trans_img, bd=0, highlightthickness=0)
-    trans.image=trans_img
-    trans.place(x=0, y=0)
+#===========================  Reminder Label  ======================================
+    
+    calendar_icon_lbl=tk.Label(down_frame, text='Reminder', font=('yu gothic ui', 20, 'bold'), bg=dth_clr, fg=lth_clr, bd=0, highlightthickness=0 )
+    calendar_icon_lbl.place(x=1050,y=17)
+
+#===========================  Calendar icon  ======================================
+    calendar_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/calendar.png')
+    calendar_icon.image=calendar_icon
+    calendar_icon_lbl=tk.Button(down_frame,image=calendar_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2' )
+    calendar_icon_lbl.place(x=1210,y=20)
+
+
+#===========================  Alarm icon  ======================================
+    alarm_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/alarm.png')
+    alarm_icon.image=alarm_icon
+    alarm_icon_lbl=tk.Button(down_frame,image=alarm_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2' )
+    alarm_icon_lbl.place(x=1270,y=17)
+
+
+#===========================  Repeat icon  ======================================
+    repeat_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/repeat.png')
+    repeat_icon.image=repeat_icon
+    repeat_icon_lbl=tk.Button(down_frame,image=repeat_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2' )
+    repeat_icon_lbl.place(x=1330,y=20)
+    
+
+#===========================  Add Writing Area  ======================================
+#     
+    entry_var=tk.StringVar(value='Add reminders...')
+    down_frame_entry=tk.Entry(down_frame, font=('yu gothic ui', 20, 'bold'), fg=lth_clr, bg=dth_clr, bd=0 ,highlightthickness=0, textvariable=entry_var, insertbackground=lth_clr)
+    down_frame_entry.place(x=65,y=15)
+
+
+    add_button=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/add.png')
+    add_button.image=add_button
+    add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2')
+    add_button_lbl.place(x=16,y=16)
 
 if __name__=="__main__":
     chk_frontend()
