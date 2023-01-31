@@ -122,7 +122,7 @@ def chk_frontend(user_data:dict):
     st_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/sticky-note.png'))
     st_img.image=st_img
     global st_btn
-    st_btn=tk.Button(st_btn_lbl, text='       STICKY NOTES',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg,activeforeground='white' , bd=0,highlightthickness=0, command=lambda:schk_indicate(st_btn) )
+    st_btn=tk.Button(st_btn_lbl, text='       STICKY NOTES',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg,activeforeground='white' , bd=0,highlightthickness=0, command=lambda:schk_indicate(st_btn, st_page) )
     st_btn.place(x=30, y=10)
 
     st_img_lbl=tk.Label(st_btn, image=st_img, bg=btn_bg)
@@ -185,8 +185,34 @@ def rem_frame():
     add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2')
     add_button_lbl.place(x=16,y=16)
 
-def st_frame():
-    pass
+
+def st_page():
+    dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.png'))
+    dash_bg=tk.Label(iframe, image=dashfr_img)
+    dash_bg.image=dashfr_img
+    dash_bg.pack(fill='both', expand='yes')
+    #------------------  Inner inner Frame  ---------------------------
+
+    iiframe=tk.Frame(iframe, bg='white')
+    iiframe.place(x=220, y=100, width='1038', height='800')
+    iiframe_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/iiframe.png'))
+    after_entry=tk.Label(iiframe, image=iiframe_img)
+    after_entry.image=iiframe_img
+    after_entry.pack(fill='both', expand='yes')
+#===========================  Add Writing Area  ======================================   
+    
+    # note_lbl = tk.Label(iframe, text='Write a haiku about bananas')
+    note= tk.Text(iframe, height=100, bg=dth_clr)
+    note.place(x=100, y=100)
+    # entry_var=tk.StringVar(value='Add reminders...')
+    # down_frame_entry=tk.Entry(iframe, font=('yu gothic ui', 20, 'bold'), fg=lth_clr, bg=dth_clr, bd=0 ,highlightthickness=0, textvariable=entry_var, insertbackground=lth_clr)
+    # down_frame_entry.place(x=65,y=15)
+
+
+    # add_button=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/add.png')
+    # add_button.image=add_button
+    # add_button_lbl=tk.Button(iframe,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2')
+    # add_button_lbl.place(x=16,y=16)
 
 if __name__=="__main__":
     chk_frontend()
