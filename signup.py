@@ -20,7 +20,6 @@ def signup_backend():
     cpassword=cpasswd_entry.get() 
 
 
-    print(username)
     c.execute(" SELECT email from users")
     umails=c.fetchall()
 
@@ -35,7 +34,7 @@ def signup_backend():
 
         
         elif epassword == cpassword:
-            c.execute("INSERT INTO users(username,email,epassword,cpassword) VALUES (?, ?, ?, ?)",[username ,email, epasswd_entry, cpassword])
+            c.execute("INSERT INTO users(username,email,epassword,cpassword) VALUES (?, ?, ?, ?)",[username,email,epassword,cpassword])
             conn.commit()
         
             success=tk.Button(login_frame, text='Signed Up successfully, Click here to Login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', activebackground=th_clr,cursor='hand2', bd=0, width=30, command=login_link )
