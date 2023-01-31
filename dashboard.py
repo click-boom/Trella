@@ -21,7 +21,7 @@ def schk_indicate(ind, page):
     ind.config(fg='white')
     dell_fr()
     page()
-    
+
 def dell_fr():
     for frame in iframe.winfo_children():
         frame.destroy()
@@ -185,6 +185,8 @@ def rem_frame():
     add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2')
     add_button_lbl.place(x=16,y=16)
 
+def st_frame():
+    pass
 
 if __name__=="__main__":
     chk_frontend()
