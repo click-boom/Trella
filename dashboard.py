@@ -1,5 +1,6 @@
 import tkinter as tk
 from PIL import ImageTk, Image
+from tkcalendar import *
 
 dash=tk.Tk()
 dash.title('TRELLA')
@@ -25,7 +26,38 @@ def dash_indicate(ind, page):
 def dell_fr():
     for frame in iframe.winfo_children():
         frame.destroy()
+
+def fetch_date():
+        date_lbl.config(text=cal.get_date())
+        print(cal.get_date())
+
+def ok():
+    cal_toggle_fr.destroy()
+    rem_frame()
     
+def cal_toggle_open():
+    
+    global cal_toggle_fr
+    cal_toggle_fr=tk.Frame(iframe, bg=dth_clr)
+    cal_toggle_fr.place(x=980 , y=720 )
+
+
+    global cal
+    cal=Calendar(cal_toggle_fr, selectmode='day', year=2023, month=2, day=1)
+    cal.grid(columnspan=2)
+
+    global date_lbl
+    date_lbl=tk.Label(cal_toggle_fr, text='', fg=lfnt, bg=dth_clr, font=('yu gothic ui', 12, 'bold' ))
+    date_lbl.grid(row=1)
+    
+    get_btn=tk.Button(cal_toggle_fr, text='Pick date',font=('yu gothic ui', 12, 'bold'), fg=lfnt, bg=btn_bg, bd=0, highlightthickness=0, command=fetch_date)
+    get_btn.grid(row=2)
+
+
+    OK_btn=tk.Button(cal_toggle_fr, text='OK',font=('yu gothic ui', 12, 'bold'), fg=lfnt, bg=btn_bg, bd=0, highlightthickness=0, command=ok)
+    OK_btn.grid(row=2, column=1)
+
+
 #========================  FRONT END  ======================================
 #-------------------  Theme  -----------------------------
             
@@ -41,6 +73,8 @@ dfnt=dth_clr
 def chk_frontend(user_data:dict):
     dashfr=tk.Frame(dash, width=1230, height=746)
     dashfr.place(x=535, y=300)
+
+
 #----------------------------------------  Inner Frame  -------------------------------------------------------------
     global iframe
     iframe=tk.Frame(dash)
@@ -132,8 +166,8 @@ def chk_frontend(user_data:dict):
 
     lcircle_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/l_btn.png')
     lcircle_img.image=lcircle_img
-    lcircle_lbl=tk.Label(sidebar, image=lcircle_img, bg=dth_clr)
-    lcircle_lbl.place(x=145, y=660)
+    lcircle_lbl=tk.Label(sidebar, image=lcircle_img, bg=dth_clr, bd=0)
+    lcircle_lbl.place(x=135, y=670)
 
     lbtn_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/logout.png')
     lbtn_img.image=lbtn_img
@@ -162,7 +196,7 @@ def rem_frame():
 #===========================  Calendar icon  ======================================
     calendar_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/calendar.png')
     calendar_icon.image=calendar_icon
-    calendar_icon_lbl=tk.Button(down_frame,image=calendar_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2' )
+    calendar_icon_lbl=tk.Button(down_frame,image=calendar_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=cal_toggle_open)
     calendar_icon_lbl.place(x=1210,y=20)
 #===========================  Alarm icon  ======================================
     alarm_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/alarm.png')
