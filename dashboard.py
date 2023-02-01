@@ -1,6 +1,7 @@
 import tkinter as tk
 from PIL import ImageTk, Image
 from tkcalendar import *
+from datetime import date
 
 dash=tk.Tk()
 dash.title('TRELLA')
@@ -28,9 +29,11 @@ def dell_fr():
         frame.destroy()
 
 def fetch_date():
+        from datetime import date
         date_lbl.config(text=cal.get_date())
         print(cal.get_date())
-
+        db_date=(cal.get_date())
+        return db_date
 def ok():
     cal_toggle_fr.destroy()
     rem_frame()
@@ -43,7 +46,7 @@ def cal_toggle_open():
 
 
     global cal
-    cal=Calendar(cal_toggle_fr, selectmode='day', year=2023, month=2, day=1)
+    cal=Calendar(cal_toggle_fr, selectmode='day', background=dth_clr, fg=lfnt)
     cal.grid(columnspan=2)
 
     global date_lbl
@@ -83,10 +86,6 @@ def chk_frontend(user_data:dict):
 #------------------  SIDEBAR  ---------------------------
     sidebar =tk.Frame(dash ,bg=dth_clr)    
     sidebar.place(x=0, y=0, width=400, height=1100)
-#----------------  Dashboard Heading  -------------------
-    # heading =tk.Label(dash , text='Dashboard',font=('yu gothic ui', 44, 'bold'),bg=dth_clr, fg=lfnt)
-    # heading.place(x=950, y=35)
-        
 #----------------  Logo Frame  -------------------
     
     lframe =tk.Frame(sidebar ,bg=dth_clr)    
@@ -134,7 +133,7 @@ def chk_frontend(user_data:dict):
     chk_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/check-list.png'))
     chk_img.image=chk_img
     global chk_btn
-    chk_btn=tk.Button(chk_btn_lbl, text='          CHECKLIST',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', bd=0,highlightthickness=0, activebackground=btn_bg, activeforeground='white', command=lambda:dash_indicate(chk_btn))
+    chk_btn=tk.Button(chk_btn_lbl, text='          CHECKLIST',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', bd=0,highlightthickness=0, activebackground=btn_bg, activeforeground='white', command=lambda:dash_indicate(chk_btn, chk_frame))
     chk_btn.place(x=30, y=7)
 
     chk_img_lbl=tk.Label(chk_btn, image=chk_img, bg=btn_bg)
@@ -156,7 +155,7 @@ def chk_frontend(user_data:dict):
     st_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/sticky-note.png'))
     st_img.image=st_img
     global st_btn
-    st_btn=tk.Button(st_btn_lbl, text='       STICKY NOTES',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg,activeforeground='white' , bd=0,highlightthickness=0, command=lambda:dash_indicate(st_btn, st_page) )
+    st_btn=tk.Button(st_btn_lbl, text='       STICKY NOTES',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg,activeforeground='white' , bd=0,highlightthickness=0, command=lambda:dash_indicate(st_btn, st_frame) )
     st_btn.place(x=30, y=10)
 
     st_img_lbl=tk.Label(st_btn, image=st_img, bg=btn_bg)
@@ -193,6 +192,9 @@ def rem_frame():
     down_frame=tk.Frame(iframe,width=1400,height=70,bg=dth_clr)
     down_frame.place(x=60,y=950)
     
+# ----------------  Dashboard Heading  -------------------
+    heading =tk.Label(iframe , text='Reminder',font=('yu gothic ui', 44, 'bold'),bg=dth_clr, fg=lfnt)
+    heading.place(x=650, y=0)
 #===========================  Calendar icon  ======================================
     calendar_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/calendar.png')
     calendar_icon.image=calendar_icon
@@ -218,9 +220,14 @@ def rem_frame():
     add_button.image=add_button
     add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2')
     add_button_lbl.place(x=16,y=16)
+        
 
 
-def st_page():
+def st_frame():
+#----------------  Dashboard Heading  -------------------
+    # heading =tk.Label(iframe , text='Sticky Notes',font=('yu gothic ui', 44, 'bold'),bg=dth_clr, fg=lfnt)
+    # heading.place(x=950, y=35)
+        
     dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.png'))
     dash_bg=tk.Label(iframe, image=dashfr_img)
     dash_bg.image=dashfr_img
@@ -233,9 +240,13 @@ def st_page():
     down_frame=tk.Frame(iframe,width=1200,height=70,bg=dth_clr)
     down_frame.place(x=170,y=950)
 
+def chk_frame():
+    return
+    
 if __name__=="__main__":
     chk_frontend()
 
 def run_dashboard(user_data:dict):
     chk_frontend(user_data)
     dash.mainloop()
+

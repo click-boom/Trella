@@ -32,7 +32,7 @@ def login_backend():
     c=conn.cursor()
 
     global uname
-    uname=usrname_entry.get()
+    uname=usrname_entry.get().strip()
     passwd=passwd_entry.get()
 
     c.execute("SELECT username FROM users")
