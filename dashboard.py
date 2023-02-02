@@ -39,26 +39,25 @@ def ok():
     rem_frame()
     
 def cal_toggle_open():
-    
     global cal_toggle_fr
     cal_toggle_fr=tk.Frame(iframe, bg=dth_clr)
-    cal_toggle_fr.place(x=980 , y=720 )
-
+    cal_toggle_fr.place(width=235, height=250, x=980 , y=690)
+    
 
     global cal
-    cal=Calendar(cal_toggle_fr, selectmode='day', background=dth_clr, fg=lfnt)
-    cal.grid(columnspan=2)
+    cal=DateEntry(cal_toggle_fr, selectmode='day')
+    cal.grid()
 
-    global date_lbl
-    date_lbl=tk.Label(cal_toggle_fr, text='', fg=lfnt, bg=dth_clr, font=('yu gothic ui', 12, 'bold' ))
-    date_lbl.grid(row=1)
-    
     get_btn=tk.Button(cal_toggle_fr, text='Pick date',font=('yu gothic ui', 12, 'bold'), fg=lfnt, bg=btn_bg, bd=0, highlightthickness=0, command=fetch_date)
-    get_btn.grid(row=2)
+    get_btn.place(x=10, y=220)
 
 
     OK_btn=tk.Button(cal_toggle_fr, text='OK',font=('yu gothic ui', 12, 'bold'), fg=lfnt, bg=btn_bg, bd=0, highlightthickness=0, command=ok)
-    OK_btn.grid(row=2, column=1)
+    OK_btn.place(x=120, y=220)
+    
+    global date_lbl
+    date_lbl=tk.Label(cal_toggle_fr, text='', fg=lfnt, bg=dth_clr, font=('yu gothic ui', 12, 'bold' ))
+    date_lbl.grid(row=1, pady=170)
 
 
 #========================  FRONT END  ======================================
@@ -225,8 +224,8 @@ def rem_frame():
 
 def st_frame():
 #----------------  Dashboard Heading  -------------------
-    # heading =tk.Label(iframe , text='Sticky Notes',font=('yu gothic ui', 44, 'bold'),bg=dth_clr, fg=lfnt)
-    # heading.place(x=950, y=35)
+    heading =tk.Label(iframe , text='Sticky Notes',font=('yu gothic ui', 44, 'bold'),bg=dth_clr, fg=lfnt)
+    heading.place(x=650, y=0)
         
     dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.png'))
     dash_bg=tk.Label(iframe, image=dashfr_img)
@@ -234,7 +233,7 @@ def st_frame():
     dash_bg.pack(fill='both', expand='yes')
 #===========================  Add Writing Area  ======================================   
     
-    note= tk.Text(iframe, width=150, height=46, bg=dth_clr, insertbackground=lth_clr, bd=0, highlightthickness=0)
+    note= tk.Text(iframe, width=150, height=46, bg=dth_clr, fg=lfnt, insertbackground=lth_clr, bd=0, highlightthickness=0)
     note.place(x=240, y=120)
  
     down_frame=tk.Frame(iframe,width=1200,height=70,bg=dth_clr)
