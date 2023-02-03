@@ -34,8 +34,8 @@ def fetch_date():
         
         # print(str(db_date).split(" ")[0])
         # return str(db_date).split(" ")[0]
-def ok():
-    cal_toggle_fr.destroy()
+def ok(frname):
+    frname.destroy()
     rem_frame()
     
 def cal_toggle_open():
@@ -52,17 +52,58 @@ def cal_toggle_open():
     get_btn.place(x=10, y=220)
 
 
-    OK_btn=tk.Button(cal_toggle_fr, text='OK',font=('yu gothic ui', 12, 'bold'), fg=lfnt, bg=btn_bg, bd=0, highlightthickness=0, command=ok)
+    OK_btn=tk.Button(cal_toggle_fr, text='OK',font=('yu gothic ui', 12, 'bold'), fg=lfnt, bg=btn_bg, bd=0, highlightthickness=0, command=lambda: ok(cal_toggle_fr))
     OK_btn.place(x=120, y=220)
     
     global date_lbl
     date_lbl=tk.Label(cal_toggle_fr, text='', fg=lfnt, bg=dth_clr, font=('yu gothic ui', 12, 'bold'))
     date_lbl.place(x=10, y=180)
+    
+def time_toggle_open():
+    al_toggle_fr=tk.Frame(iframe, bg=dth_clr)
+    al_toggle_fr.place(width=253, height=250, x=1220 , y=685)
+
+    hour= tk.Label(al_toggle_fr, text="Hour",bg=dth_clr,fg="white",font=('yu gothic ui', 12, 'bold'))
+    hour.place(x=10, y=10)
+    hour_inp= tk.Spinbox(al_toggle_fr,from_=0, to=12, increment=1, bg=dth_clr, fg=lfnt)
+    hour_inp.place(x=65, y=15, width=170)
+
+    min= tk.Label(al_toggle_fr, text="Min",bg=dth_clr,fg="white",font=('yu gothic ui', 12, 'bold'))
+    min.place(x=10, y=50)
+    min_inp= tk.Spinbox(al_toggle_fr, from_=0,to=60,increment=1,bg=dth_clr,fg=lfnt)
+    min_inp.place(x=65, y=55, width=170)
+
+    sec= tk.Label(al_toggle_fr, text="Sec",bg=dth_clr,fg="white",font=('yu gothic ui', 12, 'bold'))
+    sec.place(x=10, y=90)
+    sec_inp= tk.Spinbox(al_toggle_fr, from_=0,to=60,increment=1,bg=dth_clr,fg=lfnt)
+    sec_inp.place(x=65, y=95, width=170)   
 
 
-#========================  FRONT END  ======================================
-#-------------------  Theme  -----------------------------
-            
+    choice_var = tk.StringVar(value= "A.M")
+    choice=('A.M', 'P.M')
+    choice= tk.OptionMenu(al_toggle_fr,choice_var, *choice )
+    choice.place(x=10, y=135, width=225)
+
+    OKay_btn=tk.Button(al_toggle_fr, text='OK',font=('yu gothic ui', 12, 'bold'),fg=lfnt, bg=btn_bg,bd=0,highlightthickness=0, command=lambda: ok(al_toggle_fr))
+    OKay_btn.place(x=140, y=210, width=70)
+
+    get_btn=tk.Button(al_toggle_fr, text='Pick Time',
+                   font=('yu gothic ui', 12, 'bold'),
+                   fg=lfnt, 
+                   bg=btn_bg,
+                   bd=0, 
+                   highlightthickness=0,
+                   command=fetch_date)
+    get_btn.place(x=50, y=210)
+
+    time_lbl=tk.Label(al_toggle_fr, text='', 
+                  fg=lfnt,
+                  bg=dth_clr,
+                  font=('yu gothic ui', 12, 'bold' ))
+    time_lbl.place(x=70, y=175)
+#=======================  FRONT END  ======================================
+#------------------  Theme  -----------------------------
+        
 lth_clr='#A4C7EE'
 dth_clr='#192436'
 btn_bg='#104289'
@@ -202,7 +243,7 @@ def rem_frame():
 #===========================  Alarm icon  ======================================
     alarm_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/alarm.png')
     alarm_icon.image=alarm_icon
-    alarm_icon_lbl=tk.Button(down_frame,image=alarm_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2' )
+    alarm_icon_lbl=tk.Button(down_frame,image=alarm_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=time_toggle_open )
     alarm_icon_lbl.place(x=1270,y=17)
 #===========================  Repeat icon  ======================================
     repeat_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/repeat.png')
