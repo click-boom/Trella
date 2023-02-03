@@ -14,7 +14,7 @@ def signup_link():
 
 def dash_link(user_data:dict):
     login.destroy()
-    from  dashboard import run_dashboard
+    from dashboard import run_dashboard
     run_dashboard(user_data)
 
 def get_user_data(username:str)->dict:
