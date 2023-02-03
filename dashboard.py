@@ -1,7 +1,7 @@
 import tkinter as tk
 from PIL import ImageTk, Image
 from tkcalendar import *
-from datetime import date
+from datetime import datetime
 
 dash=tk.Tk()
 dash.title('TRELLA')
@@ -29,11 +29,11 @@ def dell_fr():
         frame.destroy()
 
 def fetch_date():
-        from datetime import date
-        date_lbl.config(text=cal.get_date())
-        print(cal.get_date())
-        db_date=(cal.get_date())
-        return db_date
+        real_date = datetime.strptime(cal.get_date(),"%m/%d/%y")
+        date_lbl.config(text=str(real_date).split(" ")[0])
+        
+        # print(str(db_date).split(" ")[0])
+        # return str(db_date).split(" ")[0]
 def ok():
     cal_toggle_fr.destroy()
     rem_frame()
@@ -45,7 +45,7 @@ def cal_toggle_open():
     
 
     global cal
-    cal=DateEntry(cal_toggle_fr, selectmode='day')
+    cal=Calendar(cal_toggle_fr, selectmode='day')
     cal.grid()
 
     get_btn=tk.Button(cal_toggle_fr, text='Pick date',font=('yu gothic ui', 12, 'bold'), fg=lfnt, bg=btn_bg, bd=0, highlightthickness=0, command=fetch_date)
@@ -56,8 +56,8 @@ def cal_toggle_open():
     OK_btn.place(x=120, y=220)
     
     global date_lbl
-    date_lbl=tk.Label(cal_toggle_fr, text='', fg=lfnt, bg=dth_clr, font=('yu gothic ui', 12, 'bold' ))
-    date_lbl.grid(row=1, pady=170)
+    date_lbl=tk.Label(cal_toggle_fr, text='', fg=lfnt, bg=dth_clr, font=('yu gothic ui', 12, 'bold'))
+    date_lbl.place(x=10, y=180)
 
 
 #========================  FRONT END  ======================================

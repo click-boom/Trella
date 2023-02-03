@@ -1,7 +1,6 @@
 import tkinter as tk
 from PIL import ImageTk, Image
 login=tk.Tk()
-
 #--------------------Functions---------------------------------------------------------------
     
 
