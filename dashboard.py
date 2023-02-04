@@ -31,15 +31,26 @@ def dell_fr():
 
 def fetch_date():
         real_date = datetime.strptime(cal.get_date(),"%m/%d/%y")
+        global db_date
         db_date=str(real_date).split(" ")[0]
         date_lbl.config(text=db_date)
-        # print(str(db_date).split(" ")[0])
-        # return str(db_date).split(" ")[0]
 
 def fetch_time():
     time: tuple = time_picker.time()
-    print({"Hours":time[0],"Minutes":time[1],"Scope":time[2]})
     time_lbl.config(text=time)
+    global time_value
+    time_value=time
+
+
+
+def fetch_and_push():
+    print(add_entry.get())
+    print(db_date)
+    hr=str(time_value[0])
+    min=str(time_value[1])
+    print(hr, end=':')
+    print(min, end=' ')
+    print(time_value[2])
 
 def ok(frname):
     frname.destroy()
@@ -248,15 +259,15 @@ def rem_frame():
 #===========================  Add Writing Area  ======================================
 
     entry_var=tk.StringVar(value='Add reminders...')
-    down_frame_entry=tk.Entry(down_frame, font=('yu gothic ui', 20, 'bold'), fg=lth_clr, bg=dth_clr, bd=0 ,highlightthickness=0, textvariable=entry_var, insertbackground=lth_clr)
-    down_frame_entry.place(x=65,y=15)
+    global add_entry
+    add_entry=tk.Entry(down_frame, font=('yu gothic ui', 20, 'bold'), fg=lth_clr, bg=dth_clr, bd=0 ,highlightthickness=0, textvariable=entry_var, insertbackground=lth_clr)
+    add_entry.place(x=65,y=15)
     
     add_button=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/add.png')
-    add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2')
+    add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=fetch_and_push)
     add_button_lbl.image=add_button
     add_button_lbl.place(x=16,y=16)
         
-
 
 def st_frame():
 #----------------  Dashboard Heading  -------------------
