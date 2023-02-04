@@ -8,6 +8,9 @@ th_clr='#d6d6d6'
 fnt='#6c6c6c'
 btn_bg='#a4a4a4'
 
+icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/llogo.png')
+login.iconphoto(True, icon)
+
 def signup_link():
     login.destroy()
     import signup
