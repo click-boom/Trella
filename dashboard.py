@@ -42,7 +42,6 @@ def fetch_time():
     time_value=time
 
 
-
 def fetch_and_push():
     print(add_entry.get())
     print(db_date)
@@ -121,8 +120,6 @@ dfnt=dth_clr
 def chk_frontend(user_data:dict):
     dashfr=tk.Frame(dash, width=1230, height=746)
     dashfr.place(x=535, y=300)
-
-
 #----------------------------------------  Inner Frame  -------------------------------------------------------------
     global iframe
     iframe=tk.Frame(dash)
@@ -233,13 +230,14 @@ def rem_frame():
     after_entry=tk.Label(iiframe, image=iiframe_img)
     after_entry.image=iiframe_img
     after_entry.pack(fill='both', expand='yes')
-    #--------------  Reminder Adding Section  --------------------- 
+    # #--------------  Reminder Adding Section  --------------------- 
     down_frame=tk.Frame(iframe,width=1400,height=70,bg=dth_clr)
     down_frame.place(x=60,y=950)
     
 # ----------------  Dashboard Heading  -------------------
     heading =tk.Label(iframe , text='Reminder',font=('yu gothic ui', 44, 'bold'),bg=dth_clr, fg=lfnt)
     heading.place(x=650, y=0)
+    
 #===========================  Calendar icon  ======================================
     calendar_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/calendar.png')
     calendar_icon_lbl=tk.Button(down_frame,image=calendar_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=cal_toggle_open)
