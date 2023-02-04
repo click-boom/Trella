@@ -1,7 +1,8 @@
 import tkinter as tk
 from PIL import ImageTk, Image
-from tkcalendar import *
+from tkcalendar import Calendar
 from datetime import datetime
+from tktimepicker import AnalogPicker,AnalogThemes 
 
 dash=tk.Tk()
 dash.title('TRELLA')
@@ -30,10 +31,16 @@ def dell_fr():
 
 def fetch_date():
         real_date = datetime.strptime(cal.get_date(),"%m/%d/%y")
-        date_lbl.config(text=str(real_date).split(" ")[0])
-        
+        db_date=str(real_date).split(" ")[0]
+        date_lbl.config(text=db_date)
         # print(str(db_date).split(" ")[0])
         # return str(db_date).split(" ")[0]
+
+def fetch_time():
+    time: tuple = time_picker.time()
+    print({"Hours":time[0],"Minutes":time[1],"Scope":time[2]})
+    time_lbl.config(text=time)
+
 def ok(frname):
     frname.destroy()
     rem_frame()
@@ -59,48 +66,36 @@ def cal_toggle_open():
     date_lbl=tk.Label(cal_toggle_fr, text='', fg=lfnt, bg=dth_clr, font=('yu gothic ui', 12, 'bold'))
     date_lbl.place(x=10, y=180)
     
-def time_toggle_open():
-    al_toggle_fr=tk.Frame(iframe, bg=dth_clr)
-    al_toggle_fr.place(width=253, height=250, x=1220 , y=685)
+def timepick():
+    al_toggle_fr=tk.Frame(iframe, bg=dth_clr , width=400, height=400)
+    al_toggle_fr.place( x=1050 , y=530)
 
-    hour= tk.Label(al_toggle_fr, text="Hour",bg=dth_clr,fg="white",font=('yu gothic ui', 12, 'bold'))
-    hour.place(x=10, y=10)
-    hour_inp= tk.Spinbox(al_toggle_fr,from_=0, to=12, increment=1, bg=dth_clr, fg=lfnt)
-    hour_inp.place(x=65, y=15, width=170)
+    cl_toggle_fr=tk.Frame(al_toggle_fr, bg='white')
+    cl_toggle_fr.place( x=10, y=10)
+    
+    global time_picker
+    time_picker = AnalogPicker(cl_toggle_fr)
+    time_picker.pack(expand=True, fill='both')
 
-    min= tk.Label(al_toggle_fr, text="Min",bg=dth_clr,fg="white",font=('yu gothic ui', 12, 'bold'))
-    min.place(x=10, y=50)
-    min_inp= tk.Spinbox(al_toggle_fr, from_=0,to=60,increment=1,bg=dth_clr,fg=lfnt)
-    min_inp.place(x=65, y=55, width=170)
-
-    sec= tk.Label(al_toggle_fr, text="Sec",bg=dth_clr,fg="white",font=('yu gothic ui', 12, 'bold'))
-    sec.place(x=10, y=90)
-    sec_inp= tk.Spinbox(al_toggle_fr, from_=0,to=60,increment=1,bg=dth_clr,fg=lfnt)
-    sec_inp.place(x=65, y=95, width=170)   
-
-
-    choice_var = tk.StringVar(value= "A.M")
-    choice=('A.M', 'P.M')
-    choice= tk.OptionMenu(al_toggle_fr,choice_var, *choice )
-    choice.place(x=10, y=135, width=225)
+    theme = AnalogThemes(time_picker)
+    theme.setDracula()
 
     OKay_btn=tk.Button(al_toggle_fr, text='OK',font=('yu gothic ui', 12, 'bold'),fg=lfnt, bg=btn_bg,bd=0,highlightthickness=0, command=lambda: ok(al_toggle_fr))
-    OKay_btn.place(x=140, y=210, width=70)
+    OKay_btn.place(x=130, y=350, width=70)
 
     get_btn=tk.Button(al_toggle_fr, text='Pick Time',
-                   font=('yu gothic ui', 12, 'bold'),
-                   fg=lfnt, 
-                   bg=btn_bg,
-                   bd=0, 
-                   highlightthickness=0,
-                   command=fetch_date)
-    get_btn.place(x=50, y=210)
+    font=('yu gothic ui', 12, 'bold'),
+    fg=lfnt, 
+    bg=btn_bg,
+    bd=0, 
+    highlightthickness=0,
+    command=fetch_time)
+    get_btn.place(x=20, y=350)
+    
+    global time_lbl
+    time_lbl=tk.Label(al_toggle_fr, text='', fg=lfnt, bg=dth_clr, font=('yu gothic ui', 12, 'bold'))
+    time_lbl.place(x=295, y=350)
 
-    time_lbl=tk.Label(al_toggle_fr, text='', 
-                  fg=lfnt,
-                  bg=dth_clr,
-                  font=('yu gothic ui', 12, 'bold' ))
-    time_lbl.place(x=70, y=175)
 #=======================  FRONT END  ======================================
 #------------------  Theme  -----------------------------
         
@@ -243,7 +238,7 @@ def rem_frame():
 #===========================  Alarm icon  ======================================
     alarm_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/alarm.png')
     alarm_icon.image=alarm_icon
-    alarm_icon_lbl=tk.Button(down_frame,image=alarm_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=time_toggle_open )
+    alarm_icon_lbl=tk.Button(down_frame,image=alarm_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=timepick )
     alarm_icon_lbl.place(x=1270,y=17)
 #===========================  Repeat icon  ======================================
     repeat_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/repeat.png')
