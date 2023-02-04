@@ -43,7 +43,6 @@ def fetch_time():
 
 def ok(frname):
     frname.destroy()
-    rem_frame()
     
 def cal_toggle_open():
     global cal_toggle_fr
@@ -199,13 +198,13 @@ def chk_frontend(user_data:dict):
 #-----------------  Logout Button  --------------------------
 
     lcircle_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/l_btn.png')
-    lcircle_img.image=lcircle_img
     lcircle_lbl=tk.Label(sidebar, image=lcircle_img, bg=dth_clr, bd=0)
+    lcircle_lbl.image=lcircle_img
     lcircle_lbl.place(x=135, y=670)
 
     lbtn_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/logout.png')
-    lbtn_img.image=lbtn_img
     lbtn=tk.Button(lcircle_lbl, image=lbtn_img, bg=btn_bg, activebackground=btn_bg, cursor='hand2', highlightthickness=0, bd=0)
+    lbtn.image=lbtn_img
     lbtn.place(x=19, y=15)
 
     
@@ -232,18 +231,18 @@ def rem_frame():
     heading.place(x=650, y=0)
 #===========================  Calendar icon  ======================================
     calendar_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/calendar.png')
-    calendar_icon.image=calendar_icon
     calendar_icon_lbl=tk.Button(down_frame,image=calendar_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=cal_toggle_open)
+    calendar_icon_lbl.image=calendar_icon
     calendar_icon_lbl.place(x=1210,y=20)
 #===========================  Alarm icon  ======================================
     alarm_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/alarm.png')
-    alarm_icon.image=alarm_icon
     alarm_icon_lbl=tk.Button(down_frame,image=alarm_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=timepick )
+    alarm_icon_lbl.image=alarm_icon
     alarm_icon_lbl.place(x=1270,y=17)
 #===========================  Repeat icon  ======================================
     repeat_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/repeat.png')
-    repeat_icon.image=repeat_icon
     repeat_icon_lbl=tk.Button(down_frame,image=repeat_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2' )
+    repeat_icon_lbl.image=repeat_icon
     repeat_icon_lbl.place(x=1330,y=20)
 
 #===========================  Add Writing Area  ======================================
@@ -251,9 +250,10 @@ def rem_frame():
     entry_var=tk.StringVar(value='Add reminders...')
     down_frame_entry=tk.Entry(down_frame, font=('yu gothic ui', 20, 'bold'), fg=lth_clr, bg=dth_clr, bd=0 ,highlightthickness=0, textvariable=entry_var, insertbackground=lth_clr)
     down_frame_entry.place(x=65,y=15)
+    
     add_button=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/add.png')
-    add_button.image=add_button
     add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2')
+    add_button_lbl.image=add_button
     add_button_lbl.place(x=16,y=16)
         
 
