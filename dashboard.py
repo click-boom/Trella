@@ -41,15 +41,31 @@ def fetch_time():
     global time_value
     time_value=time
 
-
 def fetch_and_push():
-    print(add_entry.get())
-    print(db_date)
-    hr=str(time_value[0])
-    min=str(time_value[1])
-    print(hr, end=':')
-    print(min, end=' ')
-    print(time_value[2])
+    new_entry=tk.Label(iiframe, bg='black', text=(add_entry.get()), width=1098, height=50)
+    new_entry.grid()
+    new_entry.rowconfigure(1, weight=1)
+
+def on_press(str):
+    add_entry.delete(0, tk.END)
+
+def on_unpress(str):
+    add_entry.delete(0, tk.END)
+    if add_entry.get()=='':
+        add_entry.insert(0,'Add Reminder')
+
+# def fetch_and_push():
+#     print(add_entry.get())
+#     print(db_date)
+#     hr=str(time_value[0])
+#     min=str(time_value[1])
+#     print(hr, end=':')
+#     print(min, end=' ')
+#     print(time_value[2])
+
+def logout():
+        dash.destroy()
+        import login
 
 def ok(frname):
     frname.destroy()
@@ -149,8 +165,7 @@ def chk_frontend(user_data:dict):
 # ====================  Button Labels  =======================================================================
     #-----------------Checklist--------------------------
     btn_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/dash_btn.png')
-    
-    
+        
     chk_btn_lbl=tk.Label(sidebar, image=btn_img, bg=dth_clr)
     chk_btn_lbl.image=btn_img
     chk_btn_lbl.place(x=15, y=370)
@@ -173,34 +188,34 @@ def chk_frontend(user_data:dict):
 # ====================  Buttons  ================================================================================
     #-----------------  Checklist  --------------------------
     chk_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/check-list.png'))
-    chk_img.image=chk_img
     global chk_btn
     chk_btn=tk.Button(chk_btn_lbl, text='          CHECKLIST',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', bd=0,highlightthickness=0, activebackground=btn_bg, activeforeground='white', command=lambda:dash_indicate(chk_btn, chk_frame))
     chk_btn.place(x=30, y=7)
 
     chk_img_lbl=tk.Label(chk_btn, image=chk_img, bg=btn_bg)
+    chk_img_lbl.image=chk_img
     chk_img_lbl.place(x=10, y=10)
     
     #-----------------  reminder  --------------------------
     
     rem_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/reminder.png'))
-    rem_img.image=rem_img
     global rem_btn
     rem_btn=tk.Button(rem_btn_lbl, text='          REMINDER',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg, activeforeground='white', bd=0,highlightthickness=0, command=lambda:dash_indicate(rem_btn,  rem_frame) )
     rem_btn.place(x=30, y=10)
 
     rem_img_lbl=tk.Label(rem_btn, image=rem_img, bg=btn_bg)
+    rem_img_lbl.image=rem_img
     rem_img_lbl.place(x=10, y=10)
 
     #-----------------  sticky notes --------------------------
     
     st_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/sticky-note.png'))
-    st_img.image=st_img
     global st_btn
     st_btn=tk.Button(st_btn_lbl, text='       STICKY NOTES',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg,activeforeground='white' , bd=0,highlightthickness=0, command=lambda:dash_indicate(st_btn, st_frame) )
     st_btn.place(x=30, y=10)
 
     st_img_lbl=tk.Label(st_btn, image=st_img, bg=btn_bg)
+    st_img_lbl.image=st_img
     st_img_lbl.place(x=10, y=10)
 
 #-----------------  Logout Button  --------------------------
@@ -211,7 +226,7 @@ def chk_frontend(user_data:dict):
     lcircle_lbl.place(x=135, y=670)
 
     lbtn_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/logout.png')
-    lbtn=tk.Button(lcircle_lbl, image=lbtn_img, bg=btn_bg, activebackground=btn_bg, cursor='hand2', highlightthickness=0, bd=0)
+    lbtn=tk.Button(lcircle_lbl, image=lbtn_img, bg=btn_bg, activebackground=btn_bg, cursor='hand2', highlightthickness=0, bd=0, command=logout)
     lbtn.image=lbtn_img
     lbtn.place(x=19, y=15)
 
@@ -223,14 +238,14 @@ def rem_frame():
     dash_bg.image=dashfr_img
     dash_bg.pack(fill='both', expand='yes')
     #------------------  Inner inner Frame  ---------------------------
-
+    global iiframe
     iiframe=tk.Frame(iframe, bg='white')
     iiframe.place(x=220, y=100, width='1038', height='800')
-    iiframe_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/iiframe.png'))
-    after_entry=tk.Label(iiframe, image=iiframe_img)
-    after_entry.image=iiframe_img
-    after_entry.pack(fill='both', expand='yes')
-    # #--------------  Reminder Adding Section  --------------------- 
+    # iiframe_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/iiframe.png'))
+    # after_entry=tk.Label(iiframe, image=iiframe_img)
+    # after_entry.image=iiframe_img
+    # after_entry.pack(fill='both', expand='yes')
+    #--------------  Reminder Adding Section  --------------------- 
     down_frame=tk.Frame(iframe,width=1400,height=70,bg=dth_clr)
     down_frame.place(x=60,y=950)
     
@@ -258,8 +273,12 @@ def rem_frame():
 
     entry_var=tk.StringVar(value='Add reminders...')
     global add_entry
-    add_entry=tk.Entry(down_frame, font=('yu gothic ui', 20, 'bold'), fg=lth_clr, bg=dth_clr, bd=0 ,highlightthickness=0, textvariable=entry_var, insertbackground=lth_clr)
-    add_entry.place(x=65,y=15)
+    add_entry=tk.Entry(down_frame, font=('yu gothic ui', 20, 'bold'), fg=lth_clr, bg=dth_clr, bd=0 ,highlightthickness=0, textvariable=entry_var, insertbackground=lth_clr, width=60)
+    add_entry.place(x=70,y=15)
+    add_entry.insert(0,'Add Reminder....')
+    add_entry.bind("<FocusIn>",on_press)
+    add_entry.bind("<FocusOut>",on_unpress)
+
     
     add_button=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/add.png')
     add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=fetch_and_push)
@@ -293,4 +312,3 @@ if __name__=="__main__":
 def run_dashboard(user_data:dict):
     chk_frontend(user_data)
     dash.mainloop()
-

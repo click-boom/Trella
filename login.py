@@ -1,3 +1,4 @@
+import sqlite3
 import tkinter as tk
 from PIL import ImageTk, Image
 login=tk.Tk()
@@ -29,7 +30,6 @@ def get_user_data(username:str)->dict:
     return {"username":usr[0][1],"email":usr[0][2], "password":usr[0][3]}
 
 def login_backend():
-    import sqlite3
     conn=sqlite3.connect('reg_usrs.db')
     c=conn.cursor()
 
