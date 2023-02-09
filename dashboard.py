@@ -139,20 +139,10 @@ def logout():
         sure_lbl=tk.Label(sure_dialog, text='Are you sure you want to logout?',font=('yu gothic ui', 14, 'bold'), bg=dialog_bg, fg=lfnt)
         sure_lbl.place(x=40, y=70)
 
-        Y_button= tk.Button(sure_dialog, text='Yes',
-                                          font=('yu gothic ui', 12, 'bold'),
-                                          fg=lfnt, 
-                                          bg=btn_bg,
-                                          bd=0, 
-                                        highlightthickness=0, command=logout_yes)
+        Y_button= tk.Button(sure_dialog, text='Yes', font=('yu gothic ui', 12, 'bold'), fg=lfnt, bg=btn_bg, bd=0, highlightthickness=0, command=logout_yes)
         Y_button.place(x=105, y=125)
 
-        N_button= tk.Button(sure_dialog, text='No',
-                                          font=('yu gothic ui', 12, 'bold'),
-                                          fg=lfnt, 
-                                          bg=btn_bg,
-                                          bd=0, 
-                                        highlightthickness=0, command=logout_no)
+        N_button= tk.Button(sure_dialog, text='No',font=('yu gothic ui', 12, 'bold'),fg=lfnt, bg=btn_bg,bd=0, highlightthickness=0, command=logout_no)
         N_button.place(x=205, y=125)
 
 def logout_yes():
@@ -163,7 +153,7 @@ def logout_no():
     sure_dialog.destroy()
 #=======================  FRONT END  ======================================
 #------------------  Theme  -----------------------------
-        
+
 lth_clr='#A4C7EE'
 dth_clr='#192436'
 btn_bg='#104289'
@@ -344,14 +334,21 @@ def st_frame():
  
     down_frame=tk.Frame(iframe,width=1200,height=70,bg=dth_clr)
     down_frame.place(x=170,y=950)
-
-    attachicon= ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/attach.png'))
-    attach=tk. Button(down_frame, image=attachicon,bg=dth_clr,bd=0,cursor='hand2',activebackground=dth_clr,highlightthickness=0)
-    attach.image= attachicon
-    attach.place(x=100, y=25) 
     
     save=tk. Button(down_frame, text='Save', font=('yu gothic ui', 12, 'bold'), bg=btn_bg, fg=lfnt, bd=0,cursor='hand2',activebackground=btn_bg,highlightthickness=0)
     save.place(x=10, y=20)
+
+    Aicon=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/A.png'))
+    Aa=tk. Button(dash, image=Aicon,bg='#A4C8E8',bd=0,cursor='hand2',activebackground='#A4C8E8')
+    Aa.image= Aicon
+    Aa.place(x=200, y=15) 
+
+    
+    attachicon= ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/attach.png'))
+    attach=tk. Button(down_frame, image=attachicon,bg=dth_clr,bd=0,cursor='hand2',activebackground=dth_clr,highlightthickness=0)
+    attach.image= attachicon
+    attach.place(x=300, y=15) 
+    
 def chk_frame():
     return
     
