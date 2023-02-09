@@ -3,6 +3,7 @@ from PIL import ImageTk, Image
 from tkcalendar import Calendar
 from datetime import datetime
 from tktimepicker import AnalogPicker,AnalogThemes 
+import sqlite3
 
 dash=tk.Tk()
 dash.title('TRELLA')
@@ -54,18 +55,27 @@ def on_unpress(str):
     if add_entry.get()=='':
         add_entry.insert(0,'Add Reminder')
 
-# def fetch_and_push():
-#     print(add_entry.get())
-#     print(db_date)
-#     hr=str(time_value[0])
-#     min=str(time_value[1])
-#     print(hr, end=':')
-#     print(min, end=' ')
-#     print(time_value[2])
+def fetch_and_push(user_data):
+    return
+    # conn=sqlite3.connect("reg_usrs.db")
+    # c=conn.cursor()
+    
+    # time=str(time_value[0]) + ':' + str(time_value[1]) + time_value[2]
+    
+    # c.execute("SELECT * FROM reminder_table WHERE username='Rohan'")
+    # rows = c.fetchall()
+    # for row in rows:
+    #     print(row)
 
-def logout():
-        dash.destroy()
-        import login
+    # c.execute("INSERT INTO reminder_table(Description, Deploy_date, Deploy_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?, ?)",[add_entry.get(), db_date, time, 1, user_data["ID"]])
+    # conn.commit()
+        # print(add_entry.get())
+        # print(db_date)
+        # hr=str(time_value[0])
+        # min=str(time_value[1])
+        # print(hr, end=':')
+        # print(min, end=' ')
+        # print(time_value[2])
 
 def ok(frname):
     frname.destroy()
@@ -121,6 +131,36 @@ def timepick():
     time_lbl=tk.Label(al_toggle_fr, text='', fg=lfnt, bg=dth_clr, font=('yu gothic ui', 12, 'bold'))
     time_lbl.place(x=295, y=350)
 
+def logout():
+        global sure_dialog
+        sure_dialog=tk.Frame(sidebar, width=350, height=200, bg=dialog_bg, borderwidth=2)    
+        sure_dialog.place(x=25, y=650)
+
+        sure_lbl=tk.Label(sure_dialog, text='Are you sure you want to logout?',font=('yu gothic ui', 14, 'bold'), bg=dialog_bg, fg=lfnt)
+        sure_lbl.place(x=40, y=70)
+
+        Y_button= tk.Button(sure_dialog, text='Yes',
+                                          font=('yu gothic ui', 12, 'bold'),
+                                          fg=lfnt, 
+                                          bg=btn_bg,
+                                          bd=0, 
+                                        highlightthickness=0, command=logout_yes)
+        Y_button.place(x=105, y=125)
+
+        N_button= tk.Button(sure_dialog, text='No',
+                                          font=('yu gothic ui', 12, 'bold'),
+                                          fg=lfnt, 
+                                          bg=btn_bg,
+                                          bd=0, 
+                                        highlightthickness=0, command=logout_no)
+        N_button.place(x=205, y=125)
+
+def logout_yes():
+    dash.destroy()
+    import login
+
+def logout_no():
+    sure_dialog.destroy()
 #=======================  FRONT END  ======================================
 #------------------  Theme  -----------------------------
         
@@ -128,9 +168,9 @@ lth_clr='#A4C7EE'
 dth_clr='#192436'
 btn_bg='#104289'
 frm_clr='#A4C8EB'
-
 lfnt=lth_clr
 dfnt=dth_clr
+dialog_bg='#576B8B'
 
 #----------------------------------------------------------
 def chk_frontend(user_data:dict):
@@ -142,6 +182,7 @@ def chk_frontend(user_data:dict):
     iframe.place(x=400, y=0, width='1520', height='1080')
     
 #------------------  SIDEBAR  ---------------------------
+    global sidebar
     sidebar =tk.Frame(dash ,bg=dth_clr)    
     sidebar.place(x=0, y=0, width=400, height=1100)
 #----------------  Logo Frame  -------------------
@@ -241,10 +282,10 @@ def rem_frame():
     global iiframe
     iiframe=tk.Frame(iframe, bg='white')
     iiframe.place(x=220, y=100, width='1038', height='800')
-    # iiframe_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/iiframe.png'))
-    # after_entry=tk.Label(iiframe, image=iiframe_img)
-    # after_entry.image=iiframe_img
-    # after_entry.pack(fill='both', expand='yes')
+    iiframe_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/iiframe.png'))
+    after_entry=tk.Label(iiframe, image=iiframe_img)
+    after_entry.image=iiframe_img
+    after_entry.pack(fill='both', expand='yes')
     #--------------  Reminder Adding Section  --------------------- 
     down_frame=tk.Frame(iframe,width=1400,height=70,bg=dth_clr)
     down_frame.place(x=60,y=950)
@@ -271,7 +312,7 @@ def rem_frame():
 
 #===========================  Add Writing Area  ======================================
 
-    entry_var=tk.StringVar(value='Add reminders...')
+    entry_var=tk.StringVar()
     global add_entry
     add_entry=tk.Entry(down_frame, font=('yu gothic ui', 20, 'bold'), fg=lth_clr, bg=dth_clr, bd=0 ,highlightthickness=0, textvariable=entry_var, insertbackground=lth_clr, width=60)
     add_entry.place(x=70,y=15)
