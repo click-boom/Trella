@@ -336,6 +336,7 @@ def st_frame():
     dash_bg=tk.Label(iframe, image=dashfr_img)
     dash_bg.image=dashfr_img
     dash_bg.pack(fill='both', expand='yes')
+
 #===========================  Add Writing Area  ======================================   
     
     note= tk.Text(iframe, width=150, height=46, bg=dth_clr, fg=lfnt, insertbackground=lth_clr, bd=0, highlightthickness=0)
@@ -344,6 +345,13 @@ def st_frame():
     down_frame=tk.Frame(iframe,width=1200,height=70,bg=dth_clr)
     down_frame.place(x=170,y=950)
 
+    attachicon= ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/attach.png'))
+    attach=tk. Button(down_frame, image=attachicon,bg=dth_clr,bd=0,cursor='hand2',activebackground=dth_clr,highlightthickness=0)
+    attach.image= attachicon
+    attach.place(x=100, y=25) 
+    
+    save=tk. Button(down_frame, text='Save', font=('yu gothic ui', 12, 'bold'), bg=btn_bg, fg=lfnt, bd=0,cursor='hand2',activebackground=btn_bg,highlightthickness=0)
+    save.place(x=10, y=20)
 def chk_frame():
     return
     
