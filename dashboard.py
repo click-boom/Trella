@@ -39,13 +39,13 @@ def fetch_date():
 def fetch_time():
     time: tuple = time_picker.time()
     time_lbl.config(text=time)
-    global time_value
-    time_value=time
+    global timee
+    timee:str=str(time[0])+':'+str(time[1])+time[2]
+    print(str(time[0])+':'+str(time[1])+time[2])
 
 def fetch_and_push():
-    new_entry=tk.Label(iiframe, bg='black', text=(add_entry.get()), width=1098, height=50)
-    new_entry.grid()
-    new_entry.rowconfigure(1, weight=1)
+    items=add_entry.get()+(' '*20) +db_date+(' '*20)+timee
+    new_entry.config(text=items)
 
 def on_press(str):
     add_entry.delete(0, tk.END)
@@ -54,28 +54,6 @@ def on_unpress(str):
     add_entry.delete(0, tk.END)
     if add_entry.get()=='':
         add_entry.insert(0,'Add Reminder')
-
-def fetch_and_push(user_data):
-    return
-    # conn=sqlite3.connect("reg_usrs.db")
-    # c=conn.cursor()
-    
-    # time=str(time_value[0]) + ':' + str(time_value[1]) + time_value[2]
-    
-    # c.execute("SELECT * FROM reminder_table WHERE username='Rohan'")
-    # rows = c.fetchall()
-    # for row in rows:
-    #     print(row)
-
-    # c.execute("INSERT INTO reminder_table(Description, Deploy_date, Deploy_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?, ?)",[add_entry.get(), db_date, time, 1, user_data["ID"]])
-    # conn.commit()
-        # print(add_entry.get())
-        # print(db_date)
-        # hr=str(time_value[0])
-        # min=str(time_value[1])
-        # print(hr, end=':')
-        # print(min, end=' ')
-        # print(time_value[2])
 
 def ok(frname):
     frname.destroy()
@@ -270,12 +248,11 @@ def rem_frame():
     dash_bg.pack(fill='both', expand='yes')
     #------------------  Inner inner Frame  ---------------------------
     global iiframe
-    iiframe=tk.Frame(iframe, bg='white')
-    iiframe.place(x=220, y=100, width='1038', height='800')
-    iiframe_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/iiframe.png'))
-    after_entry=tk.Label(iiframe, image=iiframe_img)
-    after_entry.image=iiframe_img
-    after_entry.pack(fill='both', expand='yes')
+    iiframe=tk.Frame(iframe, bg=dth_clr)
+    iiframe.place(x=220, y=400, width='1038', height='200')
+
+    recent=tk.Label(iiframe, text='Recently Added',font=('yu gothic ui', 14, 'bold'), bg=dth_clr, fg=lfnt )
+    recent.pack(side=tk.TOP)
     #--------------  Reminder Adding Section  --------------------- 
     down_frame=tk.Frame(iframe,width=1400,height=70,bg=dth_clr)
     down_frame.place(x=60,y=950)
@@ -310,6 +287,10 @@ def rem_frame():
     add_entry.bind("<FocusIn>",on_press)
     add_entry.bind("<FocusOut>",on_unpress)
 
+    global new_entry
+    blank=('_'*10)+(' '*20)+('_'*10)+(' '*20)+('_'*10)
+    new_entry=tk.Label(iiframe, bg=dialog_bg, text=blank, width=1098, height=5)
+    new_entry.pack(side=tk.BOTTOM)
     
     add_button=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/add.png')
     add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=fetch_and_push)
