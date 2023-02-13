@@ -19,11 +19,13 @@ def signup_backend():
     epassword=epasswd_entry.get()
     cpassword=cpasswd_entry.get() 
 
+    c.execute(" SELECT username from users")
+    unames=c.fetchall()
 
     c.execute(" SELECT email from users")
     umails=c.fetchall()
 
-    if (email ,) in umails:
+    if (email ,) in umails or (username, ) in unames:
             already=tk.Button(login_frame, text='Account already exists, click here to login ', font=('yu gothic ui', 18, 'bold underline'),background=th_clr, foreground='black', activebackground=th_clr,cursor='hand2', bd=0, width=30, command=login_link )
             already.place(x=110, y=720)
         

@@ -41,9 +41,13 @@ def fetch_time():
     time_lbl.config(text=time)
     global time1
     time1=str(time[0])+':'+str(time[1])+time[2]
-    print(str(time[0])+':'+str(time[1])+time[2])
 
-def fetch_and_push():
+def add_data():
+    conn=sqlite3.connect('reg_usrs.db')
+    c=conn.cursor()
+    c.execute("INSERT INTO reminder_table (Description, Deploy_date, Deploy_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?, ?)",[add_entry.get(), db_date, time1, 0 , uid])
+    conn.commit()
+    
     items=add_entry.get()+(' '*20) +db_date+(' '*20)+time1
     new_entry.config(text=items)
 
@@ -239,7 +243,9 @@ def chk_frontend(user_data:dict):
     lbtn.image=lbtn_img
     lbtn.place(x=19, y=15)
 
-    
+    global uid
+    uid=user_data['user_id']
+
 def rem_frame():
 
     dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.png'))
@@ -293,7 +299,7 @@ def rem_frame():
     new_entry.pack(side=tk.BOTTOM)
     
     add_button=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/add.png')
-    add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=fetch_and_push)
+    add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=add_data)
     add_button_lbl.image=add_button
     add_button_lbl.place(x=16,y=16)
         
