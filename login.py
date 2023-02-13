@@ -27,7 +27,7 @@ def get_user_data(username:str)->dict:
     c=conn.cursor()
     c.execute("SELECT * FROM users WHERE username=?",[uname])
     usr = c.fetchall()
-    return {"username":usr[0][1],"email":usr[0][2], "password":usr[0][3]}
+    return {"user_id":usr[0][0],"username":usr[0][1],"email":usr[0][2], "password":usr[0][3]}
 
 def login_backend():
     conn=sqlite3.connect('reg_usrs.db')
