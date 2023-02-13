@@ -39,12 +39,12 @@ def fetch_date():
 def fetch_time():
     time: tuple = time_picker.time()
     time_lbl.config(text=time)
-    global timee
-    timee:str=str(time[0])+':'+str(time[1])+time[2]
+    global time1
+    time1=str(time[0])+':'+str(time[1])+time[2]
     print(str(time[0])+':'+str(time[1])+time[2])
 
 def fetch_and_push():
-    items=add_entry.get()+(' '*20) +db_date+(' '*20)+timee
+    items=add_entry.get()+(' '*20) +db_date+(' '*20)+time1
     new_entry.config(text=items)
 
 def on_press(str):
