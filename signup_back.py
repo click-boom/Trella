@@ -26,6 +26,7 @@ def registered_table():
         c.execute(""" CREATE TABLE reminder_table(
             ID INTEGER PRIMARY KEY AUTOINCREMENT,
             Description text(300),
+            Deploy_date DATETIME,
             Deploy_time DATETIME,
             is_repeat TINYINT,
             belongs_to INTEGER,
