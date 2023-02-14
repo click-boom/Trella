@@ -44,7 +44,7 @@ def fetch_time():
     time1=str(time[0])+':'+str(time[1])+time[2]
 
 def add_to_recent():
-    items=add_entry.get()+(' '*20) +db_date+(' '*20)+time1
+    items=add_title.get()+(' '*10) +add_description.get()+(' '*10) +db_date+(' '*10)+time1
     new_entry.config(text=items)
 
 def view_data():
@@ -62,13 +62,21 @@ def tree_data(user_id):
         tree_scroll_frame.insert("", i, text=i+1, values=(val[0], val[1], val[2], val[3], val[4], val[5]))
         i+=1
 
-def on_press(str):
-    add_entry.delete(0, tk.END)
+def on_tpress(str):
+    add_title.delete(0, tk.END)
 
-def on_unpress(str):
-    add_entry.delete(0, tk.END)
-    if add_entry.get()=='':
-        add_entry.insert(0,'Add Reminder')
+def on_tunpress(str):
+    add_title.delete(0, tk.END)
+    if add_title.get()=='':
+        add_title.insert(0,'Reminder Title...')
+
+def on_dpress(str):
+    add_description.delete(0, tk.END)
+
+def on_dunpress(str):
+    add_description.delete(0, tk.END)
+    if add_description.get()=='':
+        add_description.insert(0,'Reminder Description...')
 
 def ok(frname):
     frname.destroy()
@@ -149,7 +157,7 @@ def logout_no():
 def insert_into_reminder():
     conn=sqlite3.connect('reg_usrs.db')
     c=conn.cursor()
-    c.execute("INSERT INTO reminder_table (Description, Deploy_date, Deploy_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?, ?)",[add_entry.get(), db_date, time1, 0 , uid])
+    c.execute("INSERT INTO reminder_table (Title, Description, Deploy_date, Deploy_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?, ?, ?)",[add_title.get(),add_description.get(), db_date, time1, 0 , uid])
     conn.commit()
 
 def tree():
@@ -311,8 +319,8 @@ def rem_frame():
     dash_bg.image=dashfr_img
     dash_bg.pack(fill='both', expand='yes')
 
-    Add_btn=tk.Button(iframe,text='Add Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=insert_into_reminder)
-    Add_btn.place(x=530, y=900)
+    Add_btn=tk.Button(iframe,text='Add to Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=insert_into_reminder)
+    Add_btn.place(x=1010, y=620)
     Delete_btn=tk.Button(iframe,text='Delete Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2' )
     Delete_btn.place(x=280, y=900)
     View_btn=tk.Button(iframe,text='View Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=view_data )
@@ -350,16 +358,23 @@ def rem_frame():
 
 #===========================  Add Writing Area  ======================================
 
-    entry_var=tk.StringVar()
-    global add_entry
-    add_entry=tk.Entry(down_frame, font=('yu gothic ui', 20, 'bold'), fg=lth_clr, bg=dth_clr, bd=0 ,highlightthickness=0, textvariable=entry_var, insertbackground=lth_clr, width=60)
-    add_entry.place(x=70,y=15)
-    add_entry.insert(0,'Add Reminder....')
-    add_entry.bind("<FocusIn>",on_press)
-    add_entry.bind("<FocusOut>",on_unpress)
+    tentry_var=tk.StringVar()
+    global add_title
+    add_title=tk.Entry(down_frame, font=('yu gothic ui', 20, 'bold'), fg=lth_clr, bg=dialog_bg, bd=0 ,highlightthickness=0, textvariable=tentry_var, insertbackground=lth_clr, width=15)
+    add_title.place(x=70,y=15)
+    add_title.insert(0,'Reminder Title....')
+    add_title.bind("<FocusIn>",on_tpress)
+    
+    dentry_var=tk.StringVar()
+    global add_description
+    add_description=tk.Entry(down_frame, font=('yu gothic ui', 20, 'bold'), fg=lth_clr, bg=dialog_bg, bd=0 ,highlightthickness=0, textvariable=dentry_var, insertbackground=lth_clr, width=20)
+    add_description.place(x=400,y=15)
+    add_description.insert(0,'Reminder Description....')
+    add_description.bind("<FocusIn>",on_dpress)
+    add_description.bind("<FocusOut>",on_dunpress)
 
     global new_entry
-    blank=('_'*10)+(' '*20)+('_'*10)+(' '*20)+('_'*10)
+    blank=('_'*8)+(' '*10)+('_'*8)+(' '*10)+('_'*8)+(' '*10)+('_'*8)
     new_entry=tk.Label(iiframe, bg=dialog_bg, text=blank, font=('yu gothic ui', 24, 'bold'), width=1098, height=2)
     new_entry.pack(side=tk.BOTTOM)
     
