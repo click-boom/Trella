@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 from PIL import ImageTk, Image
 from tkcalendar import Calendar
 from datetime import datetime
@@ -42,14 +43,24 @@ def fetch_time():
     global time1
     time1=str(time[0])+':'+str(time[1])+time[2]
 
-def add_data():
-    conn=sqlite3.connect('reg_usrs.db')
-    c=conn.cursor()
-    c.execute("INSERT INTO reminder_table (Description, Deploy_date, Deploy_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?, ?)",[add_entry.get(), db_date, time1, 0 , uid])
-    conn.commit()
-    
+def add_to_recent():
     items=add_entry.get()+(' '*20) +db_date+(' '*20)+time1
     new_entry.config(text=items)
+
+def view_data():
+    iiframe.destroy()
+    tree()
+    tree_data(uid)
+
+def tree_data(user_id):
+    conn=sqlite3.connect('reg_usrs.db')
+    c=conn.cursor()
+
+    c.execute("SELECT * FROM reminder_table WHERE belongs_to=(?)", [user_id])
+    i=0
+    for val in c:
+        tree_scroll_frame.insert("", i, text=i+1, values=(val[0], val[1], val[2], val[3], val[4], val[5]))
+        i+=1
 
 def on_press(str):
     add_entry.delete(0, tk.END)
@@ -133,6 +144,53 @@ def logout_yes():
 
 def logout_no():
     sure_dialog.destroy()
+    
+    
+def insert_into_reminder():
+    conn=sqlite3.connect('reg_usrs.db')
+    c=conn.cursor()
+    c.execute("INSERT INTO reminder_table (Description, Deploy_date, Deploy_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?, ?)",[add_entry.get(), db_date, time1, 0 , uid])
+    conn.commit()
+
+def tree():
+        tree_fnt=15
+        global tree_scroll_frame
+        tree_scroll_frame=ttk.Treeview(iframe)
+        tree_scroll_frame.place(relx=0.15,rely=0.1,width=1038,height=750)
+        ttk.Style().configure("Treeview", font=('yu gothic ui', tree_fnt, 'bold'),background=dth_clr, foreground=lfnt, fieldbackground=dth_clr, rowheight=int(tree_fnt*2.5))
+        ttk.Style().configure("Treeview.Heading", font=('yu gothic ui', 20, 'bold'), background=dialog_bg, foreground=lth_clr)
+
+        scrollbarX=tk.Scrollbar(iframe,orient=tk.HORIZONTAL, background=lth_clr, activebackground=lth_clr, troughcolor=dth_clr)
+        scrollbarX.place(relx=0.15,rely=0.7970,height=12,width=1040)
+        
+        scrollbarY=tk.Scrollbar(iframe,orient=tk.VERTICAL, background=lth_clr, activebackground=lth_clr, troughcolor=dth_clr)
+        scrollbarY.place(relx=0.8325,rely=0.0995,width=12,height=750)
+        
+        tree_scroll_frame.configure(xscrollcommand=scrollbarX.set,yscrollcommand=scrollbarY.set)
+        tree_scroll_frame.configure(selectmode=tk.EXTENDED)
+
+        scrollbarY.configure(command=tree_scroll_frame.yview)
+        scrollbarX.configure(command=tree_scroll_frame.xview)
+        tree_scroll_frame.configure(
+            columns=('ID','Description','Deploy date', 'Deploy time', 'Repeat')
+
+        )
+        tree_scroll_frame.heading("#0",text="S.N",anchor=tk.W)
+        tree_scroll_frame.heading("ID",text="ID",anchor=tk.W)
+        tree_scroll_frame.heading("Description",text="Description",anchor=tk.W)
+        tree_scroll_frame.heading("Deploy date",text="Deploy date",anchor=tk.W)
+        tree_scroll_frame.heading("Deploy time",text="Deploy time",anchor=tk.W)
+        tree_scroll_frame.heading("Repeat",text="Repeat",anchor=tk.W)
+
+
+
+        tree_scroll_frame.column("#0",width=120,minwidth=40)
+        tree_scroll_frame.column("ID",width=120,minwidth=20)
+        tree_scroll_frame.column("Description",width=120,minwidth=55)
+        tree_scroll_frame.column("Deploy date",width=120,minwidth=45)
+        tree_scroll_frame.column("Deploy time",width=120,minwidth=55)
+        tree_scroll_frame.column("Repeat",width=120,minwidth=40)
+
 #=======================  FRONT END  ======================================
 #------------------  Theme  -----------------------------
 
@@ -252,12 +310,19 @@ def rem_frame():
     dash_bg=tk.Label(iframe, image=dashfr_img)
     dash_bg.image=dashfr_img
     dash_bg.pack(fill='both', expand='yes')
+
+    Add_btn=tk.Button(iframe,text='Add Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=insert_into_reminder)
+    Add_btn.place(x=530, y=900)
+    Delete_btn=tk.Button(iframe,text='Delete Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2' )
+    Delete_btn.place(x=280, y=900)
+    View_btn=tk.Button(iframe,text='View Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=view_data )
+    View_btn.place(x=50, y=900)
     #------------------  Inner inner Frame  ---------------------------
     global iiframe
     iiframe=tk.Frame(iframe, bg=dth_clr)
     iiframe.place(x=220, y=400, width='1038', height='200')
 
-    recent=tk.Label(iiframe, text='Recently Added',font=('yu gothic ui', 14, 'bold'), bg=dth_clr, fg=lfnt )
+    recent=tk.Label(iiframe, text='Recently Added',font=('yu gothic ui', 20, 'bold'), bg=dth_clr, fg=lfnt )
     recent.pack(side=tk.TOP)
     #--------------  Reminder Adding Section  --------------------- 
     down_frame=tk.Frame(iframe,width=1400,height=70,bg=dth_clr)
@@ -295,11 +360,11 @@ def rem_frame():
 
     global new_entry
     blank=('_'*10)+(' '*20)+('_'*10)+(' '*20)+('_'*10)
-    new_entry=tk.Label(iiframe, bg=dialog_bg, text=blank, width=1098, height=5)
+    new_entry=tk.Label(iiframe, bg=dialog_bg, text=blank, font=('yu gothic ui', 24, 'bold'), width=1098, height=2)
     new_entry.pack(side=tk.BOTTOM)
     
     add_button=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/add.png')
-    add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=add_data)
+    add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=add_to_recent)
     add_button_lbl.image=add_button
     add_button_lbl.place(x=16,y=16)
         
@@ -338,9 +403,6 @@ def st_frame():
     
 def chk_frame():
     return
-    
-if __name__=="__main__":
-    chk_frontend()
 
 def run_dashboard(user_data:dict):
     chk_frontend(user_data)
