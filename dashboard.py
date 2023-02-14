@@ -157,7 +157,7 @@ def logout_no():
 def insert_into_reminder():
     conn=sqlite3.connect('reg_usrs.db')
     c=conn.cursor()
-    c.execute("INSERT INTO reminder_table (Title, Description, Deploy_date, Deploy_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?, ?, ?)",[add_title.get(),add_description.get(), db_date, time1, 0 , uid])
+    c.execute("INSERT INTO reminder_table (title, description, deploy_date, deploy_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?, ?, ?)",[add_title.get(),add_description.get(), db_date, time1, 0 , uid])
     conn.commit()
 
 def tree():

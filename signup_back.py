@@ -16,18 +16,19 @@ def registered_table():
     # Creating Users Table
         c.execute(""" CREATE TABLE users(
             ID INTEGER PRIMARY KEY AUTOINCREMENT,
-            username text(10),
-            email text(30) UNIQUE , 
-            epassword text(10),
-            cpassword text(10)
+            username TEXT(10),
+            email TEXT(30) UNIQUE , 
+            epassword TEXT(10),
+            cpassword TEXT(10)
         )""")
     
     #Creating Tasks table
         c.execute(""" CREATE TABLE reminder_table(
             ID INTEGER PRIMARY KEY AUTOINCREMENT,
-            Description text(300),
-            Deploy_date DATETIME,
-            Deploy_time DATETIME,
+            title TEXT(10),
+            description TEXT(300),
+            deploy_date DATETIME,
+            deploy_time DATETIME,
             is_repeat TINYINT,
             belongs_to INTEGER,
             CONSTRAINT fk_users
@@ -47,11 +48,11 @@ def ins_into_users(w, x, y, z):
     conn.close()
 
 
-def ins_into_rem(w, x, y, z):
+def ins_into_rem(v, w, x, y, z):
     conn = sqlite3.connect("reg_usrs.db")  
     c=conn.cursor()
     with conn:
-        c.execute("INSERT INTO reminder_table(Description, Deploy_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?)",[w,x,y,z])    
+        c.execute("INSERT INTO reminder_table(title, description, deploy_date, deploy_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?)",[v, w,x,y,z])    
     conn.commit()
     conn.close()
 
@@ -61,11 +62,11 @@ registered_table()
  # c.execute("DELETE FROM users")
 
 """ Insert into users 1st values """
-# ins_into_users('Rohan', 'roahhanchaulagain@gmail.com', 'rhsn123', 'rhsn123')
-# ins_into_users('Haseena', 'rkc697418@gmail.com', 'hrsn123', 'hrsn123')
-# ins_into_users('Sujina', 'sujinasht307@gmail.com', 'snrh123', 'snrh123')
-# ins_into_users('Nikesh', 'bhandarinikesh93@gmail.com', 'nsrh123', 'nsrh123')
-# ins_into_users('Ashutosh', 'ashboy@gmail.com', 'bhadre', 'bhadre')
+ins_into_users('Rohan', 'roahhanchaulagain@gmail.com', 'rhsn123', 'rhsn123')
+ins_into_users('Haseena', 'rkc697418@gmail.com', 'hrsn123', 'hrsn123')
+ins_into_users('Sujina', 'sujinasht307@gmail.com', 'snrh123', 'snrh123')
+ins_into_users('Nikesh', 'bhandarinikesh93@gmail.com', 'nsrh123', 'nsrh123')
+ins_into_users('Ashutosh', 'ashboy@gmail.com', 'bhadre', 'bhadre')
 
 
 
