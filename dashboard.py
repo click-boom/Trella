@@ -202,7 +202,42 @@ def insert_into_reminder():
     c.execute("INSERT INTO reminder_table (title, description, deploy_date, deploy_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?, ?, ?)",[add_title.get(),add_description.get(), db_date, time1, 0 , uid])
     conn.commit()
 
+def top_level():
+    global toplvl
+    toplvl=tk.Toplevel()
+    toplvl.geometry('400x150')
+    toplvl.title('Delete Reminder')
+    toplvl.config(bg=dth_clr)
+    dialog_lbl=tk.Label(toplvl,text="Enter the reminder No. you want to delete", bg=dth_clr, fg=lfnt,font=('yu gothic ui', 12, 'bold'), pady=15)
+    dialog_lbl.pack()
+    
+    global tlevel_entry
+    tlevel_entry=tk.Entry(toplvl,width=23,font="Arial, 12")
+    tlevel_entry.pack()
 
+    del_btn=tk.Button(toplvl,text='DELETE',bg=dth_clr, fg=lfnt, font="Arial, 12",command=dele)
+    del_btn.place(x=250,y=100)
+
+    close_btn=tk.Button(toplvl,text='OK',font="Arial, 12", bg=dth_clr, fg=lfnt, command=tok)
+    close_btn.place(x=340,y=100)
+    
+
+def tok():
+    toplvl.destroy()
+    view_data()
+
+def dele():
+    val=tlevel_entry.get()
+    conn=sqlite3.connect('reg_usrs.db')
+    c=conn.cursor()
+
+    try:
+        c = conn.cursor()
+        c.execute("DELETE FROM reminder_table WHERE ID=(?)",[val])
+        conn.commit()
+    
+    except:
+        pass
 #=======================  FRONT END  ======================================
 #------------------  Theme  -----------------------------
 
@@ -325,7 +360,7 @@ def rem_frame():
 
     Add_btn=tk.Button(iframe,text='Add to Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=insert_into_reminder)
     Add_btn.place(x=1010, y=620)
-    Delete_btn=tk.Button(iframe,text='Delete Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2' )
+    Delete_btn=tk.Button(iframe,text='Delete Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=top_level )
     Delete_btn.place(x=280, y=900)
     View_btn=tk.Button(iframe,text='View Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=view_data )
     View_btn.place(x=50, y=900)
