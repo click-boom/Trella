@@ -67,23 +67,83 @@ def on_dunpress(str):
 def ok(frname):
     frname.destroy()
     
+def tree():
+        tree_fnt=15
+        global tree_scroll_frame
+        tree_scroll_frame=ttk.Treeview(iframe)
+        tree_scroll_frame['show']='headings'
+        tree_scroll_frame.place(relx=0.15,rely=0.1,width=1038,height=750)
+        ttk.Style().configure("Treeview", font=('yu gothic ui', tree_fnt, 'bold'),background=dth_clr, foreground=lfnt, fieldbackground=dth_clr, rowheight=int(tree_fnt*2.5))
+        ttk.Style().configure("Treeview.Heading", font=('yu gothic ui', 20, 'bold'), background=dialog_bg, foreground=lth_clr)
+
+        scrollbarX=tk.Scrollbar(iframe,orient=tk.HORIZONTAL, background=lth_clr, activebackground=lth_clr, troughcolor=dth_clr)
+        scrollbarX.place(relx=0.15,rely=0.7970,height=12,width=1040)
+        
+        scrollbarY=tk.Scrollbar(iframe,orient=tk.VERTICAL, background=lth_clr, activebackground=lth_clr, troughcolor=dth_clr)
+        scrollbarY.place(relx=0.8325,rely=0.0995,width=12,height=750)
+        
+        tree_scroll_frame.configure(xscrollcommand=scrollbarX.set,yscrollcommand=scrollbarY.set)
+        tree_scroll_frame.configure(selectmode=tk.EXTENDED)
+
+        scrollbarY.configure(command=tree_scroll_frame.yview)
+        scrollbarX.configure(command=tree_scroll_frame.xview)
+        tree_scroll_frame.configure(
+            columns=('ID','Description','Deploy date', 'Deploy time', 'Repeat')
+
+        )
+        tree_scroll_frame.heading("#0",text="S.N",anchor=tk.W)
+        tree_scroll_frame.heading("ID",text="ID",anchor=tk.W)
+        tree_scroll_frame.heading("Description",text="Description",anchor=tk.W)
+        tree_scroll_frame.heading("Deploy date",text="Deploy date",anchor=tk.W)
+        tree_scroll_frame.heading("Deploy time",text="Deploy time",anchor=tk.W)
+        tree_scroll_frame.heading("Repeat",text="Repeat",anchor=tk.W)
+
+
+
+        tree_scroll_frame.column("#0",width=120,minwidth=40)
+        tree_scroll_frame.column("ID",width=120,minwidth=20)
+        tree_scroll_frame.column("Description",width=120,minwidth=55)
+        tree_scroll_frame.column("Deploy date",width=120,minwidth=45)
+        tree_scroll_frame.column("Deploy time",width=120,minwidth=55)
+        tree_scroll_frame.column("Repeat",width=120,minwidth=40)
+
+def tree_data(user_id):
+    conn=sqlite3.connect('reg_usrs.db')
+    c=conn.cursor()
+
+    c.execute("SELECT * FROM reminder_table WHERE belongs_to=(?)", [user_id])
+    i=0
+    for val in c:
+        tree_scroll_frame.insert("", i, text=i+1, values=(val[0], val[1], val[2], val[3], val[4], val[5]))
+        i+=1
+    
+
+def view_data():
+    iiframe.destroy()
+    tree()
+    tree_data(uid)
+
 def cal_toggle_open():
-    global cal_toggle_fr
-    cal_toggle_fr=tk.Frame(iframe, bg=dth_clr)
-    cal_toggle_fr.place(width=235, height=250, x=980 , y=690)
+    global cal_toggle_frame
+    cal_toggle_frame=tk.Frame(iframe, bg=dth_clr)
+    cal_toggle_frame.place(width=235, height=250, x=980 , y=690)
     
 
     global cal
-    cal=Calendar(cal_toggle_fr, selectmode='day')
+    cal=Calendar(cal_toggle_frame, selectmode='day')
     cal.grid()
 
-    get_btn=tk.Button(cal_toggle_fr, text='Pick date',font=('yu gothic ui', 12, 'bold'), fg=lfnt, bg=btn_bg, bd=0, highlightthickness=0, command=fetch_date)
+    get_btn=tk.Button(cal_toggle_frame, text='Pick date',font=('yu gothic ui', 12, 'bold'), fg=lfnt, bg=btn_bg, bd=0, highlightthickness=0, command=fetch_date)
     get_btn.place(x=10, y=220)
 
 
-    OK_btn=tk.Button(cal_toggle_fr, text='OK',font=('yu gothic ui', 12, 'bold'), fg=lfnt, bg=btn_bg, bd=0, highlightthickness=0, command=lambda: ok(cal_toggle_fr))
+    OK_btn=tk.Button(cal_toggle_frame, text='OK',font=('yu gothic ui', 12, 'bold'), fg=lfnt, bg=btn_bg, bd=0, highlightthickness=0, command=lambda: ok(cal_toggle_frame))
     OK_btn.place(x=120, y=220)
     
+    global date_lbl
+    date_lbl=tk.Label(cal_toggle_frame, text='', fg=lfnt, bg=dth_clr, font=('yu gothic ui', 12, 'bold'))
+    date_lbl.place(x=10, y=180)
+
 def timepick():
     al_toggle_fr=tk.Frame(iframe, bg=dth_clr , width=400, height=400)
     al_toggle_fr.place( x=1050 , y=530)
@@ -142,63 +202,6 @@ def insert_into_reminder():
     c.execute("INSERT INTO reminder_table (title, description, deploy_date, deploy_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?, ?, ?)",[add_title.get(),add_description.get(), db_date, time1, 0 , uid])
     conn.commit()
 
-def tree():
-        tree_fnt=15
-        global tree_scroll_frame
-        tree_scroll_frame=ttk.Treeview(iframe)
-        tree_scroll_frame.place(relx=0.15,rely=0.1,width=1038,height=750)
-        ttk.Style().configure("Treeview", font=('yu gothic ui', tree_fnt, 'bold'),background=dth_clr, foreground=lfnt, fieldbackground=dth_clr, rowheight=int(tree_fnt*2.5))
-        ttk.Style().configure("Treeview.Heading", font=('yu gothic ui', 20, 'bold'), background=dialog_bg, foreground=lth_clr)
-
-        scrollbarX=tk.Scrollbar(iframe,orient=tk.HORIZONTAL, background=lth_clr, activebackground=lth_clr, troughcolor=dth_clr)
-        scrollbarX.place(relx=0.15,rely=0.7970,height=12,width=1040)
-        
-        scrollbarY=tk.Scrollbar(iframe,orient=tk.VERTICAL, background=lth_clr, activebackground=lth_clr, troughcolor=dth_clr)
-        scrollbarY.place(relx=0.8325,rely=0.0995,width=12,height=750)
-        
-        tree_scroll_frame.configure(xscrollcommand=scrollbarX.set,yscrollcommand=scrollbarY.set)
-        tree_scroll_frame.configure(selectmode=tk.EXTENDED)
-
-        scrollbarY.configure(command=tree_scroll_frame.yview)
-        scrollbarX.configure(command=tree_scroll_frame.xview)
-        tree_scroll_frame.configure(
-            columns=('ID','Description','Deploy date', 'Deploy time', 'Repeat')
-
-        )
-        tree_scroll_frame.heading("#0",text="S.N",anchor=tk.W)
-        tree_scroll_frame.heading("ID",text="ID",anchor=tk.W)
-        tree_scroll_frame.heading("Description",text="Description",anchor=tk.W)
-        tree_scroll_frame.heading("Deploy date",text="Deploy date",anchor=tk.W)
-        tree_scroll_frame.heading("Deploy time",text="Deploy time",anchor=tk.W)
-        tree_scroll_frame.heading("Repeat",text="Repeat",anchor=tk.W)
-
-
-
-        tree_scroll_frame.column("#0",width=120,minwidth=40)
-        tree_scroll_frame.column("ID",width=120,minwidth=20)
-        tree_scroll_frame.column("Description",width=120,minwidth=55)
-        tree_scroll_frame.column("Deploy date",width=120,minwidth=45)
-        tree_scroll_frame.column("Deploy time",width=120,minwidth=55)
-        tree_scroll_frame.column("Repeat",width=120,minwidth=40)
-
-def tree_data(user_id):
-    conn=sqlite3.connect('reg_usrs.db')
-    c=conn.cursor()
-
-    c.execute("SELECT * FROM reminder_table WHERE belongs_to=(?)", [user_id])
-    i=0
-    for val in c:
-        tree_scroll_frame.insert("", i, text=i+1, values=(val[0], val[1], val[2], val[3], val[4], val[5]))
-        i+=1
-    
-    global date_lbl
-    date_lbl=tk.Label(cal_toggle_fr, text='', fg=lfnt, bg=dth_clr, font=('yu gothic ui', 12, 'bold'))
-    date_lbl.place(x=10, y=180)
-
-def view_data():
-    iiframe.destroy()
-    tree()
-    tree_data(uid)
 
 #=======================  FRONT END  ======================================
 #------------------  Theme  -----------------------------
