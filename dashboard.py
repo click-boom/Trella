@@ -47,20 +47,6 @@ def add_to_recent():
     items=add_title.get()+(' '*10) +add_description.get()+(' '*10) +db_date+(' '*10)+time1
     new_entry.config(text=items)
 
-def view_data():
-    iiframe.destroy()
-    tree()
-    tree_data(uid)
-
-def tree_data(user_id):
-    conn=sqlite3.connect('reg_usrs.db')
-    c=conn.cursor()
-
-    c.execute("SELECT * FROM reminder_table WHERE belongs_to=(?)", [user_id])
-    i=0
-    for val in c:
-        tree_scroll_frame.insert("", i, text=i+1, values=(val[0], val[1], val[2], val[3], val[4], val[5]))
-        i+=1
 
 def on_tpress(str):
     add_title.delete(0, tk.END)
@@ -97,10 +83,6 @@ def cal_toggle_open():
 
     OK_btn=tk.Button(cal_toggle_fr, text='OK',font=('yu gothic ui', 12, 'bold'), fg=lfnt, bg=btn_bg, bd=0, highlightthickness=0, command=lambda: ok(cal_toggle_fr))
     OK_btn.place(x=120, y=220)
-    
-    global date_lbl
-    date_lbl=tk.Label(cal_toggle_fr, text='', fg=lfnt, bg=dth_clr, font=('yu gothic ui', 12, 'bold'))
-    date_lbl.place(x=10, y=180)
     
 def timepick():
     al_toggle_fr=tk.Frame(iframe, bg=dth_clr , width=400, height=400)
@@ -198,6 +180,25 @@ def tree():
         tree_scroll_frame.column("Deploy date",width=120,minwidth=45)
         tree_scroll_frame.column("Deploy time",width=120,minwidth=55)
         tree_scroll_frame.column("Repeat",width=120,minwidth=40)
+
+def tree_data(user_id):
+    conn=sqlite3.connect('reg_usrs.db')
+    c=conn.cursor()
+
+    c.execute("SELECT * FROM reminder_table WHERE belongs_to=(?)", [user_id])
+    i=0
+    for val in c:
+        tree_scroll_frame.insert("", i, text=i+1, values=(val[0], val[1], val[2], val[3], val[4], val[5]))
+        i+=1
+    
+    global date_lbl
+    date_lbl=tk.Label(cal_toggle_fr, text='', fg=lfnt, bg=dth_clr, font=('yu gothic ui', 12, 'bold'))
+    date_lbl.place(x=10, y=180)
+
+def view_data():
+    iiframe.destroy()
+    tree()
+    tree_data(uid)
 
 #=======================  FRONT END  ======================================
 #------------------  Theme  -----------------------------
