@@ -302,9 +302,7 @@ def chk_frontend(user_data:dict):
     st_btn_lbl.image=btn_img
     st_btn_lbl.place(x=15, y=550)
 
- #=========================================================================================================================================================   
-    
-
+ #=========================================================================================================================================
 # ====================  Buttons  ================================================================================
     #-----------------  Checklist  --------------------------
     chk_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/check-list.png'))
@@ -444,18 +442,32 @@ def note_frame():
     note.insert(tk.END, "Add Notes...\n")
 
     down_frame=tk.Frame(iframe,width=1200,height=70,bg=dialog_bg)
-    down_frame.place(x=170,y=950)
+    down_frame.place(x=155,y=950)
     
-    save=tk. Button(down_frame, text='Save', font=('yu gothic ui', 12, 'bold'), bg=btn_bg, fg=lfnt, bd=0,cursor='hand2',activebackground=btn_bg,highlightthickness=0)
-    save.place(x=10, y=20)
+    save_note=tk. Button(down_frame, text='Save Note', font=('yu gothic ui', 20, 'bold'), bg=btn_bg, fg=lfnt, bd=0,cursor='hand2',activebackground=btn_bg,highlightthickness=0)
+    save_note.place(x=10, y=20)
+    
+    Notes_list=tk. Button(down_frame, text='Notes List', font=('yu gothic ui', 20, 'bold'), bg=btn_bg, fg=lfnt, bd=0,cursor='hand2',activebackground=btn_bg,highlightthickness=0)
+    Notes_list.place(x=150, y=20)
 
-    # attachicon= ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/attach.png'))
-    # attach=tk. Button(down_frame, image=attachicon,bg=dth_clr,bd=0,cursor='hand2',activebackground=dth_clr,highlightthickness=0)
-    # attach.image= attachicon
-    # attach.place(x=300, y=15) 
+    # Update_note=tk. Button(down_frame, text='Update Note', font=('yu gothic ui', 15, 'bold'), bg=btn_bg, fg=lfnt, bd=0,cursor='hand2',activebackground=btn_bg,highlightthickness=0)
+    # Update_note.place(x=10, y=20)
+    
+    # Delete_note=tk. Button(down_frame, text='Delete Note', font=('yu gothic ui', 15, 'bold'), bg=btn_bg, fg=lfnt, bd=0,cursor='hand2',activebackground=btn_bg,highlightthickness=0)
+    # Delete_note.place(x=10, y=20)
+    
     
 def chk_frame():
-    return
+
+    dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.png'))
+    dash_bg=tk.Label(iframe, image=dashfr_img)
+    dash_bg.image=dashfr_img
+    dash_bg.pack(fill='both', expand='yes')
+
+# ----------------  Dashboard Heading  -------------------
+    heading =tk.Label(iframe , text='Check-List',font=('yu gothic ui', 44, 'bold'),bg=dth_clr, fg=lfnt)
+    heading.place(x=650, y=0)
+
 
 def run_dashboard(user_data:dict):
     chk_frontend(user_data)
