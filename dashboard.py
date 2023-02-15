@@ -458,19 +458,41 @@ def note_frame():
     
 
 
-def deletetask():
-    return
 
 def chk_frame():
-    empty_list=[]
-    conn=sqlite3.connect('reg_usrs.db')
-    c=conn.cursor()
-    # def add_checklist():
-        # c.execute("INSERT INTO checklist_table (title, items, belongs_to) VALUES (?, ?, ?)",[title_entry.get(), item_entry.get(), uid])
-        # print()
+    def on_select(value):
+        selevalue=listbox.get(listbox.curselection())
+        print("selected value:",selevalue)
 
+    def view_checklist():
+        listbox.delete(0, tk.END)
+        conn=sqlite3.connect('reg_usrs.db')
+        c=conn.cursor()
+
+        c.execute("SELECT items FROM checklist_table WHERE title=? AND belongs_to=?",[title_entry.get(),uid])
+        items=c.fetchall()
+        for i in range(len(items)):
+            listbox.insert(tk.END, items[i][0])
+    
+    def add_checklist():
+        listbox.delete(0, tk.END)
+        conn=sqlite3.connect('reg_usrs.db')
+        c=conn.cursor()
+        c.execute("INSERT INTO checklist_table (title, items, belongs_to) VALUES (?, ?, ?)",[title_entry.get(), item_entry.get(), uid])
+        c.execute("SELECT items FROM checklist_table WHERE belongs_to=? AND title=?",[uid, title_entry.get()])
+        info= c.fetchall()
+        for i in range(len(info)):
+            listbox.insert(tk.END, info[i][0])
+        conn.commit()
+
+    def done_checklist():
+        conn=sqlite3.connect('reg_usrs.db')
+        c=conn.cursor()
         
-    conn.commit()
+        c = conn.cursor()
+        # c.execute("DELETE FROM reminder_table WHERE title=? AND belongs_to=? AND items=?",[title_entry.get(), uid, ])
+        conn.commit()
+
 
     dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.png'))
     dash_bg=tk.Label(iframe, image=dashfr_img)
@@ -493,38 +515,33 @@ def chk_frame():
     scrollbar.pack(side=tk.RIGHT,fill=tk.BOTH)
     listbox.config(yscrollcommand=scrollbar.set)
     scrollbar.config(command=listbox.yview)
+    listbox.bind("<<listboxselected>>",on_select)
+
 
     title_entry=tk.Entry(cframe,width=20,font=('yu gothic ui', 22, 'bold'),bd=0, highlightthickness=0, bg=dialog_bg, fg=lfnt)
-    title_entry.place(x=350,y=16)
+    title_entry.place(x=250,y=16)
     title_entry.focus()
 
     item_entry=tk.Entry(down_frame,width=60,font=('yu gothic ui', 15, 'bold'),bd=0, highlightthickness=0, bg=dth_clr, fg=lfnt)
     item_entry.place(x=60,y=16)
     item_entry.focus()
 
-    Delete_btn=tk.Button(iframe,text='Delete', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=deletetask )
-    Delete_btn.place(x=280, y=900)
+    Done_btn=tk.Button(iframe,text='Mark as done', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=lth_clr, activeforeground=dfnt, highlightthickness=0, bd=0, cursor='hand2', command=done_checklist)
+    Done_btn.place(x=160, y=900)
+    View_btn=tk.Button(cframe,text='View Checklist Items', bg=dialog_bg, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=lth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=view_checklist)
+    View_btn.place(x=650, y=16)
 
     add_btn_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/add.png')
-    add_btn_lbl=tk.Button(down_frame,image=add_btn_img,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2')
+    add_btn_lbl=tk.Button(down_frame,image=add_btn_img,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=add_checklist)
     add_btn_lbl.image=add_btn_img
     add_btn_lbl.place(x=16,y=16)
 
-    Delete_btn=tk.Button(iframe,text='Delete', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=deletetask )
-    Delete_btn.place(x=280, y=900)
+    warning=tk.Label(iframe,text="Items completed in the check list will be automatically deleted, Incomplete tasks remain",fg=lfnt, bg=dth_clr, font=('yu gothic ui', 20))
+    warning.place(x=365,y=905)
 
-    c.execute("SELECT items FROM checklist_table WHERE belongs_to=? AND title=?",[uid, title_entry.get()])
-    info=c.fetchall()
-    print(info)
-#     for i in range(len(info)):
-#         listbox.insert(tk.END,info[i][0])
 
 def run_dashboard(user_data:dict):
     chk_frontend(user_data)
     dash.mainloop()
 
 
-        # checklsist_entry=item_entry.get()
-        # label=tk.Label(cframe,text=checklsist_entry,width=40,font=('yu gothic ui', 14, 'bold'))
-        # label.pack(padx=15,pady=17)
-        # item_entry.delete(0,'end')
