@@ -24,10 +24,10 @@ def dash_unindicate():
 def dash_indicate(ind, page):
     dash_unindicate()
     ind.config(fg='white')
-    dell_fr()
+    dell_for_change_fr()
     page()
 
-def dell_fr():
+def dell_for_change_fr():
     for frame in iframe.winfo_children():
         frame.destroy()
 
@@ -43,23 +43,23 @@ def fetch_time():
     global time1
     time1=str(time[0])+':'+str(time[1])+time[2]
 
-def add_to_recent():
+def recently_added_checklist():
     items=add_title.get()+(' '*10) +add_description.get()+(' '*10) +db_date+(' '*10)+time1
     new_entry.config(text=items)
 
 
-def on_tpress(str):
+def on_rem_title_press(str):
     add_title.delete(0, tk.END)
 
-def on_tunpress(str):
+def on_rem_title_unpress(str):
     add_title.delete(0, tk.END)
     if add_title.get()=='':
         add_title.insert(0,'Reminder Title...')
 
-def on_dpress(str):
+def on_rem_description_press(str):
     add_description.delete(0, tk.END)
 
-def on_dunpress(str):
+def on_rem_description_unpress(str):
     add_description.delete(0, tk.END)
     if add_description.get()=='':
         add_description.insert(0,'Reminder Description...')
@@ -109,7 +109,7 @@ def tree():
         tree_scroll_frame.column("Deploy time",width=120,minwidth=55)
         tree_scroll_frame.column("Repeat",width=120,minwidth=40)
 
-def tree_data(user_id):
+def view_in_tree_data(user_id):
     conn=sqlite3.connect('reg_usrs.db')
     c=conn.cursor()
 
@@ -120,10 +120,10 @@ def tree_data(user_id):
         i+=1
     
 
-def view_data():
+def view_data_btn():
     iiframe.destroy()
     tree()
-    tree_data(uid)
+    view_in_tree_data(uid)
 
 def cal_toggle_open():
     global cal_toggle_frame
@@ -217,18 +217,17 @@ def top_level():
     tlevel_entry=tk.Entry(toplvl,width=23,font="Arial, 12")
     tlevel_entry.pack()
 
-    del_btn=tk.Button(toplvl,text='DELETE',bg=dth_clr, fg=lfnt, font=('yu gothic ui', 12, 'bold') ,command=dele)
+    del_btn=tk.Button(toplvl,text='DELETE',bg=dth_clr, fg=lfnt, font=('yu gothic ui', 12, 'bold') ,command=delete_from_reminder)
     del_btn.place(x=250,y=100)
 
-    close_btn=tk.Button(toplvl,text='OK',font="Arial, 12", bg=dth_clr, fg=lfnt, command=tok)
+    close_btn=tk.Button(toplvl,text='OK',font="Arial, 12", bg=dth_clr, fg=lfnt, command=tree_ok)
     close_btn.place(x=340,y=100)
     
-
-def tok():
+def tree_ok():
     toplvl.destroy()
-    view_data()
+    view_in_tree_data(uid)
 
-def dele():
+def delete_from_reminder():
     val=tlevel_entry.get()
     conn=sqlite3.connect('reg_usrs.db')
     c=conn.cursor()
@@ -362,7 +361,7 @@ def rem_frame():
     Add_btn.place(x=1010, y=620)
     Delete_btn=tk.Button(iframe,text='Delete Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=top_level )
     Delete_btn.place(x=280, y=900)
-    View_btn=tk.Button(iframe,text='View Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=view_data )
+    View_btn=tk.Button(iframe,text='View Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=view_in_tree_data(uid) )
     View_btn.place(x=50, y=900)
     #------------------  Inner inner Frame  ---------------------------
     global iiframe
@@ -402,15 +401,15 @@ def rem_frame():
     add_title=tk.Entry(down_frame, font=('yu gothic ui', 20, 'bold'), fg=lth_clr, bg=dialog_bg, bd=0 ,highlightthickness=0, textvariable=tentry_var, insertbackground=lth_clr, width=15)
     add_title.place(x=70,y=15)
     add_title.insert(0,'Reminder Title....')
-    add_title.bind("<FocusIn>",on_tpress)
+    add_title.bind("<FocusIn>",on_rem_title_press)
     
     dentry_var=tk.StringVar()
     global add_description
     add_description=tk.Entry(down_frame, font=('yu gothic ui', 20, 'bold'), fg=lth_clr, bg=dialog_bg, bd=0 ,highlightthickness=0, textvariable=dentry_var, insertbackground=lth_clr, width=20)
     add_description.place(x=400,y=15)
     add_description.insert(0,'Reminder Description....')
-    add_description.bind("<FocusIn>",on_dpress)
-    add_description.bind("<FocusOut>",on_dunpress)
+    add_description.bind("<FocusIn>",on_rem_description_press)
+    add_description.bind("<FocusOut>",on_rem_description_unpress)
 
     global new_entry
     blank=('_'*8)+(' '*10)+('_'*8)+(' '*10)+('_'*8)+(' '*10)+('_'*8)
@@ -418,7 +417,7 @@ def rem_frame():
     new_entry.pack(side=tk.BOTTOM)
     
     add_button=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/add.png')
-    add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=add_to_recent)
+    add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=recently_added_checklist)
     add_button_lbl.image=add_button
     add_button_lbl.place(x=16,y=16)
         
@@ -457,18 +456,75 @@ def note_frame():
     # Delete_note.place(x=10, y=20)
     
     
+
+
+def deletetask():
+    return
+
 def chk_frame():
+    empty_list=[]
+    conn=sqlite3.connect('reg_usrs.db')
+    c=conn.cursor()
+    # def add_checklist():
+        # c.execute("INSERT INTO checklist_table (title, items, belongs_to) VALUES (?, ?, ?)",[title_entry.get(), item_entry.get(), uid])
+        # print()
+
+        
+    conn.commit()
 
     dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.png'))
     dash_bg=tk.Label(iframe, image=dashfr_img)
     dash_bg.image=dashfr_img
     dash_bg.pack(fill='both', expand='yes')
-
 # ----------------  Dashboard Heading  -------------------
     heading =tk.Label(iframe , text='Check-List',font=('yu gothic ui', 44, 'bold'),bg=dth_clr, fg=lfnt)
     heading.place(x=650, y=0)
 
+    cframe=tk.Frame(iframe, bd=3,width=1100,height=700,bg=dth_clr)
+    cframe.place(x=280, y=130)
+
+    down_frame=tk.Frame(iframe,width=1200,height=70,bg=dth_clr)
+    down_frame.place(x=155,y=950)
+
+    listbox=tk.Listbox(cframe,font=("arial 12"),width=105,height=38,bg=dth_clr,fg=lfnt,cursor="hand2",selectbackground=dialog_bg)
+    listbox.pack(side=tk.LEFT,fill=tk.BOTH,padx=2)
+    
+    scrollbar=tk.Scrollbar(cframe)
+    scrollbar.pack(side=tk.RIGHT,fill=tk.BOTH)
+    listbox.config(yscrollcommand=scrollbar.set)
+    scrollbar.config(command=listbox.yview)
+
+    title_entry=tk.Entry(cframe,width=20,font=('yu gothic ui', 22, 'bold'),bd=0, highlightthickness=0, bg=dialog_bg, fg=lfnt)
+    title_entry.place(x=350,y=16)
+    title_entry.focus()
+
+    item_entry=tk.Entry(down_frame,width=60,font=('yu gothic ui', 15, 'bold'),bd=0, highlightthickness=0, bg=dth_clr, fg=lfnt)
+    item_entry.place(x=60,y=16)
+    item_entry.focus()
+
+    Delete_btn=tk.Button(iframe,text='Delete', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=deletetask )
+    Delete_btn.place(x=280, y=900)
+
+    add_btn_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/add.png')
+    add_btn_lbl=tk.Button(down_frame,image=add_btn_img,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2')
+    add_btn_lbl.image=add_btn_img
+    add_btn_lbl.place(x=16,y=16)
+
+    Delete_btn=tk.Button(iframe,text='Delete', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=deletetask )
+    Delete_btn.place(x=280, y=900)
+
+    c.execute("SELECT items FROM checklist_table WHERE belongs_to=? AND title=?",[uid, title_entry.get()])
+    info=c.fetchall()
+    print(info)
+#     for i in range(len(info)):
+#         listbox.insert(tk.END,info[i][0])
 
 def run_dashboard(user_data:dict):
     chk_frontend(user_data)
     dash.mainloop()
+
+
+        # checklsist_entry=item_entry.get()
+        # label=tk.Label(cframe,text=checklsist_entry,width=40,font=('yu gothic ui', 14, 'bold'))
+        # label.pack(padx=15,pady=17)
+        # item_entry.delete(0,'end')
