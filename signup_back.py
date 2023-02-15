@@ -35,6 +35,17 @@ def registered_table():
                 FOREIGN KEY (belongs_to)
                 REFERENCES users(id)
         )""")
+        
+    #Creating Notes table
+        c.execute(""" CREATE TABLE notes_table(
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT(10),
+            Note TEXT(300),
+            belongs_to INTEGER,
+            CONSTRAINT fk_users
+                FOREIGN KEY (belongs_to)
+                REFERENCES users(id)
+        )""")
     conn.commit()
     conn.close()
 
@@ -47,6 +58,14 @@ def ins_into_users(w, x, y, z):
     conn.commit()
     conn.close()
 
+
+def ins_into_rem(v, w, x, y, z):
+    conn = sqlite3.connect("reg_usrs.db")  
+    c=conn.cursor()
+    with conn:
+        c.execute("INSERT INTO reminder_table(title, description, deploy_date, deploy_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?)",[v, w,x,y,z])    
+    conn.commit()
+    conn.close()
 
 def ins_into_rem(v, w, x, y, z):
     conn = sqlite3.connect("reg_usrs.db")  
@@ -84,6 +103,12 @@ def dell_rem(id:int):
     conn = sqlite3.connect("reg_usrs.db")  
     c=conn.cursor()
     c.execute("DELETE FROM reminder_table WHERE belongs_to=?",[id])
+    conn.commit()
+
+def dell_note(id:int):
+    conn = sqlite3.connect("reg_usrs.db")  
+    c=conn.cursor()
+    c.execute("DELETE FROM note_table WHERE belongs_to=?",[id])
     conn.commit()
 
 def get_usr_info(user_id:int)->list:

@@ -88,11 +88,12 @@ def tree():
         scrollbarY.configure(command=tree_scroll_frame.yview)
         scrollbarX.configure(command=tree_scroll_frame.xview)
         tree_scroll_frame.configure(
-            columns=('ID','Description','Deploy date', 'Deploy time', 'Repeat')
+            columns=('ID','Title','Description','Deploy date', 'Deploy time', 'Repeat')
 
         )
         tree_scroll_frame.heading("#0",text="S.N",anchor=tk.W)
         tree_scroll_frame.heading("ID",text="ID",anchor=tk.W)
+        tree_scroll_frame.heading("Title",text="Title",anchor=tk.W)
         tree_scroll_frame.heading("Description",text="Description",anchor=tk.W)
         tree_scroll_frame.heading("Deploy date",text="Deploy date",anchor=tk.W)
         tree_scroll_frame.heading("Deploy time",text="Deploy time",anchor=tk.W)
@@ -102,6 +103,7 @@ def tree():
 
         tree_scroll_frame.column("#0",width=120,minwidth=40)
         tree_scroll_frame.column("ID",width=120,minwidth=20)
+        tree_scroll_frame.column("Title",width=120,minwidth=20)
         tree_scroll_frame.column("Description",width=120,minwidth=55)
         tree_scroll_frame.column("Deploy date",width=120,minwidth=45)
         tree_scroll_frame.column("Deploy time",width=120,minwidth=55)
@@ -215,7 +217,7 @@ def top_level():
     tlevel_entry=tk.Entry(toplvl,width=23,font="Arial, 12")
     tlevel_entry.pack()
 
-    del_btn=tk.Button(toplvl,text='DELETE',bg=dth_clr, fg=lfnt, font="Arial, 12",command=dele)
+    del_btn=tk.Button(toplvl,text='DELETE',bg=dth_clr, fg=lfnt, font=('yu gothic ui', 12, 'bold') ,command=dele)
     del_btn.place(x=250,y=100)
 
     close_btn=tk.Button(toplvl,text='OK',font="Arial, 12", bg=dth_clr, fg=lfnt, command=tok)
@@ -329,7 +331,7 @@ def chk_frontend(user_data:dict):
     
     st_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/sticky-note.png'))
     global st_btn
-    st_btn=tk.Button(st_btn_lbl, text='       STICKY NOTES',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg,activeforeground='white' , bd=0,highlightthickness=0, command=lambda:dash_indicate(st_btn, st_frame) )
+    st_btn=tk.Button(st_btn_lbl, text='       STICKY NOTES',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg,activeforeground='white' , bd=0,highlightthickness=0, command=lambda:dash_indicate(st_btn, note_frame) )
     st_btn.place(x=30, y=10)
 
     st_img_lbl=tk.Label(st_btn, image=st_img, bg=btn_bg)
@@ -423,37 +425,34 @@ def rem_frame():
     add_button_lbl.place(x=16,y=16)
         
 
-def st_frame():
-#----------------  Dashboard Heading  -------------------
-    heading =tk.Label(iframe , text='Sticky Notes',font=('yu gothic ui', 44, 'bold'),bg=dth_clr, fg=lfnt)
-    heading.place(x=650, y=0)
-        
+def note_frame():
+    
     dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.png'))
     dash_bg=tk.Label(iframe, image=dashfr_img)
     dash_bg.image=dashfr_img
     dash_bg.pack(fill='both', expand='yes')
 
-#===========================  Add Writing Area  ======================================   
+# ----------------  Dashboard Heading  -------------------
+    heading =tk.Label(iframe , text='Sticky Notes',font=('yu gothic ui', 44, 'bold'),bg=dth_clr, fg=lfnt)
+    heading.place(x=650, y=0)
+
+
+# ===========================  Add Writing Area  ======================================   
     
-    note= tk.Text(iframe, width=150, height=46, bg=dth_clr, fg=lfnt, insertbackground=lth_clr, bd=0, highlightthickness=0)
-    note.place(x=240, y=120)
- 
-    down_frame=tk.Frame(iframe,width=1200,height=70,bg=dth_clr)
+    note= tk.Text(iframe, width=100, height=34,font=('yu gothic ui', 14, 'bold'), bg=dialog_bg, fg=dfnt, insertbackground=lth_clr, bd=0, highlightthickness=0)
+    note.place(x=150, y=120)
+    note.insert(tk.END, "Add Notes...\n")
+
+    down_frame=tk.Frame(iframe,width=1200,height=70,bg=dialog_bg)
     down_frame.place(x=170,y=950)
     
     save=tk. Button(down_frame, text='Save', font=('yu gothic ui', 12, 'bold'), bg=btn_bg, fg=lfnt, bd=0,cursor='hand2',activebackground=btn_bg,highlightthickness=0)
     save.place(x=10, y=20)
 
-    Aicon=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/A.png'))
-    Aa=tk. Button(dash, image=Aicon,bg='#A4C8E8',bd=0,cursor='hand2',activebackground='#A4C8E8')
-    Aa.image= Aicon
-    Aa.place(x=200, y=15) 
-
-    
-    attachicon= ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/attach.png'))
-    attach=tk. Button(down_frame, image=attachicon,bg=dth_clr,bd=0,cursor='hand2',activebackground=dth_clr,highlightthickness=0)
-    attach.image= attachicon
-    attach.place(x=300, y=15) 
+    # attachicon= ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/attach.png'))
+    # attach=tk. Button(down_frame, image=attachicon,bg=dth_clr,bd=0,cursor='hand2',activebackground=dth_clr,highlightthickness=0)
+    # attach.image= attachicon
+    # attach.place(x=300, y=15) 
     
 def chk_frame():
     return
