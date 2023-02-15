@@ -460,10 +460,11 @@ def note_frame():
 
 
 def chk_frame():
-    def on_select(value):
-        selevalue=listbox.get(listbox.curselection())
-        print("selected value:",selevalue)
-
+   
+    def print_selection():
+        selection = listbox.get(listbox.curselection())
+        return selection
+ 
     def view_checklist():
         listbox.delete(0, tk.END)
         conn=sqlite3.connect('reg_usrs.db')
@@ -490,14 +491,16 @@ def chk_frame():
         c=conn.cursor()
         
         c = conn.cursor()
-        # c.execute("DELETE FROM reminder_table WHERE title=? AND belongs_to=? AND items=?",[title_entry.get(), uid, ])
+        c.execute("DELETE FROM checklist_table WHERE title=? AND belongs_to=? AND items=?",[title_entry.get(), uid, print_selection()])
         conn.commit()
+        listbox.delete(0,tk.END)
 
 
     dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.png'))
     dash_bg=tk.Label(iframe, image=dashfr_img)
     dash_bg.image=dashfr_img
     dash_bg.pack(fill='both', expand='yes')
+
 # ----------------  Dashboard Heading  -------------------
     heading =tk.Label(iframe , text='Check-List',font=('yu gothic ui', 44, 'bold'),bg=dth_clr, fg=lfnt)
     heading.place(x=650, y=0)
@@ -515,7 +518,7 @@ def chk_frame():
     scrollbar.pack(side=tk.RIGHT,fill=tk.BOTH)
     listbox.config(yscrollcommand=scrollbar.set)
     scrollbar.config(command=listbox.yview)
-    listbox.bind("<<listboxselected>>",on_select)
+    listbox.bind("<<ListboxSelect>>", lambda event: print_selection())
 
 
     title_entry=tk.Entry(cframe,width=20,font=('yu gothic ui', 22, 'bold'),bd=0, highlightthickness=0, bg=dialog_bg, fg=lfnt)
