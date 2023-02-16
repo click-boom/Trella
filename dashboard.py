@@ -504,14 +504,17 @@ def chk_frame():
     heading =tk.Label(iframe , text='Check-List',font=('yu gothic ui', 44, 'bold'),bg=dth_clr, fg=lfnt)
     heading.place(x=650, y=0)
 
-    cframe=tk.Frame(iframe, bd=3,width=1100,height=700,bg=dth_clr)
-    cframe.place(x=280, y=130)
+    cframe=tk.Frame(iframe, bd=3,width=1400,height=700,bg=dth_clr)
+    cframe.place(x=280, y=200)
+
+    up_frame=tk.Frame(iframe,width=880,height=70,bg=dth_clr)
+    up_frame.place(x=280,y=150)
 
     down_frame=tk.Frame(iframe,width=1200,height=70,bg=dth_clr)
     down_frame.place(x=155,y=950)
 
-    listbox=tk.Listbox(cframe,font=("arial 12"),width=105,height=38,bg=dth_clr,fg=lfnt,cursor="hand2",selectbackground=dialog_bg)
-    listbox.pack(side=tk.LEFT,fill=tk.BOTH,padx=2)
+    listbox=tk.Listbox(cframe,font=('yu gothic ui', 25, 'bold'),width=40,height=14,bg=dth_clr,fg=lfnt,cursor="hand2",selectbackground=dialog_bg)
+    listbox.pack(side=tk.LEFT,fill=tk.BOTH,padx=25,pady=25)
     
     scrollbar=tk.Scrollbar(cframe)
     scrollbar.pack(side=tk.RIGHT,fill=tk.BOTH)
@@ -520,8 +523,8 @@ def chk_frame():
     listbox.bind("<<ListboxSelect>>", lambda event: print_selection())
 
 
-    title_entry=tk.Entry(cframe,width=20,font=('yu gothic ui', 22, 'bold'),bd=0, highlightthickness=0, bg=dialog_bg, fg=lfnt)
-    title_entry.place(x=250,y=16)
+    title_entry=tk.Entry(up_frame,width=20,font=('yu gothic ui', 22, 'bold'),bd=0, highlightthickness=0, bg=dialog_bg, fg=lfnt)
+    title_entry.place(x=150,y=16)
     title_entry.focus()
 
     item_entry=tk.Entry(down_frame,width=60,font=('yu gothic ui', 15, 'bold'),bd=0, highlightthickness=0, bg=dth_clr, fg=lfnt)
@@ -530,8 +533,8 @@ def chk_frame():
 
     Done_btn=tk.Button(iframe,text='Mark as done', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=lth_clr, activeforeground=dfnt, highlightthickness=0, bd=0, cursor='hand2', command=done_checklist)
     Done_btn.place(x=160, y=900)
-    View_btn=tk.Button(cframe,text='View Checklist Items', bg=dialog_bg, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=lth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=view_checklist)
-    View_btn.place(x=650, y=16)
+    View_btn=tk.Button(up_frame,text='View Checklist Items', bg=dialog_bg, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=lth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=view_checklist)
+    View_btn.place(x=550, y=16)
 
     add_btn_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/add.png')
     add_btn_lbl=tk.Button(down_frame,image=add_btn_img,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=add_checklist)
