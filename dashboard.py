@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk,messagebox
 from PIL import ImageTk, Image
 from tkcalendar import Calendar
 from datetime import datetime
@@ -13,9 +13,7 @@ dash.minsize(1920, 1080)
 
 icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/llogo.png')
 dash .iconphoto(True, icon)
-
 #========================  INDICATOR FUNCTION  ======================================
-
 def dash_unindicate():
     chk_btn.config(fg=lfnt)
     rem_btn.config(fg=lfnt)
@@ -204,7 +202,7 @@ def insert_into_reminder():
     c.execute("INSERT INTO reminder_table (title, description, deploy_date, deploy_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?, ?, ?)",[add_title.get(),add_description.get(), db_date, time1, 0 , uid])
     conn.commit()
 
-def top_level():
+def reminder_lvl():
     global toplvl
     toplvl=tk.Toplevel()
     toplvl.geometry('400x150')
@@ -359,7 +357,7 @@ def rem_frame():
 
     Add_btn=tk.Button(iframe,text='Add to Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=insert_into_reminder)
     Add_btn.place(x=1010, y=620)
-    Delete_btn=tk.Button(iframe,text='Delete Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=top_level )
+    Delete_btn=tk.Button(iframe,text='Delete Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=reminder_lvl )
     Delete_btn.place(x=280, y=900)
     View_btn=tk.Button(iframe,text='View Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=view_data_btn )
     View_btn.place(x=50, y=900)
@@ -423,7 +421,66 @@ def rem_frame():
         
 
 def note_frame():
+    def noteview():
+        note.delete('1.0', tk.END)
+        conn=sqlite3.connect('reg_usrs.db')
+        c=conn.cursor()
+
+        c.execute("SELECT note FROM notes_table WHERE title=? AND belongs_to=?",[title_entry.get(), uid])
+        txt = c.fetchall()
+        try:
+            note.insert( "1.0", txt[0][0])
+        except:
+            note.insert( "1.0", '')
+
+
+    def notesave():
+        txt=note.get( 1.0, tk.END)
+        conn=sqlite3.connect('reg_usrs.db')
+        c=conn.cursor()
+
+        c.execute("SELECT title FROM notes_table WHERE title=? AND belongs_to=?",[title_entry.get(), uid])
+        title= c.fetchall()
+        print(title)
+        print(str(title))
+
+        if title == []:
+            c.execute("INSERT INTO notes_table (title, note, belongs_to) VALUES (?, ?, ?)",[title_entry.get(),txt, uid])
+            conn.commit()
+        else:
+            c.execute("UPDATE notes_table SET note=? WHERE title=? AND belongs_to=?",[txt, title_entry.get(),uid])
+            conn.commit()
     
+    def deletenote():
+        conn=sqlite3.connect('reg_usrs.db')
+        c=conn.cursor()
+        c = conn.cursor()
+        c.execute("DELETE FROM notes_table WHERE title=?",[title_entry.get()])
+        conn.commit()
+
+    def ntop_ok():  
+        ntop.destroy()
+
+    def delete_toplevel():
+            global ntop
+            ntop=tk.Toplevel()
+            ntop.geometry('400x150')
+            ntop.title('Delete Note')
+            ntop.config(bg=dth_clr)
+            dialog_lbl=tk.Label(ntop,text="Enter the note title you want to delete", bg=dth_clr, fg=lfnt,font=('yu gothic ui', 12, 'bold'), pady=15)
+            dialog_lbl.pack()
+
+            tlevel_entry=tk.Entry(ntop,width=23,font="Arial, 12")
+            tlevel_entry.pack()
+
+            del_btn=tk.Button(ntop,text='DELETE',bg=dth_clr, fg=lfnt, font=('yu gothic ui', 12, 'bold') ,command=deletenote)
+            del_btn.place(x=250,y=100)
+
+            close_btn=tk.Button(ntop,text='OK',font=('yu gothic ui', 12, 'bold'), bg=dth_clr, fg=lfnt, command=ntop_ok)
+            close_btn.place(x=340,y=100)
+
+
+
     dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.png'))
     dash_bg=tk.Label(iframe, image=dashfr_img)
     dash_bg.image=dashfr_img
@@ -433,34 +490,35 @@ def note_frame():
     heading =tk.Label(iframe , text='Sticky Notes',font=('yu gothic ui', 44, 'bold'),bg=dth_clr, fg=lfnt)
     heading.place(x=650, y=0)
 
-
 # ===========================  Add Writing Area  ======================================   
+    up_frame=tk.Frame(iframe,width=1202,height=68,bg=dialog_bg)
+    up_frame.place(x=150,y=150)
     
-    note= tk.Text(iframe, width=100, height=34,font=('yu gothic ui', 14, 'bold'), bg=dialog_bg, fg=dfnt, insertbackground=lth_clr, bd=0, highlightthickness=0)
-    note.place(x=150, y=120)
+    title_entry=tk.Entry(up_frame,width=20,font=('yu gothic ui', 22, 'bold'),bd=0, highlightthickness=0, bg=dth_clr, fg=lfnt, insertbackground=lfnt)
+    title_entry.place(x=420,y=16)
+    title_entry.focus()
+    
+    note= tk.Text(iframe, width=100, height=28,font=('yu gothic ui', 14, 'bold'), bg=dialog_bg, fg=dfnt, insertbackground=dfnt, bd=0, highlightthickness=0)
+    note.place(x=150, y=220)
     note.insert(tk.END, "Add Notes...\n")
 
     down_frame=tk.Frame(iframe,width=1200,height=70,bg=dialog_bg)
-    down_frame.place(x=155,y=950)
+    down_frame.place(x=155,y=930)
     
-    save_note=tk. Button(down_frame, text='Save Note', font=('yu gothic ui', 20, 'bold'), bg=btn_bg, fg=lfnt, bd=0,cursor='hand2',activebackground=btn_bg,highlightthickness=0)
-    save_note.place(x=10, y=20)
+    save_note=tk. Button(down_frame, text='Save Note', font=('yu gothic ui', 20, 'bold'), bg=btn_bg, fg=lfnt, bd=0,cursor='hand2',activebackground=btn_bg,highlightthickness=0, command=notesave)
+    save_note.place(x=10, y=16)
     
     Notes_list=tk. Button(down_frame, text='Notes List', font=('yu gothic ui', 20, 'bold'), bg=btn_bg, fg=lfnt, bd=0,cursor='hand2',activebackground=btn_bg,highlightthickness=0)
-    Notes_list.place(x=150, y=20)
-
-    # Update_note=tk. Button(down_frame, text='Update Note', font=('yu gothic ui', 15, 'bold'), bg=btn_bg, fg=lfnt, bd=0,cursor='hand2',activebackground=btn_bg,highlightthickness=0)
-    # Update_note.place(x=10, y=20)
+    Notes_list.place(x=180, y=16)
     
-    # Delete_note=tk. Button(down_frame, text='Delete Note', font=('yu gothic ui', 15, 'bold'), bg=btn_bg, fg=lfnt, bd=0,cursor='hand2',activebackground=btn_bg,highlightthickness=0)
-    # Delete_note.place(x=10, y=20)
-    
-    
+    view_note=tk. Button(up_frame, text='View Note', font=('yu gothic ui', 20, 'bold'), bg=btn_bg, fg=lfnt, bd=0,cursor='hand2',activebackground=btn_bg,highlightthickness=0, command=noteview)
+    view_note.place(x=900, y=16)
 
-
+    delete_note=tk. Button(down_frame, text='Delete Note', font=('yu gothic ui', 20, 'bold'), bg=btn_bg, fg=lfnt, bd=0,cursor='hand2',activebackground=btn_bg,highlightthickness=0, command=delete_toplevel)
+    delete_note.place(x=350, y=16)
 
 def chk_frame():
-   
+
     def print_selection():
         selection = listbox.get(listbox.curselection())
         return selection
@@ -548,5 +606,4 @@ def chk_frame():
 def run_dashboard(user_data:dict):
     chk_frontend(user_data)
     dash.mainloop()
-
 
