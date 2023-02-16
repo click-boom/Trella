@@ -64,6 +64,7 @@ def on_rem_description_unpress(str):
 
 def ok(frname):
     frname.destroy()
+    view_fr.destroy()
     
 def tree():
         tree_fnt=15
@@ -387,10 +388,10 @@ def rem_frame():
     alarm_icon_lbl.image=alarm_icon
     alarm_icon_lbl.place(x=1270,y=17)
 #===========================  Repeat icon  ======================================
-    repeat_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/repeat.png')
-    repeat_icon_lbl=tk.Button(down_frame,image=repeat_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2' )
-    repeat_icon_lbl.image=repeat_icon
-    repeat_icon_lbl.place(x=1330,y=20)
+    # repeat_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/repeat.png')
+    # repeat_icon_lbl=tk.Button(down_frame,image=repeat_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2' )
+    # repeat_icon_lbl.image=repeat_icon
+    # repeat_icon_lbl.place(x=1330,y=20)
 
 #===========================  Add Writing Area  ======================================
 
@@ -455,13 +456,15 @@ def note_frame():
         conn=sqlite3.connect('reg_usrs.db')
         c=conn.cursor()
         c = conn.cursor()
-        c.execute("DELETE FROM notes_table WHERE title=?",[title_entry.get()])
+        c.execute("DELETE FROM notes_table WHERE title=?",[tlevel_entry.get()])
         conn.commit()
 
-    def ntop_ok():  
-        ntop.destroy()
+        view_fr.destroy()
+        view_titles()
 
     def delete_toplevel():
+            view_fr.destroy()
+            view_titles()
             global ntop
             ntop=tk.Toplevel()
             ntop.geometry('400x150')
@@ -470,15 +473,36 @@ def note_frame():
             dialog_lbl=tk.Label(ntop,text="Enter the note title you want to delete", bg=dth_clr, fg=lfnt,font=('yu gothic ui', 12, 'bold'), pady=15)
             dialog_lbl.pack()
 
+            global tlevel_entry
             tlevel_entry=tk.Entry(ntop,width=23,font="Arial, 12")
             tlevel_entry.pack()
 
             del_btn=tk.Button(ntop,text='DELETE',bg=dth_clr, fg=lfnt, font=('yu gothic ui', 12, 'bold') ,command=deletenote)
             del_btn.place(x=250,y=100)
 
-            close_btn=tk.Button(ntop,text='OK',font=('yu gothic ui', 12, 'bold'), bg=dth_clr, fg=lfnt, command=ntop_ok)
+            close_btn=tk.Button(ntop,text='OK',font=('yu gothic ui', 12, 'bold'), bg=dth_clr, fg=lfnt, command=lambda :ok(ntop))
             close_btn.place(x=340,y=100)
 
+    def view_titles():
+        conn=sqlite3.connect('reg_usrs.db')
+        c=conn.cursor()
+
+        global view_fr
+        view_fr=tk.Frame(iframe, width=350, height=250, bg=dth_clr)
+        view_fr.place(x=330, y=685)
+        view_listbox = tk.Listbox(view_fr, font=('Arial', 12), selectmode=tk.NONE, bg=dth_clr, fg=lfnt, selectbackground=dth_clr, selectforeground=lfnt)
+        view_listbox.pack(side=tk.TOP)
+        
+        view_listbox.delete(0, tk.END)
+        c.execute("SELECT title FROM notes_table WHERE belongs_to=?",[uid])
+        titles= c.fetchall()
+        for i in range(len(titles)):
+            view_listbox.insert(tk.END, titles[i][0])
+        conn.commit()
+
+        ok_button = tk.Button(view_fr, text="Close", bg=dialog_bg, fg=lfnt, highlightthickness=0, bd=0, command=lambda: ok(view_fr))
+        ok_button.pack()
+        
 
 
     dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.png'))
@@ -508,7 +532,7 @@ def note_frame():
     save_note=tk. Button(down_frame, text='Save Note', font=('yu gothic ui', 20, 'bold'), bg=btn_bg, fg=lfnt, bd=0,cursor='hand2',activebackground=btn_bg,highlightthickness=0, command=notesave)
     save_note.place(x=10, y=16)
     
-    Notes_list=tk. Button(down_frame, text='Notes List', font=('yu gothic ui', 20, 'bold'), bg=btn_bg, fg=lfnt, bd=0,cursor='hand2',activebackground=btn_bg,highlightthickness=0)
+    Notes_list=tk. Button(down_frame, text='Notes List', font=('yu gothic ui', 20, 'bold'), bg=btn_bg, fg=lfnt, bd=0,cursor='hand2',activebackground=btn_bg,highlightthickness=0, command=view_titles)
     Notes_list.place(x=180, y=16)
     
     view_note=tk. Button(up_frame, text='View Note', font=('yu gothic ui', 20, 'bold'), bg=btn_bg, fg=lfnt, bd=0,cursor='hand2',activebackground=btn_bg,highlightthickness=0, command=noteview)
@@ -518,6 +542,59 @@ def note_frame():
     delete_note.place(x=350, y=16)
 
 def chk_frame():
+
+    def delete_chk():
+        conn=sqlite3.connect('reg_usrs.db')
+        c=conn.cursor()
+        c = conn.cursor()
+        c.execute("DELETE FROM checklist_table WHERE title=?",[clevel_entry.get()])
+        conn.commit()
+
+        view_fr.destroy()
+        view_chk_titles()
+
+    def delete_chk_toplevel():
+            view_fr.destroy()
+            view_chk_titles()
+            global ntop
+            ctop=tk.Toplevel()
+            ctop.geometry('400x150')
+            ctop.title('Delete Note')
+            ctop.config(bg=dth_clr)
+            dialog_lbl=tk.Label(ctop,text="Enter the checklist title you want to delete", bg=dth_clr, fg=lfnt,font=('yu gothic ui', 12, 'bold'), pady=15)
+            dialog_lbl.pack()
+
+            global clevel_entry
+            clevel_entry=tk.Entry(ctop,width=23,font="Arial, 12")
+            clevel_entry.pack()
+
+            del_btn=tk.Button(ctop,text='DELETE',bg=dth_clr, fg=lfnt, font=('yu gothic ui', 12, 'bold') ,command=delete_chk)
+            del_btn.place(x=250,y=100)
+
+            close_btn=tk.Button(ctop,text='OK',font=('yu gothic ui', 12, 'bold'), bg=dth_clr, fg=lfnt, command=lambda :ok(ctop))
+            close_btn.place(x=340,y=100)
+
+    def view_chk_titles():
+        conn=sqlite3.connect('reg_usrs.db')
+        c=conn.cursor()
+
+        global view_fr
+        view_fr=tk.Frame(iframe, width=350, height=250, bg=dth_clr)
+        view_fr.place(x=1250, y=520)
+        view_listbox = tk.Listbox(view_fr, font=('Arial', 12), selectmode=tk.NONE, bg=dth_clr, fg=lfnt, selectbackground=dth_clr, selectforeground=lfnt)
+        view_listbox.pack(side=tk.TOP)
+        
+        view_listbox.delete(0, tk.END)
+        c.execute("SELECT title FROM checklist_table WHERE belongs_to=?",[uid])
+        titles= c.fetchall()
+        for i in range(len(titles)):
+            view_listbox.insert(tk.END, titles[i][0])
+        conn.commit()
+
+        ok_button = tk.Button(view_fr, text="Close", bg=dialog_bg, fg=lfnt, highlightthickness=0, bd=0, command=lambda: ok(view_fr))
+        ok_button.pack()
+
+
 
     def print_selection():
         selection = listbox.get(listbox.curselection())
@@ -593,6 +670,12 @@ def chk_frame():
     Done_btn.place(x=160, y=900)
     View_btn=tk.Button(up_frame,text='View Checklist Items', bg=dialog_bg, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=lth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=view_checklist)
     View_btn.place(x=550, y=16)
+    
+    dele_btn=tk.Button(iframe,text='Delete Checklists', bg=dialog_bg, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=lth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=delete_chk_toplevel)
+    dele_btn.place(x=900, y=850)
+    
+    list_btn=tk.Button(iframe,text='View Checklists', bg=dialog_bg, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=lth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=view_chk_titles)
+    list_btn.place(x=1200, y=850)
 
     add_btn_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/add.png')
     add_btn_lbl=tk.Button(down_frame,image=add_btn_img,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=add_checklist)
