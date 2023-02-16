@@ -361,7 +361,7 @@ def rem_frame():
     Add_btn.place(x=1010, y=620)
     Delete_btn=tk.Button(iframe,text='Delete Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=top_level )
     Delete_btn.place(x=280, y=900)
-    View_btn=tk.Button(iframe,text='View Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=view_in_tree_data(uid) )
+    View_btn=tk.Button(iframe,text='View Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=view_data_btn )
     View_btn.place(x=50, y=900)
     #------------------  Inner inner Frame  ---------------------------
     global iiframe
@@ -493,7 +493,7 @@ def chk_frame():
         c = conn.cursor()
         c.execute("DELETE FROM checklist_table WHERE title=? AND belongs_to=? AND items=?",[title_entry.get(), uid, print_selection()])
         conn.commit()
-        listbox.delete(0,tk.END)
+        listbox.delete(tk.ANCHOR)
 
 
     dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.png'))
