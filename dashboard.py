@@ -220,9 +220,9 @@ def top_level():
     del_btn=tk.Button(toplvl,text='DELETE',bg=dth_clr, fg=lfnt, font=('yu gothic ui', 12, 'bold') ,command=delete_from_reminder)
     del_btn.place(x=250,y=100)
 
-    close_btn=tk.Button(toplvl,text='OK',font="Arial, 12", bg=dth_clr, fg=lfnt, command=tree_ok)
+    close_btn=tk.Button(toplvl,text='OK',font=('yu gothic ui', 12, 'bold'), bg=dth_clr, fg=lfnt, command=tree_ok)
     close_btn.place(x=340,y=100)
-    
+
 def tree_ok():
     toplvl.destroy()
     view_in_tree_data(uid)
@@ -494,7 +494,6 @@ def chk_frame():
         c.execute("DELETE FROM checklist_table WHERE title=? AND belongs_to=? AND items=?",[title_entry.get(), uid, print_selection()])
         conn.commit()
         listbox.delete(tk.ANCHOR)
-
 
     dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.png'))
     dash_bg=tk.Label(iframe, image=dashfr_img)
