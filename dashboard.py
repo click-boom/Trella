@@ -616,7 +616,17 @@ def chk_frame():
         
         view_listbox.delete(0, tk.END)
         c.execute("SELECT title FROM checklist_table WHERE belongs_to=?",[uid])
-        titles= c.fetchall()
+        all_titles= c.fetchall()
+
+        def Remove(duplicate):
+            orgs = []
+            for val in duplicate:
+                if val not in orgs:
+                    orgs.append(val)
+            return orgs
+        
+        titles=Remove(all_titles)
+        
         for i in range(len(titles)):
             view_listbox.insert(tk.END, titles[i][0])
         conn.commit()
