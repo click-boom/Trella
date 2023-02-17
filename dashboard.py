@@ -422,7 +422,6 @@ def rem_frame():
     add_description.place(x=400,y=15)
     add_description.insert(0,'Reminder Description....')
     add_description.bind("<FocusIn>",on_rem_description_press)
-    add_description.bind("<FocusOut>",on_rem_description_unpress)
     title_line=tk.Canvas(down_frame, width=360, height=2.0, bg=lfnt, highlightthickness=0)
     title_line.place(x=400, y=52)
 
@@ -438,6 +437,9 @@ def rem_frame():
     
 
 def note_frame():
+    def on_note_title_press(str):
+        title_entry.delete(0, tk.END)
+    
     def noteview():
         note.delete('1.0', tk.END)
         conn=sqlite3.connect('reg_usrs.db')
@@ -542,7 +544,8 @@ def note_frame():
     
     title_entry=tk.Entry(up_frame,width=20,font=('yu gothic ui', 22, 'bold'),bd=0, highlightthickness=0, bg=dialog_bg, fg=lfnt, insertbackground=lfnt)
     title_entry.place(x=420,y=16)
-    title_entry.focus()
+    title_entry.insert(0, 'Enter Note Title...')
+    title_entry.bind("<FocusIn>",on_note_title_press)
     title_line=tk.Canvas(up_frame, width=400, height=2.0, bg=lfnt, highlightthickness=0)
     title_line.place(x=420, y=50)
 
@@ -569,7 +572,12 @@ def note_frame():
     delete_note.place(x=350, y=16)
 
 def chk_frame():
-    
+    def on_chk_title_press(str):
+        title_entry.delete(0, tk.END)
+
+    def on_chk_desc_press(str):
+        item_entry.delete(0, tk.END)
+
     def delete_chk():
         conn=sqlite3.connect('reg_usrs.db')
         c=conn.cursor()
@@ -700,14 +708,16 @@ def chk_frame():
     global title_entry
     title_entry=tk.Entry(up_frame,width=20,font=('yu gothic ui', 22, 'bold'),bd=0, highlightthickness=0,insertbackground=lfnt, bg=dth_clr, fg=lfnt)
     title_entry.place(x=150,y=28)
+    title_entry.insert(0,'Enter the Checklist title ....')
+    title_entry.bind("<FocusIn>",on_chk_title_press)
 
-    title_entry.focus
     title_line=tk.Canvas(cframe, width=390, height=2.0, bg=lfnt, highlightthickness=0)
     title_line.place(x=150, rely=0.025)
 
     item_entry=tk.Entry(down_frame,width=60,font=('yu gothic ui', 20, 'bold'),bd=0, highlightthickness=0, bg=dth_clr, fg=lfnt, insertbackground=lfnt)
     item_entry.place(x=65,y=16)
-    item_entry.focus()
+    item_entry.insert(0,'Enter the Checklist Description ....')
+    item_entry.bind("<FocusIn>",on_chk_desc_press)
     item_line=tk.Canvas(down_frame, width=900, height=2.0, bg=lfnt, highlightthickness=0)
     item_line.place(x=65, y=50)
 
