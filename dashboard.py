@@ -483,7 +483,7 @@ def note_frame():
         view_titles()
 
     def delete_toplevel():
-            view_data_btn()
+            view_titles()
             try:
                 view_fr.destroy()
             except:
