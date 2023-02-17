@@ -118,7 +118,6 @@ def view_in_tree_data(user_id):
         tree_scroll_frame.insert("", i, text=i+1, values=(val[0], val[1], val[2], val[3], val[4], val[5]))
         i+=1
     
-
 def view_data_btn():
     iiframe.destroy()
     tree()
@@ -211,6 +210,7 @@ def reminder_lvl():
     toplvl.config(bg=dth_clr)
     dialog_lbl=tk.Label(toplvl,text="Enter the reminder No. you want to delete", bg=dth_clr, fg=lfnt,font=('yu gothic ui', 12, 'bold'), pady=15)
     dialog_lbl.pack()
+    rem_frame()
     
     global tlevel_entry
     tlevel_entry=tk.Entry(toplvl,width=23,font="Arial, 12")
@@ -222,6 +222,13 @@ def reminder_lvl():
     close_btn=tk.Button(toplvl,text='OK',font=('yu gothic ui', 12, 'bold'), bg=dth_clr, fg=lfnt, command=tree_ok)
     close_btn.place(x=340,y=100)
 
+def add_frame():
+        dell_for_change_fr()
+        try:
+            toplvl.destroy()
+        except:
+            pass
+        rem_frame()
 def tree_ok():
     toplvl.destroy()
     view_in_tree_data(uid)
@@ -358,10 +365,15 @@ def rem_frame():
 
     Add_btn=tk.Button(iframe,text='Add to Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=insert_into_reminder)
     Add_btn.place(x=1010, y=620)
+    
     Delete_btn=tk.Button(iframe,text='Delete Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=reminder_lvl )
     Delete_btn.place(x=280, y=900)
+    
     View_btn=tk.Button(iframe,text='View Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2', command=view_data_btn )
     View_btn.place(x=50, y=900)
+    
+    Add_rem_btn=tk.Button(iframe,text='Add Reminders', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=dth_clr, activeforeground='white', highlightthickness=0, bd=0, cursor='hand2',command=add_frame)
+    Add_rem_btn.place(x=530, y=900)
     #------------------  Inner inner Frame  ---------------------------
     global iiframe
     iiframe=tk.Frame(iframe, bg=dth_clr)
@@ -397,18 +409,22 @@ def rem_frame():
 
     tentry_var=tk.StringVar()
     global add_title
-    add_title=tk.Entry(down_frame, font=('yu gothic ui', 20, 'bold'), fg=lth_clr, bg=dialog_bg, bd=0 ,highlightthickness=0, textvariable=tentry_var, insertbackground=lth_clr, width=15)
+    add_title=tk.Entry(down_frame, font=('yu gothic ui', 20, 'bold'), fg=lth_clr, bg=dth_clr, bd=0 ,highlightthickness=0, textvariable=tentry_var, insertbackground=lth_clr, width=15)
     add_title.place(x=70,y=15)
     add_title.insert(0,'Reminder Title....')
     add_title.bind("<FocusIn>",on_rem_title_press)
-    
+    title_line=tk.Canvas(down_frame, width=260, height=2.0, bg=lfnt, highlightthickness=0)
+    title_line.place(x=68, y=52)
+
     dentry_var=tk.StringVar()
     global add_description
-    add_description=tk.Entry(down_frame, font=('yu gothic ui', 20, 'bold'), fg=lth_clr, bg=dialog_bg, bd=0 ,highlightthickness=0, textvariable=dentry_var, insertbackground=lth_clr, width=20)
+    add_description=tk.Entry(down_frame, font=('yu gothic ui', 20, 'bold'), fg=lth_clr, bg=dth_clr, bd=0 ,highlightthickness=0, textvariable=dentry_var, insertbackground=lth_clr, width=20)
     add_description.place(x=400,y=15)
     add_description.insert(0,'Reminder Description....')
     add_description.bind("<FocusIn>",on_rem_description_press)
     add_description.bind("<FocusOut>",on_rem_description_unpress)
+    title_line=tk.Canvas(down_frame, width=360, height=2.0, bg=lfnt, highlightthickness=0)
+    title_line.place(x=400, y=52)
 
     global new_entry
     blank=('_'*8)+(' '*10)+('_'*8)+(' '*10)+('_'*8)+(' '*10)+('_'*8)
@@ -419,7 +435,7 @@ def rem_frame():
     add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=recently_added_checklist)
     add_button_lbl.image=add_button
     add_button_lbl.place(x=16,y=16)
-        
+    
 
 def note_frame():
     def noteview():
@@ -458,12 +474,18 @@ def note_frame():
         c = conn.cursor()
         c.execute("DELETE FROM notes_table WHERE title=?",[tlevel_entry.get()])
         conn.commit()
-
-        view_fr.destroy()
+        try:
+            view_fr.destroy()
+        except:
+            pass
         view_titles()
 
     def delete_toplevel():
-            view_fr.destroy()
+            view_data_btn()
+            try:
+                view_fr.destroy()
+            except:
+                pass
             view_titles()
             global ntop
             ntop=tk.Toplevel()
@@ -518,11 +540,16 @@ def note_frame():
     up_frame=tk.Frame(iframe,width=1202,height=68,bg=dialog_bg)
     up_frame.place(x=150,y=150)
     
-    title_entry=tk.Entry(up_frame,width=20,font=('yu gothic ui', 22, 'bold'),bd=0, highlightthickness=0, bg=dth_clr, fg=lfnt, insertbackground=lfnt)
+    title_entry=tk.Entry(up_frame,width=20,font=('yu gothic ui', 22, 'bold'),bd=0, highlightthickness=0, bg=dialog_bg, fg=lfnt, insertbackground=lfnt)
     title_entry.place(x=420,y=16)
     title_entry.focus()
-    
-    note= tk.Text(iframe, width=100, height=28,font=('yu gothic ui', 14, 'bold'), bg=dialog_bg, fg=dfnt, insertbackground=dfnt, bd=0, highlightthickness=0)
+    title_line=tk.Canvas(up_frame, width=400, height=2.0, bg=lfnt, highlightthickness=0)
+    title_line.place(x=420, y=50)
+
+    scrollbarY=tk.Scrollbar(iframe,orient=tk.VERTICAL, background=lth_clr, activebackground=lth_clr, troughcolor=dth_clr)
+    scrollbarY.place(relx=0.8920,rely=0.189,width=12,height=685)
+
+    note= tk.Text(iframe, width=100, height=28,font=('yu gothic ui', 14, 'bold'), bg=dialog_bg, fg=dfnt, insertbackground=dfnt, bd=0, highlightthickness=0, yscrollcommand=scrollbarY.set)
     note.place(x=150, y=220)
     note.insert(tk.END, "Add Notes...\n")
 
@@ -542,7 +569,7 @@ def note_frame():
     delete_note.place(x=350, y=16)
 
 def chk_frame():
-
+    
     def delete_chk():
         conn=sqlite3.connect('reg_usrs.db')
         c=conn.cursor()
@@ -554,7 +581,10 @@ def chk_frame():
         view_chk_titles()
 
     def delete_chk_toplevel():
-            view_fr.destroy()
+            try:
+                view_fr.destroy()
+            except:
+                pass
             view_chk_titles()
             global ntop
             ctop=tk.Toplevel()
@@ -657,14 +687,19 @@ def chk_frame():
     scrollbar.config(command=listbox.yview)
     listbox.bind("<<ListboxSelect>>", lambda event: print_selection())
 
+    global title_entry
+    title_entry=tk.Entry(up_frame,width=20,font=('yu gothic ui', 22, 'bold'),bd=0, highlightthickness=0,insertbackground=lfnt, bg=dth_clr, fg=lfnt)
+    title_entry.place(x=150,y=28)
 
-    title_entry=tk.Entry(up_frame,width=20,font=('yu gothic ui', 22, 'bold'),bd=0, highlightthickness=0, bg=dialog_bg, fg=lfnt)
-    title_entry.place(x=150,y=16)
-    title_entry.focus()
+    title_entry.focus
+    title_line=tk.Canvas(cframe, width=390, height=2.0, bg=lfnt, highlightthickness=0)
+    title_line.place(x=150, rely=0.025)
 
-    item_entry=tk.Entry(down_frame,width=60,font=('yu gothic ui', 15, 'bold'),bd=0, highlightthickness=0, bg=dth_clr, fg=lfnt)
-    item_entry.place(x=60,y=16)
+    item_entry=tk.Entry(down_frame,width=60,font=('yu gothic ui', 20, 'bold'),bd=0, highlightthickness=0, bg=dth_clr, fg=lfnt, insertbackground=lfnt)
+    item_entry.place(x=65,y=16)
     item_entry.focus()
+    item_line=tk.Canvas(down_frame, width=900, height=2.0, bg=lfnt, highlightthickness=0)
+    item_line.place(x=65, y=50)
 
     Done_btn=tk.Button(iframe,text='Mark as done', bg=dth_clr, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=lth_clr, activeforeground=dfnt, highlightthickness=0, bd=0, cursor='hand2', command=done_checklist)
     Done_btn.place(x=160, y=900)
@@ -684,6 +719,9 @@ def chk_frame():
 
     warning=tk.Label(iframe,text="Items completed in the check list will be automatically deleted, Incomplete tasks remain",fg=lfnt, bg=dth_clr, font=('yu gothic ui', 20))
     warning.place(x=365,y=905)
+
+
+    title_entry.focus()
 
 
 def run_dashboard(user_data:dict):
