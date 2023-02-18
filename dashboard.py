@@ -64,8 +64,11 @@ def on_rem_description_unpress(str):
 
 def ok(frname):
     frname.destroy()
-    view_fr.destroy()
-    
+    try:
+        view_fr.destroy()
+    except:
+        pass
+
 def tree():
         tree_fnt=15
         global tree_scroll_frame
