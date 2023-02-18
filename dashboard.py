@@ -29,22 +29,15 @@ def dell_for_change_fr():
     for frame in iframe.winfo_children():
         frame.destroy()
 
-def fetch_date():
-        real_date = datetime.strptime(cal.get_date(),"%m/%d/%y")
-        global db_date
-        db_date=str(real_date).split(" ")[0]
-        date_lbl.config(text=db_date)
-
-def fetch_time():
-    time: tuple = time_picker.time()
-    time_lbl.config(text=time)
-    global time1
-    time1=str(time[0])+':'+str(time[1])+' '+time[2]
 
 def recently_added_checklist():
-    items=add_title.get()+(' '*10) +add_description.get()+(' '*10) +db_date+(' '*10)+time1
+    items=add_title.get()+(' '*10) +add_description.get()+(' '*10) +db_date+(' '*10)+time12
     new_entry.config(text=items)
-
+    # dt=db_date+' '+time12
+    # date_time= datetime.strptime(dt, '%Y-%m-%d %H:%M:%S')
+    # print(date_time)
+    # print(type(date_time))
+    
 
 def on_rem_title_press(str):
     add_title.delete(0, tk.END)
@@ -126,56 +119,8 @@ def view_data_btn():
     tree()
     view_in_tree_data(uid)
 
-def cal_toggle_open():
-    global cal_toggle_frame
-    cal_toggle_frame=tk.Frame(iframe, bg=dth_clr)
-    cal_toggle_frame.place(width=235, height=250, x=980 , y=690)
-    
-
-    global cal
-    cal=Calendar(cal_toggle_frame, selectmode='day')
-    cal.grid()
-
-    get_btn=tk.Button(cal_toggle_frame, text='Pick date',font=('yu gothic ui', 12, 'bold'), fg=lfnt, bg=btn_bg, bd=0, highlightthickness=0, command=fetch_date)
-    get_btn.place(x=10, y=220)
 
 
-    OK_btn=tk.Button(cal_toggle_frame, text='OK',font=('yu gothic ui', 12, 'bold'), fg=lfnt, bg=btn_bg, bd=0, highlightthickness=0, command=lambda: ok(cal_toggle_frame))
-    OK_btn.place(x=120, y=220)
-    
-    global date_lbl
-    date_lbl=tk.Label(cal_toggle_frame, text='', fg=lfnt, bg=dth_clr, font=('yu gothic ui', 12, 'bold'))
-    date_lbl.place(x=10, y=180)
-
-def timepick():
-    al_toggle_fr=tk.Frame(iframe, bg=dth_clr , width=400, height=400)
-    al_toggle_fr.place( x=1050 , y=530)
-
-    cl_toggle_fr=tk.Frame(al_toggle_fr, bg='white')
-    cl_toggle_fr.place( x=10, y=10)
-    
-    global time_picker
-    time_picker = AnalogPicker(cl_toggle_fr)
-    time_picker.pack(expand=True, fill='both')
-
-    theme = AnalogThemes(time_picker)
-    theme.setDracula()
-
-    OKay_btn=tk.Button(al_toggle_fr, text='OK',font=('yu gothic ui', 12, 'bold'),fg=lfnt, bg=btn_bg,bd=0,highlightthickness=0, command=lambda: ok(al_toggle_fr))
-    OKay_btn.place(x=130, y=350, width=70)
-
-    get_btn=tk.Button(al_toggle_fr, text='Pick Time',
-    font=('yu gothic ui', 12, 'bold'),
-    fg=lfnt, 
-    bg=btn_bg,
-    bd=0, 
-    highlightthickness=0,
-    command=fetch_time)
-    get_btn.place(x=20, y=350)
-    
-    global time_lbl
-    time_lbl=tk.Label(al_toggle_fr, text='', fg=lfnt, bg=dth_clr, font=('yu gothic ui', 12, 'bold'))
-    time_lbl.place(x=295, y=350)
 
 def logout():
         global sure_dialog
@@ -198,33 +143,6 @@ def logout_yes():
 def logout_no():
     sure_dialog.destroy()
     
-    
-def insert_into_reminder():
-    conn=sqlite3.connect('reg_usrs.db')
-    c=conn.cursor()
-    c.execute("INSERT INTO reminder_table (title, description, deploy_date, deploy_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?, ?, ?)",[add_title.get(),add_description.get(), db_date, time1, 0 , uid])
-    conn.commit()
-
-def reminder_lvl():
-    global toplvl
-    toplvl=tk.Toplevel()
-    toplvl.geometry('400x150')
-    toplvl.title('Delete Reminder')
-    toplvl.config(bg=dth_clr)
-    dialog_lbl=tk.Label(toplvl,text="Enter the reminder No. you want to delete", bg=dth_clr, fg=lfnt,font=('yu gothic ui', 12, 'bold'), pady=15)
-    dialog_lbl.pack()
-    rem_frame()
-    
-    global tlevel_entry
-    tlevel_entry=tk.Entry(toplvl,width=23,font="Arial, 12")
-    tlevel_entry.pack()
-
-    del_btn=tk.Button(toplvl,text='DELETE',bg=dth_clr, fg=lfnt, font=('yu gothic ui', 12, 'bold') ,command=delete_from_reminder)
-    del_btn.place(x=250,y=100)
-
-    close_btn=tk.Button(toplvl,text='OK',font=('yu gothic ui', 12, 'bold'), bg=dth_clr, fg=lfnt, command=tree_ok)
-    close_btn.place(x=340,y=100)
-
 def add_frame():
         dell_for_change_fr()
         try:
@@ -232,22 +150,9 @@ def add_frame():
         except:
             pass
         rem_frame()
-def tree_ok():
-    toplvl.destroy()
-    view_in_tree_data(uid)
 
-def delete_from_reminder():
-    val=tlevel_entry.get()
-    conn=sqlite3.connect('reg_usrs.db')
-    c=conn.cursor()
 
-    try:
-        c = conn.cursor()
-        c.execute("DELETE FROM reminder_table WHERE ID=(?)",[val])
-        conn.commit()
-    
-    except:
-        pass
+
 #=======================  FRONT END  ======================================
 #------------------  Theme  -----------------------------
 
@@ -360,7 +265,118 @@ def chk_frontend(user_data:dict):
     uid=user_data['user_id']
 
 def rem_frame():
+    def cal_toggle_open():
+        global cal_toggle_frame
+        cal_toggle_frame=tk.Frame(iframe, bg=dth_clr)
+        cal_toggle_frame.place(width=235, height=250, x=980 , y=690)
 
+        global cal
+        cal=Calendar(cal_toggle_frame, selectmode='day')
+        cal.grid()
+
+        get_btn=tk.Button(cal_toggle_frame, text='Pick date',font=('yu gothic ui', 12, 'bold'), fg=lfnt, bg=btn_bg, bd=0, highlightthickness=0, command=fetch_date)
+        get_btn.place(x=10, y=220)
+
+
+        OK_btn=tk.Button(cal_toggle_frame, text='OK',font=('yu gothic ui', 12, 'bold'), fg=lfnt, bg=btn_bg, bd=0, highlightthickness=0, command=lambda: ok(cal_toggle_frame))
+        OK_btn.place(x=120, y=220)
+
+        global date_lbl
+        date_lbl=tk.Label(cal_toggle_frame, text='', fg=lfnt, bg=dth_clr, font=('yu gothic ui', 12, 'bold'))
+        date_lbl.place(x=10, y=180)
+
+    
+    def insert_into_reminder():
+        conn=sqlite3.connect('reg_usrs.db')
+        c=conn.cursor()
+        try:
+            c.execute("INSERT INTO reminder_table (title, description, deploy_date, deploy_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?, ?, ?)",[add_title.get(),add_description.get(), db_date, time12, 0 , uid])
+            conn.commit()
+        except:
+            pass
+            
+    
+    def delete_from_reminder():
+        val=tlevel_entry.get()
+        conn=sqlite3.connect('reg_usrs.db')
+        c=conn.cursor()
+
+        try:
+            c = conn.cursor()
+            c.execute("DELETE FROM reminder_table WHERE ID=(?)",[val])
+            conn.commit()
+        
+        except:
+            pass
+        view_data_btn()
+    
+    def reminder_lvl():
+        iiframe.destroy()
+        view_data_btn()
+        global toplvl
+        toplvl=tk.Toplevel()
+        toplvl.geometry('400x150')
+        toplvl.title('Delete Reminder')
+        toplvl.config(bg=dth_clr)
+        dialog_lbl=tk.Label(toplvl,text="Enter the reminder No. you want to delete", bg=dth_clr, fg=lfnt,font=('yu gothic ui', 12, 'bold'), pady=15)
+        dialog_lbl.pack()
+    
+        global tlevel_entry
+        tlevel_entry=tk.Entry(toplvl,width=23,font="Arial, 12")
+        tlevel_entry.pack()
+
+        del_btn=tk.Button(toplvl,text='DELETE',bg=dth_clr, fg=lfnt, font=('yu gothic ui', 12, 'bold') ,command=delete_from_reminder)
+        del_btn.place(x=250,y=100)
+
+        close_btn=tk.Button(toplvl,text='OK',font=('yu gothic ui', 12, 'bold'), bg=dth_clr, fg=lfnt, command=tree_ok)
+        close_btn.place(x=340,y=100)
+
+    def timepick():
+        al_toggle_fr=tk.Frame(iframe, bg=dth_clr , width=400, height=400)
+        al_toggle_fr.place( x=1050 , y=530)
+
+        cl_toggle_fr=tk.Frame(al_toggle_fr, bg='white')
+        cl_toggle_fr.place( x=10, y=10)
+    
+        global time_picker
+        time_picker = AnalogPicker(cl_toggle_fr)
+        time_picker.pack(expand=True, fill='both')
+
+        theme = AnalogThemes(time_picker)
+        theme.setDracula()
+
+        OKay_btn=tk.Button(al_toggle_fr, text='OK',font=('yu gothic ui', 12, 'bold'),fg=lfnt, bg=btn_bg,bd=0,highlightthickness=0, command=lambda: ok(al_toggle_fr))
+        OKay_btn.place(x=130, y=350, width=70)
+
+        get_btn=tk.Button(al_toggle_fr, text='Pick Time',
+        font=('yu gothic ui', 12, 'bold'),
+        fg=lfnt, 
+        bg=btn_bg,
+        bd=0, 
+        highlightthickness=0,
+        command=fetch_time)
+        get_btn.place(x=20, y=350)
+    
+        global time_lbl
+        time_lbl=tk.Label(al_toggle_fr, text='', fg=lfnt, bg=dth_clr, font=('yu gothic ui', 12, 'bold'))
+        time_lbl.place(x=295, y=350)
+    
+    def fetch_date():
+        real_date = datetime.strptime(cal.get_date(),"%m/%d/%y")
+        global db_date
+        db_date=str(real_date).split(" ")[0]
+        date_lbl.config(text=db_date)
+
+    def fetch_time():
+        time: tuple = time_picker.time()
+        time_lbl.config(text=time)
+        global time12
+        time12=str(time[0])+':'+str(time[1])+' '+time[2]
+
+    def tree_ok():
+        toplvl.destroy()
+        view_data_btn()
+    
     dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.png'))
     dash_bg=tk.Label(iframe, image=dashfr_img)
     dash_bg.image=dashfr_img
