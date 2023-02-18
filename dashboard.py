@@ -39,7 +39,7 @@ def fetch_time():
     time: tuple = time_picker.time()
     time_lbl.config(text=time)
     global time1
-    time1=str(time[0])+':'+str(time[1])+time[2]
+    time1=str(time[0])+':'+str(time[1])+' '+time[2]
 
 def recently_added_checklist():
     items=add_title.get()+(' '*10) +add_description.get()+(' '*10) +db_date+(' '*10)+time1
