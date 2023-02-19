@@ -5,6 +5,7 @@ from tkcalendar import Calendar
 from datetime import datetime
 from tktimepicker import AnalogPicker,AnalogThemes 
 import sqlite3
+from playsound import playsound
 
 dash=tk.Tk()
 dash.title('TRELLA')
@@ -28,14 +29,6 @@ def dash_indicate(ind, page):
 def dell_for_change_fr():
     for frame in iframe.winfo_children():
         frame.destroy()
-
-
-
-    # dt=db_date+' '+time12
-    # date_time= datetime.strptime(dt, '%Y-%m-%d %H:%M:%S')
-    # print(date_time)
-    # print(type(date_time))
-    
 
 def on_rem_title_press(str):
     add_title.delete(0, tk.END)
@@ -118,8 +111,6 @@ def view_data_btn():
     view_in_tree_data(uid)
 
 
-
-
 def logout():
         global sure_dialog
         sure_dialog=tk.Frame(sidebar, width=350, height=200, bg=dialog_bg, borderwidth=2)    
@@ -148,6 +139,25 @@ def add_frame():
         except:
             pass
         rem_frame()
+
+
+def rem(x, y, z):
+    scheduled_time = datetime.strptime(z, "%Y-%m-%d %H:%M:%S")
+
+    def generate_notification():
+        notification_window = tk.Toplevel()
+        notification_window.title("TRELLA Reminder")
+        notification_window.geometry("300x300")
+        notification_title = tk.Label(notification_window, text=x)
+        notification_title.pack()
+        notification_desc = tk.Label(notification_window, text=y)
+        notification_desc.pack()
+        notification_window.after(5000, lambda: notification_window.destroy())
+
+    # Schedule the notification using the after() method
+    time_diff = (scheduled_time - datetime.now()).total_seconds() * 1000
+    dash.after(int(time_diff), generate_notification)
+
 
 
 
@@ -261,7 +271,6 @@ def chk_frontend(user_data:dict):
 
     global uid
     uid=user_data['user_id']
-
 def rem_frame():
     def cal_toggle_open():
         global cal_toggle_frame
@@ -469,7 +478,7 @@ def rem_frame():
     add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=recently_added_checklist)
     add_button_lbl.image=add_button
     add_button_lbl.place(x=16,y=16)
-    
+ 
 
 def note_frame():
     def on_note_title_press(str):
@@ -486,7 +495,6 @@ def note_frame():
             note.insert( "1.0", txt[0][0])
         except:
             note.insert( "1.0", '')
-
 
     def notesave():
         txt=note.get( 1.0, tk.END)
@@ -514,6 +522,7 @@ def note_frame():
             view_fr.destroy()
         except:
             pass
+    
         view_titles()
 
     def delete_toplevel():
@@ -777,8 +786,6 @@ def chk_frame():
 
 
     title_entry.focus()
-
-
 def run_dashboard(user_data:dict):
     chk_frontend(user_data)
     dash.mainloop()
