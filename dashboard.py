@@ -495,9 +495,7 @@ def note_frame():
 
         c.execute("SELECT title FROM notes_table WHERE title=? AND belongs_to=?",[title_entry.get(), uid])
         title= c.fetchall()
-        print(title)
-        print(str(title))
-
+  
         if title == []:
             c.execute("INSERT INTO notes_table (title, note, belongs_to) VALUES (?, ?, ?)",[title_entry.get(),txt, uid])
             conn.commit()
@@ -511,6 +509,7 @@ def note_frame():
         c = conn.cursor()
         c.execute("DELETE FROM notes_table WHERE title=?",[tlevel_entry.get()])
         conn.commit()
+        note.delete(1.0, tk.END)
         try:
             view_fr.destroy()
         except:
@@ -621,6 +620,7 @@ def chk_frame():
         conn.commit()
 
         view_fr.destroy()
+        view_checklist()
         view_chk_titles()
 
     def delete_chk_toplevel():
