@@ -63,7 +63,7 @@ def login_backend():
                 dash_link(user_data)
         
             else:
-                incorrect=tk.Label(login_frame, text='Incorrect Passowrd and try again', font=('yu gothic ui', 18, 'bold '),background=th_clr, foreground=fnt, bd=0, width=35 )
+                incorrect=tk.Label(login_frame, text='Incorrect Password and try again', font=('yu gothic ui', 18, 'bold '),background=th_clr, foreground=fnt, bd=0, width=35 )
                 incorrect.place(x=85, y=635)
 
             
