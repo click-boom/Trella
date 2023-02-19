@@ -29,6 +29,7 @@ def registered_table():
             description TEXT(300),
             deploy_date DATETIME,
             deploy_time DATETIME,
+            date_time DATETIME,
             is_repeat TINYINT,
             belongs_to INTEGER,
             CONSTRAINT fk_users
@@ -77,11 +78,11 @@ def ins_into_chk( x, y, z):
     conn.commit()
     conn.close()
 
-def ins_into_rem(v, w, x, y, z):
+def ins_into_rem(t, u, v, w, x, y, z):
     conn = sqlite3.connect("reg_usrs.db")  
     c=conn.cursor()
     with conn:
-        c.execute("INSERT INTO reminder_table(title, description, deploy_date, deploy_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?)",[v, w,x,y,z])    
+        c.execute("INSERT INTO reminder_table(title, description, deploy_date, deploy_time, date_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?, ?, ?, ?)",[t, u, v, w, x, y,z])    
     conn.commit()
     conn.close()
 
@@ -163,12 +164,6 @@ def get_note_tasks_of_user(user_id:int,title)->list:
 # ins_into_users('Nikesh', 'bhandarinikesh93@gmail.com', 'nsrh123', 'nsrh123')
 # ins_into_users('Ashutosh', 'ashboy@gmail.com', 'bhadre', 'bhadre')
 
+ins_into_rem('Rohan', 'Wakeup', '2023-02-19', '8:40 AM', '2023-02-19 8:50:00',0,5)
 
-
-# ins_into_rem('Eat food at 11', datetime.utcnow(), 0, 5)
-# ins_into_rem('Eat food at 12', datetime.utcnow(), 0, 1)
-# ins_into_rem('Eat food at 13', datetime.utcnow(), 0, 5)
-
-# dell_chk(1)
-ins_into_chk('Rohan','Haseena','1')
-ins_into_chk('Rohan','Rohan','1')
+# dell_rem(5)

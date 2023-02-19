@@ -30,9 +30,7 @@ def dell_for_change_fr():
         frame.destroy()
 
 
-def recently_added_checklist():
-    items=add_title.get()+(' '*10) +add_description.get()+(' '*10) +db_date+(' '*10)+time12
-    new_entry.config(text=items)
+
     # dt=db_date+' '+time12
     # date_time= datetime.strptime(dt, '%Y-%m-%d %H:%M:%S')
     # print(date_time)
@@ -285,12 +283,29 @@ def rem_frame():
         date_lbl=tk.Label(cal_toggle_frame, text='', fg=lfnt, bg=dth_clr, font=('yu gothic ui', 12, 'bold'))
         date_lbl.place(x=10, y=180)
 
+    def recently_added_checklist():
+        items=add_title.get()+(' '*10) +add_description.get()+(' '*10) +db_date+(' '*10)+time12
+        new_entry.config(text=items)
+        
+        def convert_time():
+            hours, minutes, meridian =time[0], time[1], time[2]
+            hours = int(hours)
+
+            if meridian == "PM" and hours != 12:
+                hours += 12
+        
+            if meridian == "AM" and hours == 12:
+                hours = 0
+    
+            return db_date+' '+"{:02d}:{:02d}:{}".format(hours, int(minutes),'00')    
+        global dt
+        dt = datetime.strptime(convert_time(), '%Y-%m-%d %H:%M:%S')
     
     def insert_into_reminder():
         conn=sqlite3.connect('reg_usrs.db')
         c=conn.cursor()
         try:
-            c.execute("INSERT INTO reminder_table (title, description, deploy_date, deploy_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?, ?, ?)",[add_title.get(),add_description.get(), db_date, time12, 0 , uid])
+            c.execute("INSERT INTO reminder_table (title, description, deploy_date, deploy_time, date_time, is_repeat, belongs_to) VALUES (?, ?, ?, ?, ?, ?, ?)",[add_title.get(),add_description.get(), db_date, time12, dt, 0 , uid])
             conn.commit()
         except:
             pass
@@ -368,7 +383,8 @@ def rem_frame():
         date_lbl.config(text=db_date)
 
     def fetch_time():
-        time: tuple = time_picker.time()
+        global time
+        time= time_picker.time()
         time_lbl.config(text=time)
         global time12
         time12=str(time[0])+':'+str(time[1])+' '+time[2]
