@@ -158,13 +158,13 @@ def get_note_tasks_of_user(user_id:int,title)->list:
 # get_note_tasks_of_user(2, 'Rohan')
 
 """ Insert into users 1st values """
-# ins_into_users('Rohan', 'roahhanchaulagain@gmail.com', 'rhsn123', 'rhsn123')
-# ins_into_users('Haseena', 'rkc697418@gmail.com', 'hrsn123', 'hrsn123')
-# ins_into_users('Sujina', 'sujinasht307@gmail.com', 'snrh123', 'snrh123')
-# ins_into_users('Nikesh', 'bhandarinikesh93@gmail.com', 'nsrh123', 'nsrh123')
-# ins_into_users('Ashutosh', 'ashboy@gmail.com', 'bhadre', 'bhadre')
+ins_into_users('Rohan', 'roahhanchaulagain@gmail.com', 'rhsn123', 'rhsn123')
+ins_into_users('Haseena', 'rkc697418@gmail.com', 'hrsn123', 'hrsn123')
+ins_into_users('Sujina', 'sujinasht307@gmail.com', 'snrh123', 'snrh123')
+ins_into_users('Nikesh', 'bhandarinikesh93@gmail.com', 'nsrh123', 'nsrh123')
+ins_into_users('Ashutosh', 'ashboy@gmail.com', 'bhadre', 'bhadre')
 
-ins_into_rem('Rohan', 'Wakeup1', '2023-02-19', '7:45 PM', '2023-02-21 01:03:00',0,1)
-ins_into_rem('Rohan1', 'Wakeup2', '2023-02-19', '7:46 PM', '2023-02-21 01:04:00',0,1)
+# ins_into_rem('Rohan', 'Wakeup1', '2023-02-19', '7:45 PM', '2023-02-21 01:07:00',0,1)
+# ins_into_rem('Rohan1', 'Wakeup2', '2023-02-19', '7:46 PM', '2023-02-21 01:08:00',0,1)
 # dell_rem(1)
 

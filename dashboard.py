@@ -200,7 +200,7 @@ def chk_frontend(user_data:dict):
 
 # ====================  Button Labels  =======================================================================
     #-----------------Checklist--------------------------
-    btn_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/dash_btn.png')
+    btn_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/dash_btn.png')
         
     chk_btn_lbl=tk.Label(sidebar, image=btn_img, bg=dth_clr)
     chk_btn_lbl.image=btn_img
@@ -435,7 +435,7 @@ def rem_frame():
     calendar_icon_lbl.image=calendar_icon
     calendar_icon_lbl.place(x=1210,y=20)
 #===========================  Alarm icon  ======================================
-    alarm_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/alarm.png')
+    alarm_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/alarm.png')
     alarm_icon_lbl=tk.Button(down_frame,image=alarm_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=timepick )
     alarm_icon_lbl.image=alarm_icon
     alarm_icon_lbl.place(x=1270,y=17)
@@ -465,7 +465,7 @@ def rem_frame():
     new_entry=tk.Label(iiframe, bg=dialog_bg, text=blank, font=('yu gothic ui', 24, 'bold'), width=1098, height=2)
     new_entry.pack(side=tk.BOTTOM)
     
-    add_button=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/add.png')
+    add_button=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/add.png')
     add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=recently_added_checklist)
     add_button_lbl.image=add_button
     add_button_lbl.place(x=16,y=16)
@@ -766,7 +766,7 @@ def chk_frame():
     list_btn=tk.Button(iframe,text='View Checklists', bg=dialog_bg, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=lth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=view_chk_titles)
     list_btn.place(x=1200, y=850)
 
-    add_btn_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/add.png')
+    add_btn_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/add.png')
     add_btn_lbl=tk.Button(down_frame,image=add_btn_img,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=add_checklist)
     add_btn_lbl.image=add_btn_img
     add_btn_lbl.place(x=16,y=16)

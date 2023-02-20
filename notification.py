@@ -6,10 +6,9 @@ from playsound import playsound
 
 def gen_rem():
     
-    notify2.init("My Application")
+    notify2.init("TRELLA Reminder")
     def reminder(x, y):
-        notification = notify2.Notification(x, y)
-        notification.icon('/home/wae/Documents/giri raj sir/Trella/Images/llogo.png')
+        notification = notify2.Notification(x, y, icon='/home/wae/Documents/giri raj sir/Trella/Images/llogo.png')
         notification.show()
         
     format = '%Y-%m-%d %H:%M:%S'
