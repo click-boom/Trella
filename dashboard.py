@@ -6,6 +6,33 @@ from datetime import datetime
 from tktimepicker import AnalogPicker,AnalogThemes 
 import sqlite3
 from playsound import playsound
+import notify2
+
+import threading
+
+def gen_rem():
+    notify2.init("My Application")
+    def reminder(x, y):
+        notification = notify2.Notification(x, y)
+        notification.show()
+        
+    format = '%Y-%m-%d %H:%M:%S'
+    conn=sqlite3.connect('reg_usrs.db')
+    c=conn.cursor()
+
+    c.execute("SELECT title, description, date_time FROM reminder_table WHERE belongs_to=?",[1])
+    rows = c.fetchall()
+    for i in range(len(rows)):
+        datetime_str=str(rows[i][2])
+        dt= datetime.strptime(datetime_str, format)
+        reminder_time = datetime(dt.year, dt.month, dt.day, dt.hour, dt.minute)
+        delay = (reminder_time - datetime.now()).total_seconds()
+        try:
+            time.sleep(delay)
+            reminder(rows[i][0], rows[i][1])
+            playsound('/home/wae/Documents/giri raj sir/Trella/sound.wav')
+        except:
+            pass
 
 dash=tk.Tk()
 dash.title('TRELLA')
@@ -174,6 +201,10 @@ dialog_bg='#576B8B'
 
 #----------------------------------------------------------
 def chk_frontend(user_data:dict):
+
+    thread=threading.Thread(target=gen_rem)
+    thread.start()
+    
     dashfr=tk.Frame(dash, width=1230, height=746)
     dashfr.place(x=535, y=300)
 #----------------------------------------  Inner Frame  -------------------------------------------------------------
@@ -181,6 +212,20 @@ def chk_frontend(user_data:dict):
     iframe=tk.Frame(dash)
     iframe.place(x=400, y=0, width='1520', height='1080')
     
+    dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.png'))
+    dash_bg=tk.Label(iframe, image=dashfr_img)
+    dash_bg.image=dashfr_img
+    dash_bg.pack(fill='both', expand='yes')
+#------------------    ---------------------------
+    heading =tk.Label(iframe , text='Welcome To TRELLA',font=('yu gothic ui', 50, 'bold'),bg=dth_clr, fg=lfnt)
+    heading.place(x=500, y=0)
+    
+    intro = "Please Choose the options \nfrom the navigation Panel \nto Access the widgets"
+    label = tk.Text(iframe, width=23, height=5, borderwidth=0, font=('yu gothic ui', 49, 'bold'), highlightthickness=0, bd=0, bg=dth_clr, fg=lfnt)
+    label.insert("1.0", intro)
+    label.config(state="disabled")
+
+    label.place(x=280, y=300)
 #------------------  SIDEBAR  ---------------------------
     global sidebar
     sidebar =tk.Frame(dash ,bg=dth_clr)    
