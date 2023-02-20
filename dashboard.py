@@ -8,32 +8,7 @@ import sqlite3
 from playsound import playsound
 import notify2
 
-import threading
-
-def gen_rem():
-    notify2.init("My Application")
-    def reminder(x, y):
-        notification = notify2.Notification(x, y)
-        notification.show()
-        
-    format = '%Y-%m-%d %H:%M:%S'
-    conn=sqlite3.connect('reg_usrs.db')
-    c=conn.cursor()
-
-    c.execute("SELECT title, description, date_time FROM reminder_table WHERE belongs_to=?",[1])
-    rows = c.fetchall()
-    for i in range(len(rows)):
-        datetime_str=str(rows[i][2])
-        dt= datetime.strptime(datetime_str, format)
-        reminder_time = datetime(dt.year, dt.month, dt.day, dt.hour, dt.minute)
-        delay = (reminder_time - datetime.now()).total_seconds()
-        try:
-            time.sleep(delay)
-            reminder(rows[i][0], rows[i][1])
-            playsound('/home/wae/Documents/giri raj sir/Trella/sound.wav')
-        except:
-            pass
-
+import multiprocessing
 dash=tk.Tk()
 dash.title('TRELLA')
 dash.geometry('1920x1080')
@@ -167,27 +142,6 @@ def add_frame():
             pass
         rem_frame()
 
-
-def rem(x, y, z):
-    scheduled_time = datetime.strptime(z, "%Y-%m-%d %H:%M:%S")
-
-    def generate_notification():
-        notification_window = tk.Toplevel()
-        notification_window.title("TRELLA Reminder")
-        notification_window.geometry("300x300")
-        notification_title = tk.Label(notification_window, text=x)
-        notification_title.pack()
-        notification_desc = tk.Label(notification_window, text=y)
-        notification_desc.pack()
-        notification_window.after(5000, lambda: notification_window.destroy())
-
-    # Schedule the notification using the after() method
-    time_diff = (scheduled_time - datetime.now()).total_seconds() * 1000
-    dash.after(int(time_diff), generate_notification)
-
-
-
-
 #=======================  FRONT END  ======================================
 #------------------  Theme  -----------------------------
 
@@ -201,10 +155,6 @@ dialog_bg='#576B8B'
 
 #----------------------------------------------------------
 def chk_frontend(user_data:dict):
-
-    thread=threading.Thread(target=gen_rem)
-    thread.start()
-    
     dashfr=tk.Frame(dash, width=1230, height=746)
     dashfr.place(x=535, y=300)
 #----------------------------------------  Inner Frame  -------------------------------------------------------------
@@ -316,6 +266,7 @@ def chk_frontend(user_data:dict):
 
     global uid
     uid=user_data['user_id']
+
 def rem_frame():
     def cal_toggle_open():
         global cal_toggle_frame
@@ -488,11 +439,6 @@ def rem_frame():
     alarm_icon_lbl=tk.Button(down_frame,image=alarm_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=timepick )
     alarm_icon_lbl.image=alarm_icon
     alarm_icon_lbl.place(x=1270,y=17)
-#===========================  Repeat icon  ======================================
-    # repeat_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella1/Img/repeat.png')
-    # repeat_icon_lbl=tk.Button(down_frame,image=repeat_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2' )
-    # repeat_icon_lbl.image=repeat_icon
-    # repeat_icon_lbl.place(x=1330,y=20)
 
 #===========================  Add Writing Area  ======================================
 
@@ -523,7 +469,6 @@ def rem_frame():
     add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=recently_added_checklist)
     add_button_lbl.image=add_button
     add_button_lbl.place(x=16,y=16)
- 
 
 def note_frame():
     def on_note_title_press(str):
@@ -828,10 +773,6 @@ def chk_frame():
 
     warning=tk.Label(iframe,text="Items completed in the check list will be automatically deleted, Incomplete tasks remain",fg=lfnt, bg=dth_clr, font=('yu gothic ui', 20))
     warning.place(x=365,y=905)
-
-
-    title_entry.focus()
-def run_dashboard(user_data:dict):
+def run_dashboard(user_data:dict): 
     chk_frontend(user_data)
     dash.mainloop()
-

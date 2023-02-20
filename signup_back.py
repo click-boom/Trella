@@ -164,7 +164,7 @@ def get_note_tasks_of_user(user_id:int,title)->list:
 # ins_into_users('Nikesh', 'bhandarinikesh93@gmail.com', 'nsrh123', 'nsrh123')
 # ins_into_users('Ashutosh', 'ashboy@gmail.com', 'bhadre', 'bhadre')
 
-ins_into_rem('Rohan', 'Wakeup1', '2023-02-19', '7:45 PM', '2023-02-20 01:08:00',0,1)
-ins_into_rem('Rohan1', 'Wakeup2', '2023-02-19', '7:46 PM', '2023-02-20 12:09:00',0,1)
+ins_into_rem('Rohan', 'Wakeup1', '2023-02-19', '7:45 PM', '2023-02-20 23:40:00',0,1)
+ins_into_rem('Rohan1', 'Wakeup2', '2023-02-19', '7:46 PM', '2023-02-20 23:41:00',0,1)
 
 # dell_rem(1)

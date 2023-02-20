@@ -20,6 +20,8 @@ def dash_link(user_data:dict):
     login.destroy()
     from dashboard import run_dashboard
     run_dashboard(user_data)
+    from notification import gen_rem
+    gen_rem()
 
 def get_user_data(username:str)->dict:
     import sqlite3
