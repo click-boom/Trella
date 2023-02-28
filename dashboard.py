@@ -14,7 +14,7 @@ dash.title('TRELLA')
 dash.geometry('1920x1080')
 dash.minsize(1920, 1080)
 
-icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/llogo.png')
+icon=tk.PhotoImage(file='/home/rolen/Downloads/11/Images/llogo.png')
 dash .iconphoto(True, icon)
 #========================  INDICATOR FUNCTION  ======================================
 def dash_unindicate():
@@ -162,7 +162,7 @@ def chk_frontend(user_data:dict):
     iframe=tk.Frame(dash)
     iframe.place(x=400, y=0, width='1520', height='1080')
     
-    dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.png'))
+    dashfr_img=ImageTk.PhotoImage(Image.open('/home/rolen/Downloads/11/Images/dash_bg.png'))
     dash_bg=tk.Label(iframe, image=dashfr_img)
     dash_bg.image=dashfr_img
     dash_bg.pack(fill='both', expand='yes')
@@ -187,7 +187,7 @@ def chk_frontend(user_data:dict):
 
     #----------------  Logo Image -------------------
     
-    dash_logo=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/llogo.png'))
+    dash_logo=ImageTk.PhotoImage(Image.open('/home/rolen/Downloads/11/Images/llogo.png'))
     logo_lbl=tk.Label(lframe, image=dash_logo, bg= dth_clr)
     logo_lbl.image=dash_logo
     logo_lbl.pack(side='top') 
@@ -200,7 +200,7 @@ def chk_frontend(user_data:dict):
 
 # ====================  Button Labels  =======================================================================
     #-----------------Checklist--------------------------
-    btn_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/dash_btn.png')
+    btn_img=tk.PhotoImage(file='/home/rolen/Downloads/11/Images/dash_btn.png')
         
     chk_btn_lbl=tk.Label(sidebar, image=btn_img, bg=dth_clr)
     chk_btn_lbl.image=btn_img
@@ -221,7 +221,7 @@ def chk_frontend(user_data:dict):
  #=========================================================================================================================================
 # ====================  Buttons  ================================================================================
     #-----------------  Checklist  --------------------------
-    chk_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/check-list.png'))
+    chk_img=ImageTk.PhotoImage(Image.open('/home/rolen/Downloads/11/Images/check-list.png'))
     global chk_btn
     chk_btn=tk.Button(chk_btn_lbl, text='          CHECKLIST',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', bd=0,highlightthickness=0, activebackground=btn_bg, activeforeground='white', command=lambda:dash_indicate(chk_btn, chk_frame))
     chk_btn.place(x=30, y=7)
@@ -232,7 +232,7 @@ def chk_frontend(user_data:dict):
     
     #-----------------  reminder  --------------------------
     
-    rem_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/reminder.png'))
+    rem_img=ImageTk.PhotoImage(Image.open('/home/rolen/Downloads/11/Images/reminder.png'))
     global rem_btn
     rem_btn=tk.Button(rem_btn_lbl, text='          REMINDER',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg, activeforeground='white', bd=0,highlightthickness=0, command=lambda:dash_indicate(rem_btn,  rem_frame) )
     rem_btn.place(x=30, y=10)
@@ -243,7 +243,7 @@ def chk_frontend(user_data:dict):
 
     #-----------------  sticky notes --------------------------
     
-    st_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/sticky-note.png'))
+    st_img=ImageTk.PhotoImage(Image.open('/home/rolen/Downloads/11/Images/sticky-note.png'))
     global st_btn
     st_btn=tk.Button(st_btn_lbl, text='       STICKY NOTES',font=('yu gothic ui', 25, 'bold'), bg=btn_bg, fg=lfnt, cursor='hand2', activebackground=btn_bg,activeforeground='white' , bd=0,highlightthickness=0, command=lambda:dash_indicate(st_btn, note_frame) )
     st_btn.place(x=30, y=10)
@@ -254,12 +254,12 @@ def chk_frontend(user_data:dict):
 
 #-----------------  Logout Button  --------------------------
 
-    lcircle_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/l_btn.png')
+    lcircle_img=tk.PhotoImage(file='/home/rolen/Downloads/11/Images/l_btn.png')
     lcircle_lbl=tk.Label(sidebar, image=lcircle_img, bg=dth_clr, bd=0)
     lcircle_lbl.image=lcircle_img
     lcircle_lbl.place(x=135, y=670)
 
-    lbtn_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/logout.png')
+    lbtn_img=tk.PhotoImage(file='/home/rolen/Downloads/11/Images/logout.png')
     lbtn=tk.Button(lcircle_lbl, image=lbtn_img, bg=btn_bg, activebackground=btn_bg, cursor='hand2', highlightthickness=0, bd=0, command=logout)
     lbtn.image=lbtn_img
     lbtn.place(x=19, y=15)
@@ -398,7 +398,7 @@ def rem_frame():
         toplvl.destroy()
         view_data_btn()
     
-    dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.png'))
+    dashfr_img=ImageTk.PhotoImage(Image.open('/home/rolen/Downloads/11/Images/dash_bg.png'))
     dash_bg=tk.Label(iframe, image=dashfr_img)
     dash_bg.image=dashfr_img
     dash_bg.pack(fill='both', expand='yes')
@@ -430,12 +430,12 @@ def rem_frame():
     heading.place(x=650, y=0)
     
 #===========================  Calendar icon  ======================================
-    calendar_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/calendar.png')
+    calendar_icon=tk.PhotoImage(file='/home/rolen/Downloads/11/Images/calendar.png')
     calendar_icon_lbl=tk.Button(down_frame,image=calendar_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=cal_toggle_open)
     calendar_icon_lbl.image=calendar_icon
     calendar_icon_lbl.place(x=1210,y=20)
 #===========================  Alarm icon  ======================================
-    alarm_icon=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/alarm.png')
+    alarm_icon=tk.PhotoImage(file='/home/rolen/Downloads/11/Images/alarm.png')
     alarm_icon_lbl=tk.Button(down_frame,image=alarm_icon, bg=dth_clr, activebackground=dth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=timepick )
     alarm_icon_lbl.image=alarm_icon
     alarm_icon_lbl.place(x=1270,y=17)
@@ -465,7 +465,7 @@ def rem_frame():
     new_entry=tk.Label(iiframe, bg=dialog_bg, text=blank, font=('yu gothic ui', 24, 'bold'), width=1098, height=2)
     new_entry.pack(side=tk.BOTTOM)
     
-    add_button=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/add.png')
+    add_button=tk.PhotoImage(file='/home/rolen/Downloads/11/Images/add.png')
     add_button_lbl=tk.Button(down_frame,image=add_button,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=recently_added_checklist)
     add_button_lbl.image=add_button
     add_button_lbl.place(x=16,y=16)
@@ -562,7 +562,7 @@ def note_frame():
         
 
 
-    dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.png'))
+    dashfr_img=ImageTk.PhotoImage(Image.open('/home/rolen/Downloads/11/Images/dash_bg.png'))
     dash_bg=tk.Label(iframe, image=dashfr_img)
     dash_bg.image=dashfr_img
     dash_bg.pack(fill='both', expand='yes')
@@ -712,7 +712,7 @@ def chk_frame():
         conn.commit()
         listbox.delete(tk.ANCHOR)
 
-    dashfr_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/dash_bg.png'))
+    dashfr_img=ImageTk.PhotoImage(Image.open('/home/rolen/Downloads/11/Images/dash_bg.png'))
     dash_bg=tk.Label(iframe, image=dashfr_img)
     dash_bg.image=dashfr_img
     dash_bg.pack(fill='both', expand='yes')
@@ -766,7 +766,7 @@ def chk_frame():
     list_btn=tk.Button(iframe,text='View Checklists', bg=dialog_bg, fg=lfnt , font=('yu gothic ui', 20, 'bold'), activebackground=lth_clr, activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=view_chk_titles)
     list_btn.place(x=1200, y=850)
 
-    add_btn_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/add.png')
+    add_btn_img=tk.PhotoImage(file='/home/rolen/Downloads/11/Images/add.png')
     add_btn_lbl=tk.Button(down_frame,image=add_btn_img,bg=dth_clr,activebackground=dth_clr,activeforeground=dth_clr, highlightthickness=0, bd=0, cursor='hand2', command=add_checklist)
     add_btn_lbl.image=add_btn_img
     add_btn_lbl.place(x=16,y=16)

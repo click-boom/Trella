@@ -71,7 +71,7 @@ def signup_frontend():
     #--------------------Page Background-------------------------------------------------------------
  
  
-    img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/bg.png'))
+    img=ImageTk.PhotoImage(Image.open('/home/rolen/Downloads/11/Images/bg.png'))
     bg=tk.Label(signup, image=img)
     bg.image=img
     bg.pack(fill='both', expand='yes')
@@ -96,7 +96,7 @@ def signup_frontend():
     #-----------------------------------"Logo"-------------------------------------------------------------
  
  
-    logo_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/dlogo.png'))    
+    logo_img=tk.PhotoImage(file=('/home/rolen/Downloads/11/Images/dlogo.png'))    
     logo_lbl=tk.Label(login_frame,image=logo_img,background=th_clr)
     logo_lbl.image=logo_img
     logo_lbl.place(x=288, y=15)
@@ -146,23 +146,23 @@ def signup_frontend():
     #--------------------"Sign in/ Email and Password icons"-------------------------------------------------------
    
    
-    username_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/userr-icon.png')    
+    username_img=tk.PhotoImage(file='/home/rolen/Downloads/11/Images/userr-icon.png')    
     user_logo_lbl=tk.Label(login_frame,bg=th_clr ,image=username_img)
     user_logo_lbl.image=username_img
     user_logo_lbl.place(x=85, y=327)
 
-    email_img=tk.PhotoImage(file='/home/wae/Documents/giri raj sir/Trella/Images/mail.png')    
+    email_img=tk.PhotoImage(file='/home/rolen/Downloads/11/Images/mail.png')    
     user_logo_lbl=tk.Label(login_frame,bg=th_clr ,image=email_img)
     user_logo_lbl.image=email_img
     user_logo_lbl.place(x=85, y=407)
 
-    passwd_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/pwd_icon.png'))    
+    passwd_img=tk.PhotoImage(file=('/home/rolen/Downloads/11/Images/pwd_icon.png'))    
     passwd_logo_lbl=tk.Label(login_frame,bg=th_clr ,image=passwd_img)
     passwd_logo_lbl.image=passwd_img
     passwd_logo_lbl.place(x=85, y=490)
 
 
-    passwd_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/pwd_icon.png'))    
+    passwd_img=tk.PhotoImage(file=('/home/rolen/Downloads/11/Images/pwd_icon.png'))    
     passwd_logo_lbl=tk.Label(login_frame,bg=th_clr ,image=passwd_img)
     passwd_logo_lbl.image=passwd_img
     passwd_logo_lbl.place(x=85, y=568)
@@ -171,7 +171,7 @@ def signup_frontend():
     # --------------------"Sign Up Button"-------------------------------------------------------
    
    
-    btn_img=tk.PhotoImage(file=('/home/wae/Documents/giri raj sir/Trella/Images/btn.png'))    
+    btn_img=tk.PhotoImage(file=('/home/rolen/Downloads/11/Images/btn.png'))    
     sgnup_btn_img=tk.Label(login_frame,image=btn_img)
     sgnup_btn_img.image=btn_img
     sgnup_btn_img.place(x=225, y=610)
@@ -210,11 +210,11 @@ def signup_frontend():
         chide_btn.place(x=537, y=565)    
         cpasswd_entry.config(show='')
 
-    eview_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/view_pwd.png'))
-    cview_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/view_pwd.png'))
+    eview_img=ImageTk.PhotoImage(Image.open('/home/rolen/Downloads/11/Images/view_pwd.png'))
+    cview_img=ImageTk.PhotoImage(Image.open('/home/rolen/Downloads/11/Images/view_pwd.png'))
     
-    ehide_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/hide_pwd.png'))
-    chide_img=ImageTk.PhotoImage(Image.open('/home/wae/Documents/giri raj sir/Trella/Images/hide_pwd.png'))
+    ehide_img=ImageTk.PhotoImage(Image.open('/home/rolen/Downloads/11/Images/hide_pwd.png'))
+    chide_img=ImageTk.PhotoImage(Image.open('/home/rolen/Downloads/11/Images/hide_pwd.png'))
     
     eview_btn=tk.Button(login_frame, image=ehide_img, command=ehide, bg=th_clr, activebackground=th_clr, cursor='hand2', bd=0)
     eview_btn.place(x=537, y=485)    
