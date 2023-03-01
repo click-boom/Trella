@@ -25,7 +25,7 @@ def gen_rem():
         try:
             time.sleep(delay)
             reminder(rows[i][0], rows[i][1])
-            playsound('/home/wae/Documents/giri raj sir/Trella/sound.wav')
+            playsound('/home/rolen/Downloads/11/sound.wav')
         except:
             pass
 gen_rem()
